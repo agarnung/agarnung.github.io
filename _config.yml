@@ -6,7 +6,7 @@ source              : ./ ## Indica la raíz de tu proyecto. Jekyll busca aquí t
 ### Site Settings ###
 title               : agarnung.github.io
 description         : >-
-                      My personal portfolio.
+                      A work in progress...
                       
 # URL base donde se aloja el sitio:
 #baseurl             : "/portfolYOU"            # Change to empty quotes if you are hosting your site at <your-username>.github.io directly

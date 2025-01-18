@@ -1,11 +1,20 @@
-- name: HTML5/CSS3
-  percentage: 90
-  color: danger
+- name: C++
+  percentage: 70
+  color: danger 
 
-- name: Go
-  percentage: 80
-  color:
+- name: C
+  percentage: 60
+  color: success  
 
 - name: Python
-  percentage: 70
-  color: secondary
+  percentage: 40
+  color: info
+
+- name: Assembly
+  percentage: 20
+  color: secondary 
+
+- name: HTML/CSS/JavaScript
+  percentage: 20
+  color: primary   
+
