@@ -1,0 +1,11 @@
+title: agarnung.github.io
+description: My personal portfolio
+baseurl: "" # Empty for local development
+url: ""     # Empty for local development       
+
+plugins:
+  - jekyll-gist
+
+github:
+  - repo: agarnung/agarnung.github.io
+  - branch: main
