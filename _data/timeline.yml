@@ -1,17 +1,34 @@
-- title: Student, Harvard CS
-  from: 2014
-  to: 2018
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+- title: Bachelor's Degree in Industrial Electronics and Automation Engineering, UniOvi
+  from: 2018
+  to: 2022
+  description: Grade: 7.43. 
+               Specializations in mobile robotics, programming in ROS, and embedded systems. 
+               Bachelor's Thesis: Integration of an omnidirectional autonomous educational mobile robot in ROS (grade: 10).
+
+- title: Master's Degree in Automation Engineering and Industrial Informatics, UniOvi
+  from: 2022
+  to: 2024
+  description: Grade: 9.34. 
+               Specializations in computer vision, applied mathematics, image processing, algorithms, integrated industrial systems, detection, classification, simulation, advanced experimentation, and artificial intelligence.
+               Master's Thesis: [Integration of an omnidirectional autonomous educational mobile robot in ROS](https://hdl.handle.net/10651/76231) (grade: 10).
+
+- title: PhD in Energy and Process Control, UniOvi
+  from: 2024
+  to: present
+  description: Specialization in 3D computer vision.
+
+- title: Computer Vision Engineering Intern, CIN Advanced Systems Group
+  from: 14/11/2023
+  to: 14/11/2024
+  description: Surface defect detection – study of industrial solutions – software for continuous monitoring and real-time analysis with 2D cameras – image processing using analytical techniques and artificial intelligence.
+
+- title: Computer Vision Engineer, CIN Advanced Systems Group
+  from: 14/11/2023
+  to: present
+  description: Implementation of real-time metrology systems – high-precision inspection and measurement algorithms with 3D laser technology – point cloud reconstruction and filtering – deployment of computer vision solutions.
 
 - title: Software Engineer, Google, UK
   from: 2018
   to: present
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
