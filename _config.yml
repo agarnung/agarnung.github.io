@@ -1,6 +1,8 @@
 ### Site Settings ###
 source              : ./ ## Indica la raíz de tu proyecto. Jekyll busca aquí todo el contenido y los archivos necesarios para generar el sitio
 
+
+
 ### Site Settings ###
 title               : agarnung.github.io
 description         : >-
@@ -16,7 +18,9 @@ open_new_tab        : true                      # Opens external URLs (<a href="
 
 # URL completa del sitio:
 url: ""     					# Empty for local development    
-url: "https://agarnung.github.io "		# En producción
+#url: "https://agarnung.github.io "		# En producción
+
+
 
 ### Plugins ###
 plugins:
@@ -26,11 +30,14 @@ github:
   - repo: agarnung/agarnung.github.io
   - branch: main
 
+
+
 ### Navbar Settings ###
 nav_exclude:                                            # The following paths are excluded from navbar
   - pages/tags.html
   - pages/404.html
   - pages/index.md
+
 
 
 ### Author Info ###
@@ -58,8 +65,10 @@ author:
 # keybase           : your_username
 
 
+
 ### Posts ###
 permalink: /blog/:title
+
 
 
 ### Collections ###
@@ -69,9 +78,11 @@ collections:
     permalink: /projects/:name
 
 
+
 ### Disqus ###
 disqus:
   shortname: your-short-name-disqus                     # Your website Shortname on disqus
+
 
 
 ### Analytics ###
@@ -79,6 +90,7 @@ analytics:
   enabled: false                                        # Set true to enable analytics
   google:
     tracking_id: your-google-tracking-id
+
 
 
 ### Buy me a coffee ###
@@ -89,6 +101,7 @@ buymeacoffee:
   color: "#007bff"
   message: "Thank you for visiting."                    # Message to be displayed aside from the button for a few seconds.
   description: "Support me on Buy me a coffee!"
+
 
 
 ### Defaults for collections ###
@@ -103,6 +116,7 @@ defaults:
       type: "posts"
     values:
       comments: false                                   # Set to true to enable disqus comments
+
 
 
 ### Exclude from processing ###
