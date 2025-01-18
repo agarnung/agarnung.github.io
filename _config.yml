@@ -1,21 +1,30 @@
 ### Site Settings ###
+source              : ./ ## Indica la raíz de tu proyecto. Jekyll busca aquí todo el contenido y los archivos necesarios para generar el sitio
+
+### Site Settings ###
 title               : agarnung.github.io
 description         : >-
                       My personal portfolio.
+                      
+# URL base donde se aloja el sitio:
 #baseurl             : "/portfolYOU"            # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
 baseurl: "" 					# Empty for local development
-#repository          : yousinix/portfolYOU      # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
-remote_theme        : agarnung/agarnung
-open_new_tab        : false                     # Opens external URLs in new tab (works for posts, projects and navbar only)
 
+#repository          : yousinix/portfolYOU      # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
+#remote_theme        : agarnung/agarnung
+open_new_tab        : true                      # Opens external URLs (<a href="...">) in new tab (works for posts, projects and navbar only)
+
+# URL completa del sitio:
+url: ""     					# Empty for local development    
+url: "https://agarnung.github.io "		# En producción
 
 ### Plugins ###
 plugins:
   - jemoji
 
-#github:
-#  - repo: agarnung/agarnung.github.io
-#  - branch: main
+github:
+  - repo: agarnung/agarnung.github.io
+  - branch: main
 
 ### Navbar Settings ###
 nav_exclude:                                            # The following paths are excluded from navbar
