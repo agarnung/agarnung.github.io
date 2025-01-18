@@ -1,7 +1,11 @@
-- name: Adobe Photoshop
-  percentage: 95
-  color: info
-
-- name: Adobe Illustrator
+- name: OpenCV
   percentage: 90
+  color: primary
+
+- name: Qt
+  percentage: 80
+  color: success
+
+- name: OpenGL
+  percentage: 50
   color: success
