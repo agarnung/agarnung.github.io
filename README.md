@@ -54,7 +54,7 @@ Follow the official instructions to test GitHub Pages sites with [Jekyll](https:
 	gem 'jekyll'
 	gem 'jekyll-gist'
 	```
-4. Create a _config.yml file in the root of your project with the following basic configuration:
+4. Create a _config.yml (see /test/ folder) file in the root of your project with the following basic configuration:
 	```yml
 	title: agarnung.github.io
 	description: My personal portfolio
