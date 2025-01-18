@@ -7,8 +7,8 @@ weight: 3
 
 # **About Me**
 
-Hi I am **{{ site.author.name }}** :wave:,<br>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Hi I am **{{ site.author.name }}** :globe_with_meridians:,<br>
+My interests focus on the research and development of analytical techniques and machine learning for computer vision and image processing to continuously improve a variety of applications, with an emphasis on cutting-edge systems and processes that involve object inspection and measurement algorithms, particularly in digital images and 3D point clouds.
 
 <div class="row">
 {% include about/skills.html title="Programming Skills" source=site.data.programming-skills %}
