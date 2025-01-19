@@ -15,6 +15,14 @@ My interests focus on the research and development of analytical techniques and 
 {% include about/skills.html title="Other Skills" source=site.data.other-skills %}
 </div>
 
+
+## **Education**
 <div class="row">
 {% include about/timeline.html %}
 </div>
+
+## **Professional experience**
+<div class="row">
+{% include about/timeline_experience.html %}
+</div>
+

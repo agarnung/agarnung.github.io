@@ -19,22 +19,3 @@
   to: present
   description: |
     Specialization in 3D computer vision.
-
-- title: "Research Development Engineering Intern, CIN Advanced Systems Group"
-  from: 04/09/2023
-  to: 13/11/2023
-  description: |
-    Advanced simulation – detection and classification algorithms – industrial software deployment – sensor integration.
-
-- title: "Computer Vision Engineering Intern, CIN Advanced Systems Group"
-  from: 14/11/2023
-  to: 14/11/2024
-  description: |
-    Surface defect detection – study of industrial solutions – software for continuous monitoring and real-time analysis with 2D cameras – image processing using analytical techniques and artificial intelligence.
-
-- title: "Computer Vision Engineer, CIN Advanced Systems Group"
-  from: 14/11/2023
-  to: present
-  description: |
-    Implementation of real-time metrology systems – high-precision inspection and measurement algorithms with 3D laser technology – point cloud reconstruction and filtering – deployment of computer vision solutions.
-
