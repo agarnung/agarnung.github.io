@@ -1,0 +1,5 @@
+Usar un DNS propio (hay que registrarlo) (ver https://github.com/alesordo):
+	1. crear archivo CNAME en raíz con contenido: www.agarnung.com 
+	2.
+	3.
+	

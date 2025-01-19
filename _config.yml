@@ -16,8 +16,8 @@ open_new_tab        : true                      # Opens external URLs (<a href="
 
 # URL completa del sitio:
 #url: ""     					# Empty for local development    
-#url: "https://agarnung.github.io "		# En producción
-url: https://www.agarnung.com
+url: "https://agarnung.github.io"		# En producción
+
 
 
 
