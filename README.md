@@ -1,9 +1,5 @@
 # agarnung.github.io
 
-This portfolio is based on [portfolYOU](https://github.com/yousinix/portfolYOU/tree/master?tab=readme-ov-file).
-
----
-
 ## Instructions for creating a portfolio with Jekyll and Bundler
 
 ### 1. Install Jekyll to test the website
