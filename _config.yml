@@ -3,7 +3,8 @@ source              : . 		  	# Indica la raÃ­z de tu proyecto. Jekyll busca aquÃ
 title               : agarnung.github.io
 description         : >-
                       A work in progress...
-                      
+incremental	    : false
+
 # URL base donde se aloja el sitio:
 #baseurl             : "/portfolYOU"            # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
 #baseurl: "/" 					# Empty for local development
