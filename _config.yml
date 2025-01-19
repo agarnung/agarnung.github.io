@@ -1,24 +1,23 @@
 ### Site Settings ###
-source              : ./ ## Indica la raíz de tu proyecto. Jekyll busca aquí todo el contenido y los archivos necesarios para generar el sitio
-
-
-
-### Site Settings ###
+source              : . 		  	# Indica la raíz de tu proyecto. Jekyll busca aquí todo el contenido y los archivos necesarios para generar el sitio
 title               : agarnung.github.io
 description         : >-
                       A work in progress...
                       
 # URL base donde se aloja el sitio:
 #baseurl             : "/portfolYOU"            # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
-baseurl: "" 					# Empty for local development
+#baseurl: "/" 					# Empty for local development
+baseurl: "/" 					
 
-#repository          : yousinix/portfolYOU      # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
+repository        : agarnung/agarnung.github.io # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
 #remote_theme        : agarnung/agarnung
 open_new_tab        : true                      # Opens external URLs (<a href="...">) in new tab (works for posts, projects and navbar only)
 
 # URL completa del sitio:
-url: ""     					# Empty for local development    
+#url: ""     					# Empty for local development    
 #url: "https://agarnung.github.io "		# En producción
+url: https://www.agarnung.com
+
 
 
 

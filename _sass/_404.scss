@@ -1,257 +1,125 @@
-.cls-1 {
-  fill: #ffc541;
+@import 'https://fonts.googleapis.com/css?family=Inconsolata';
+
+.error-html {
+   min-height: 100%;
 }
 
-.cls-2 {
-  fill: #4e4066;
+.error-body {
+  box-sizing: border-box;
+  height: 100%;
+  background-color: #000000;
+  background-image: radial-gradient(#11581E, #041607), url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Inconsolata', Helvetica, sans-serif;
+  font-size: 1.5rem;
+  color: rgba(128, 255, 128, 0.8);
+  text-shadow:
+      0 0 1ex rgba(51, 255, 51, 1),
+      0 0 2px rgba(255, 255, 255, 0.8);
 }
 
-.cls-3 {
-  fill: #6f5b92;
+.error-noise {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  opacity: .02;
 }
 
-.cls-4 {
-  fill: #f78d5e;
+.error-overlay {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:
+      repeating-linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0) 100%);
+  background-size: auto 4px;
+  z-index: 1;
 }
 
-.cls-5 {
-  fill: #fa976c;
+.error-overlay::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      0deg,
+      transparent 0%,
+      rgba(32, 128, 32, 0.2) 2%,
+      rgba(32, 128, 32, 0.8) 3%,
+      rgba(32, 128, 32, 0.2) 3%,
+      transparent 100%);
+  background-repeat: no-repeat;
+  animation: scan 7.5s linear 0s infinite;
 }
 
-.cls-6 {
-  fill: #b65c32;
-  opacity: 0.6;
+@keyframes scan {
+  0%        { background-position: 0 -100vh; }
+  35%, 100% { background-position: 0 100vh; }
 }
 
-.cls-7 {
-  fill: #b65c32;
-  opacity: 0.4;
+.error-terminal {
+  box-sizing: inherit;
+  position: absolute;
+  height: 100%;
+  width: 1000px;
+  max-width: 100%;
+  padding: 4rem;
+  text-transform: uppercase;
 }
 
-.cls-8 {
-  fill: #b65c32;
+.error-output {
+  color: rgba(128, 255, 128, 0.8);
+  text-shadow:
+      0 0 1px rgba(51, 255, 51, 0.4),
+      0 0 2px rgba(255, 255, 255, 0.8);
 }
 
-.cls-9 {
-  fill: #f4b73b;
+.error-output::before {
+  content: "> ";
 }
 
-.cls-10 {
-  opacity: 0.6;
+/*
+.input {
+  color: rgba(192, 255, 192, 0.8);
+  text-shadow:
+      0 0 1px rgba(51, 255, 51, 0.4),
+      0 0 2px rgba(255, 255, 255, 0.8);
 }
 
-.cls-11 {
-  fill: #f9c358;
+.input::before {
+  content: "$ ";
+}
+*/
+
+#error-link {
+  color: #fff;
+  text-decoration: none;
 }
 
-.cls-12 {
-  fill: #9b462c;
+#error-link::before {
+  content: "[";
 }
 
-.cls-13 {
-  fill: #aa512e;
+#error-link::after {
+  content: "]";
 }
 
-.cls-14 {
-  fill: #7d6aa5;
-}
-
-/* animations */
-
-.wheel {
-  animation: wheel-rotate 6s ease infinite;
-  transform-origin: center;
-  transform-box: fill-box;
-}
-
-@keyframes wheel-rotate {
-  50% {
-    transform: rotate(360deg);
-    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
-  }
-  100% {
-    transform: rotate(960deg);
-  }
-}
-
-.clock-hand-1 {
-  animation: clock-rotate 3s linear infinite;
-  transform-origin: bottom;
-  transform-box: fill-box;
-}
-
-.clock-hand-2 {
-  animation: clock-rotate 6s linear infinite;
-  transform-origin: bottom;
-  transform-box: fill-box;
-}
-
-@keyframes clock-rotate {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-#box-top {
-  animation: box-top-anim 2s linear infinite;
-  transform-origin: right top;
-  transform-box: fill-box;
-}
-
-@keyframes box-top-anim {
-  50% {
-    transform: rotate(-5deg);
-  }
-}
-
-#umbrella {
-  animation: umbrella-anim 6s linear infinite;
-  transform-origin: center;
-  transform-box: fill-box;
-}
-
-@keyframes umbrella-anim {
-  25% {
-    transform: translateY(10px) rotate(5deg);
-  }
-  75% {
-    transform: rotate(-5deg);
-  }
-}
-
-#cup {
-  animation: cup-rotate 3s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
-  transform-origin: top left;
-  transform-box: fill-box;
-}
-
-@keyframes cup-rotate {
-  50% {
-    transform: rotate(-5deg);
-  }
-}
-
-#pillow {
-  animation: pillow-anim 3s linear infinite;
-  transform-origin: center;
-  transform-box: fill-box;
-}
-
-@keyframes pillow-anim {
-  25% {
-    transform: rotate(10deg) translateY(5px);
-  }
-  75% {
-    transform: rotate(-10deg);
-  }
-}
-
-#stripe {
-  animation: stripe-anim 3s linear infinite;
-  transform-origin: center;
-  transform-box: fill-box;
-}
-
-@keyframes stripe-anim {
-  25% {
-    transform: translate(10px, 0) rotate(-10deg);
-  }
-  75% {
-    transform: translateX(10px);
-  }
-}
-
-#bike {
-  animation: bike-anim 6s ease infinite;
-}
-
-@keyframes bike-anim {
-  0% {
-    transform: translateX(-1300px);
-  }
-  50% {
-    transform: translateX(0);
-    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
-  }
-  100% {
-    transform: translateX(1300px);
-  }
-}
-
-#rucksack {
-  animation: ruck-anim 3s linear infinite;
-  transform-origin: top;
-  transform-box: fill-box;
-}
-
-@keyframes ruck-anim {
-  50% {
-    transform: rotate(5deg);
-  }
-}
-
-.circle {
-  animation: circle-anim ease infinite;
-  transform-origin: center;
-  transform-box: fill-box;
-  perspective: 0px;
-}
-
-.circle.c1 {
-  animation-duration: 2s;
-}
-
-.circle.c2 {
-  animation-duration: 3s;
-}
-
-.circle.c3 {
-  animation-duration: 1s;
-}
-
-.circle.c4 {
-  animation-duration: 1s;
-}
-
-.circle.c5 {
-  animation-duration: 2s;
-}
-
-.circle.c6 {
-  animation-duration: 3s;
-}
-
-@keyframes circle-anim {
-  50% {
-    transform: scale(0.2) rotateX(360deg) rotateY(360deg);
-  }
-}
-
-.four,
-#ou {
-  animation: four-anim cubic-bezier(0.39, 0.575, 0.565, 1) infinite;
-}
-
-.four.a {
-  transform-origin: bottom left;
-  animation-duration: 3s;
-  transform-box: fill-box;
-}
-
-.four.b {
-  transform-origin: bottom right;
-  animation-duration: 3s;
-  transform-box: fill-box;
-}
-
-#ou {
-  animation-duration: 6s;
-  transform-origin: center;
-  transform-box: fill-box;
-}
-
-@keyframes four-anim {
-  50% {
-    transform: scale(0.98);
-  }
+.errorcode {
+  color: white;
 }

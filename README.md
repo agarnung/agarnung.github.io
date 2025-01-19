@@ -112,6 +112,7 @@ Changes made to fulfil my needs:
 * Changed the [Error 404](https://codepen.io/code2rithik/pen/PoWQYGa) page
 * Added script to list repos through Github API
 * Added theme colors for skills
+* Disentangled remote theme
 * Edited main page layout
 * Changed footer, header and other includes
 
