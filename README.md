@@ -105,7 +105,10 @@ A typicall organized structure of a Jeckyll project may be something like this:
 ### Licence
 This portfolio is based on th awesome template [portfolYOU](https://github.com/yousinix/portfolYOU).
 
+<div align="center">
 <sub><sup>© 2025 Alejandro Garnung Menéndez, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>
+</div>
+
 
 
 
