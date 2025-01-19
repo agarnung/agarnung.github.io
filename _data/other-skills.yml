@@ -8,4 +8,4 @@
 
 - name: OpenGL
   percentage: 50
-  color: success
+  color: info
