@@ -102,5 +102,10 @@ A typicall organized structure of a Jeckyll project may be something like this:
 ### Troubleshooting
 * Can't see my favicon?: Clear Cache. Try a hard refresh (Ctrl + F5 or Cmd + Shift + R) or open in incognito mode. Browsers often cache favicons aggressively, and sometimes a simple refresh won't show the new favicon.
 
+### Licence
+This portfolio is based on th awesome template [portfolYOU](https://github.com/yousinix/portfolYOU).
+
+<sub><sup>© 2025 Alejandro Garnung Menéndez, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>
+
 
 

@@ -1,20 +1,7 @@
 ---
-name: The Movies Project
-tools: [C#, XML, WPF]
-image: https://www.sketchappsources.com/resources/source-image/movie-badges-jurajjurik.png
-description: This project has an individual showcase page, not just a direct link to the project site or repo. Now you have more space to describe your awesome project!
+name: cv-theremin
+tools: [Python]
+image: https://images.squarespace-cdn.com/content/v1/57e28e3337c58156a9932042/1475651102704-2MY4P3XQF0F0B3CB841C/WebLeonTheremin.jpg?format=1500w
+description: A handtracking and 2D camera based digital theremin
+external_url: https://github.com/yousinix
 ---
-
-# The Movies Project
-
-The Movies Project is something like **Netflix**, the only difference is that **it's not real**! It doesn't exist! I just created it to demonstrate how the **showcase** page looks like and how you can write whatever you want with full markdown support.
-
-![preview](https://www.sketchappsources.com/resources/source-image/we-were-soldiers-landing-page-dbruggisser.jpg)
-
-## Search Movies
-
-![search](https://www.sketchappsources.com/resources/source-image/microsoft-windows-10-virtual-keyboard-diogo-sousa.png)
-
-<p class="text-center">
-{% include elements/button.html link="https://github.com/yousinix/portfolYOU" text="Learn More" %}
-</p>
