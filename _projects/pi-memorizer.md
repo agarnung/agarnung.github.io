@@ -1,7 +1,7 @@
 ---
 name: pi-memorizer
 tools: [JavaScript, CSS, HTML]
-image: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cnn.com%2F2017%2F03%2F14%2Fus%2Fpi-day-things-to-know-trnd%2Findex.html&psig=AOvVaw3IrQJ15c8ZWm9bxBLbuLSZ&ust=1737373905756000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOChu6XcgYsDFQAAAAAdAAAAABAE
-description:A game to memorize arbitrary digits of π
+image: https://media.cnn.com/api/v1/images/stellar/prod/150313105721-pi-day-graphic.jpg?q=x_2,y_0,h_898,w_1596,c_crop/h_653,w_1160/f_webp
+description: A game to memorize arbitrary digits of aprox. 22/7
 external_url: https://agarnung.github.io/pi-memorizer/
 ---

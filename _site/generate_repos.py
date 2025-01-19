@@ -1,8 +1,8 @@
 import os
 import requests
-import yaml
 
-# No usaremos token, así que solo listamos los repos públicos
+# No usaremos token, así que solo listamos los repos públicos. 
+# Pero esto también limita las posibles solicitudes a 60 por hora.
 USERNAME = "agarnung"
 
 # Endpoint de la API de GitHub para listar repositorios públicos
@@ -32,9 +32,8 @@ if response.status_code == 200:
         else:
             languages = ["Not specified"]
 
-
         # Formato del portfolio
-        yaml_content = f"""---
+        content = f"""---
 name: {name}
 tools: {languages}
 image: PLACE_YOUR_FULL_URL_HERE_IF_ANY
@@ -42,10 +41,10 @@ description: {description}
 external_url: {html_url}
 ---"""
 
-        # Cada YAML tiene el nombre del repo
-        yaml_filename = os.path.join("repos_metadata", f"{name}.yaml")
-        with open(yaml_filename, "w") as file:
-            file.write(yaml_content)
+        # Cada archivo tiene el nombre del repo
+        filename = os.path.join("repos_metadata", f"{name}.md")
+        with open(filename, "w") as file:
+            file.write(content)
 
         print(f"Archivo generado para el repositorio: {name}")
 
