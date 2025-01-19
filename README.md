@@ -1,5 +1,7 @@
 # agarnung.github.io
 
+My (Github) webpage.
+
 ## Instructions for creating a portfolio with Jekyll and Bundler
 
 ### 1. Install Jekyll to test the website
