@@ -115,6 +115,7 @@ Changes made to fulfil my needs:
 * Disentangled remote theme
 * Edited main page layout
 * Changed footer, header and other includes
+* Added [Latex support](https://talk.jekyllrb.com/t/how-to-use-latex-on-jekyll/4119/2) in _layouts/post.html
 
 <div align="center">
 <sub><sup>© 2025 Alejandro Garnung Menéndez, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>
