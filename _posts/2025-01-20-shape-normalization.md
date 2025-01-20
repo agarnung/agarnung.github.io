@@ -226,10 +226,7 @@ while (error > tolerance && iteration < maxIterations)
     error = std::abs((double)whitePixelCountOriginal - (double)whitePixelCountTransformed) / (double)whitePixelCountOriginal;
     std::cout << "Iteration: " << iteration << ", Error: " << error << std::endl;
 
-    if (whitePixelCountTransformed < whitePixelCountOriginal)
-        k *= 1.1;
-    else
-        k *= 0.9;
+    k *= whitePixelCountTransformed < whitePixelCountOriginal ? 1.1 : 0.9;
 
     ++iteration;
 }
@@ -262,7 +259,7 @@ We will understand the above code:
 5. To further refine the transformed image, we crop the bounding box of the object:
 
 <table>
-    <caption>Above: before cropping hte bounding box. Below: cropped.</caption>
+    <caption>Above: before cropping the bounding box. Below: cropped.</caption>
     <tr>
         <td><img src="../assets/blog_images/2025-01-20-shape-normalization/normalized_not_cropped_0.png" alt="normalized_not_cropped" width="64" height="64"></td>
         <td><img src="../assets/blog_images/2025-01-20-shape-normalization/normalized_not_cropped_0_1.png" alt="normalized_not_cropped" width="64" height="64"></td>
