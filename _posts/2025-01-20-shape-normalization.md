@@ -171,7 +171,7 @@ const int whitePixelCountOriginal = cv::countNonZero(image);
 cv::Mat normalized;
 
 double k = 1.0;
-double tolerance = 0.1; // Tolerancia para el ajuste de k
+double tolerance = 0.1; // tolerance for adjusting k
 double error = std::numeric_limits<double>::max();
 int maxIterations = 50;
 int iteration = 0;
@@ -290,7 +290,74 @@ We will understand the above code:
 
 Believe it or not, the last two images are of the number 3. The algorithm seems to prefer an unusual representation of the number 3, probably due to the dominant direction of the sharp geometry at its ends.
 
-_More in progress..._
+### Results
+
+A few examples of images before and after shape normalization. 
+<table>
+    <tr>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/0_1.png" alt="0_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/0.png" alt="0" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/1_1.png" alt="1_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/1.png" alt="1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/3_1.png" alt="3_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/3.png" alt="3" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/9_1.png" alt="9_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/9.png" alt="9" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/D_1.png" alt="D_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/D_2.png" alt="D_2" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/D.png" alt="D" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/K_1.png" alt="K_1" width="64" height="64"></td>
+    </tr>
+    <tr>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_0_1.png" alt="0_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_0.png" alt="0" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_1_1.png" alt="1_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_1.png" alt="1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_3_1.png" alt="3_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_3.png" alt="3" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_9_1.png" alt="9_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_9.png" alt="9" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_D_1.png" alt="D_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_D_2.png" alt="D_2" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_D.png" alt="D" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_K_1.png" alt="K_1" width="64" height="64"></td>
+    </tr>
+</table>
+
+A few more:
+<table>
+    <tr>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/K_2.png" alt="K_2" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/K_3.png" alt="K_3" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/K.png" alt="K" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/m_1.png" alt="m_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/m.png" alt="m" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/P_1.png" alt="P_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/P.png" alt="P" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/R_1.png" alt="R_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/R_2.png" alt="R_2" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/R.png" alt="R" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/W_1.png" alt="W_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/dataset/W.png" alt="W" width="64" height="64"></td>
+    </tr>
+    <tr>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_K_2.png" alt="K_2" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_K_3.png" alt="K_3" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_K.png" alt="K" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_m_1.png" alt="m_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_m.png" alt="m" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_P_1.png" alt="P_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_P.png" alt="P" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_R_1.png" alt="R_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_R_2.png" alt="R_2" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_R.png" alt="R" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_W_1.png" alt="W_1" width="64" height="64"></td>
+        <td><img src="../assets/blog_images/2025-01-20-shape-normalization/shapenormalized_W.png" alt="W" width="64" height="64"></td>
+    </tr>
+
+</table>
+
+_Still in progress..._
 
 ### Reference
 
