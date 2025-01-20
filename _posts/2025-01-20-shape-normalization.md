@@ -54,16 +54,7 @@ Let’s have a look at some images we would like to normalize in shape. We want 
 </table>
 
 The characters can be written in either white or black. To add some adaptability, we will threshold at 127 (considering 8-bit depth), rescale the image to a size of 512x512, and calculate the relative percentage of white pixels in the image. If this percentage is less than 0.5, we are dealing with an image where white pixels dominate, and therefore the character will be made white. Finally, we will scale the amplitude to the range [0-1]:
-```C++
-// Preprocessing of the input image
-image.setTo(0, image < 127);
-cv::resize(image, image, cv::Size(512, 512), 0.0, 0.0, cv::INTER_LINEAR_EXACT);
-blancos_pct >  0.5 ?
-    cv::threshold(image, image, 127, 255, cv::THRESH_BINARY_INV) :
-    cv::threshold(image, image, 127, 255, cv::THRESH_BINARY);
-image.convertTo(image, CV_64FC1, 1.0 / 255.0, 0.0);
-
-```
+{% gist 89f5c2fb2cb6159d792dc543d72d2b61 %}
 
 <table>
     <caption>Above: input characters. Below: their binarized versions.</caption>
@@ -83,14 +74,12 @@ image.convertTo(image, CV_64FC1, 1.0 / 255.0, 0.0);
 
 ### Algorithm
 1. The first step to normalize the shape of the object is to compute its centroid (x_hat, y_hat):
-$
-\bar{x} = \frac{\sum_{y=0}^{n-1} \sum_{x=0}^{m-1} x \cdot I(x, y)}{\sum_{y=0}^{n-1} \sum_{x=0}^{m-1} I(x, y)}, \\
-\bar{y} = \frac{\sum_{y=0}^{n-1} \sum_{x=0}^{m-1} y \cdot I(x, y)}{\sum_{y=0}^{n-1} \sum_{x=0}^{m-1} I(x, y)},
-$
+$$\bar{x} = \frac{\sum_{y=0}^{n-1} \sum_{x=0}^{m-1} x \cdot I(x, y)}{\sum_{y=0}^{n-1} \sum_{x=0}^{m-1} I(x, y)},$$
+$$\bar{y} = \frac{\sum_{y=0}^{n-1} \sum_{x=0}^{m-1} y \cdot I(x, y)}{\sum_{y=0}^{n-1} \sum_{x=0}^{m-1} I(x, y)}.$$
 
-where $n$ is the total of rows, $m$ is the total of columns, $I(x, y) \in \{0, 1\}$ is the (binary, in this case) pixel intensity and $(x, y) \in [0, 512)^2$ is the pixel position.
+where $$n$$ is the total of rows, $$m$$ is the total of columns, $$I(x, y) \in \{0, 1\}$$ is the (binary, in this case) pixel intensity and $$(x, y) \in [0, 512)^2$$ is the pixel position.
 
-```C++
+```cpp
 // Compute the centroid of the image
 const double* img_ptr = image.ptr<double>(0);
 double sumX{0.0}, sumY{0.0}, sumIntensity{0.0};
@@ -108,24 +97,24 @@ const double centroidX = sumX / sumIntensity;
 const double centroidY = sumY / sumIntensity;
 ```
 
-2. Now, we compute the shape dispersion matrix $M$ with the moments $m_{11}$ (second moment along the $x$-axis), $m_{22}$ (second moment along the $y$-axis), $m_{12}$ and $m_{21}$ (cross moments that represent correlations between $x$ and $y$):
+2. Now, we compute the shape dispersion matrix $$M$$ with the moments $$m_{11}$$ (second moment along the $$x$$-axis), $$m_{22}$$ (second moment along the $$y$$-axis), $$m_{12}$$ and $$m_{21}$$ (cross moments that represent correlations between $$x$$ and $$y$$):
 
-$
+$$
 M = 
 \begin{bmatrix}
 m_{11} & m_{12} \\
 m_{21} & m_{22}
 \end{bmatrix},
-$
+$$
 
 where:
-$
+$$
 m_{11} = \frac{\sum_{y=0}^{N-1} \sum_{x=0}^{M-1} x^2 \cdot I(x, y)}{\sum_{y=0}^{N-1} \sum_{x=0}^{M-1} I(x, y)} - \bar{x}^2,
 m_{22} = \frac{\sum_{y=0}^{N-1} \sum_{x=0}^{M-1} y^2 \cdot I(x, y)}{\sum_{y=0}^{N-1} \sum_{x=0}^{M-1} I(x, y)} - \bar{y}^2,
 m_{12} = m_{21} = \frac{\sum_{y=0}^{N-1} \sum_{x=0}^{M-1} x \cdot y \cdot I(x, y)}{\sum_{y=0}^{N-1} \sum_{x=0}^{M-1} I(x, y)} - \bar{x} \cdot \bar{y}.
-$
+$$
 
-```C++
+```cpp
 // Compute the moments m11, m22, m12 and m21
 double sum_m_11{0.0}, sum_m_22{0.0}, sum_m_12_m_21{0.0};
 for (int y = 0; y < totalRows; ++y)
@@ -148,8 +137,8 @@ cv::Mat M = (cv::Mat_<double>(2, 2) << m11, m12, m21, m22);
 
 ```
 
-3. Compute the eigenvalues and eigenvectors of $M$:
-```C++
+3. Compute the eigenvalues and eigenvectors of $$M$$:
+```cpp
 cv::Mat eigenvalues, eigenvectors;
 cv::eigen(M, eigenvalues, eigenvectors);
 double lambda1 = eigenvalues.at<double>(0, 0);
@@ -158,14 +147,14 @@ cv::Vec2d E1(eigenvectors.at<double>(0, 0), eigenvectors.at<double>(1, 0));
 cv::Vec2d E2(eigenvectors.at<double>(0, 1), eigenvectors.at<double>(1, 1));
 ```
 
-4. Align the image with the _spectrum_ of $M$:  
+4. Align the image with the _spectrum_ of $$M$$:  
 To do this, we perform the following transformations:
-- Translate the origin to the centroid $(\bar{x}, \bar{y})$,
-- Rotate the axes to align with the eigenvectors of $M$,
-- Scale the axes according to the eigenvalues $\lambda_1$ and $\lambda_2$.
+- Translate the origin to the centroid $$(\bar{x}, \bar{y})$$,
+- Rotate the axes to align with the eigenvectors of $$M$$,
+- Scale the axes according to the eigenvalues $$\lambda_1$$ and $$\lambda_2$$.
 
-To ensure that the area of the transformed image approximately matches the area of the input image (which may be of interest), we introduce an adaptive scaling factor $k$ based on the area of the character:
-```C++
+To ensure that the area of the transformed image approximately matches the area of the input image (which may be of interest), we introduce an adaptive scaling factor $$k$$ based on the area of the character:
+```cpp
 const int whitePixelCountOriginal = cv::countNonZero(image);
 
 cv::Mat normalized;
@@ -264,8 +253,8 @@ We will understand the above code:
 * **Error Calculation**:  
    After constructing the transformed image, the number of white pixels in the transformed image is compared (relative difference between areas) with the original number of white pixels.
 
-* **Adjustment of Scaling Factor $k$**:  
-   If the transformed image's area is smaller than the original, $k$ is increased, otherwise $k$ is decreased. This brings transformed area closer to the original in each iteration.
+* **Adjustment of Scaling Factor $$k$$**:  
+   If the transformed image's area is smaller than the original, $$k$$ is increased, otherwise $$k$$ is decreased. This brings transformed area closer to the original in each iteration.
 
 * **Stopping criteria**:  
    The algorithm terminates when the error between the original and transformed image areas is below the specified tolerance, or when the maximum number of iterations is reached.
