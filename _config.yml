@@ -43,7 +43,7 @@ nav_exclude:                                            # The following paths ar
 ### Author Info ###
 author:
   name              : Alejandro Garnung Menéndez
-  image             : ./assets/yo3_ascii.png # statically...
+  image             : ./assets/yo3_ascii.jpg # statically...
 #  image             : https://avatars.githubusercontent.com/u/191017814?s=400&u=2f077960138f20824e6286bfd7b7375126c0487d&v=4 # ...or dynamically
 #  behance           : your_username
 # dribbble          : your_username
