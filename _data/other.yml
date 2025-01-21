@@ -1,0 +1,8 @@
+- title: "Introductory, Descriptive, and Practical Essay on Neural Networks"
+  date: 05 jun. 2023
+  url: '/assets/publications_pdfs/other/Ensayo_CNNs.pdf'
+  language: Spanish
+  image: '/assets/publications_images/other/neuronas.png'
+  description: |
+    This document encompasses several words addressing matters related to the art of creating the quality of discernment, namely, Artificial Intelligence. More specifically, it focuses on one of the most significant foreign contributions to this field: artificial neural networks (ANNs), which are currently highly popular due to their most important functional characteristic—the ability to learn automatically. This capability does not aim to formally create knowledge but rather emulate it through training or learning. Juxtaposed with the results attached to this document, which provide various experiments using MATLAB tools—particularly studying convolutional (artificial) neural networks—it is intended for the reader to accurately grasp and absorb numerous concepts related to these topics and many others that constitute, as a broad ensemble, artificial intelligent systems. All of this is undertaken while keeping in mind the question that, at the time, brilliantly ignited the beginning of this field of study: Can machines think beyond what we can instruct them? A question “whose ramifications continue to be explored to this day.”
+    Based on final master's course assignment report.
