@@ -6,3 +6,27 @@
   description: |
     This document encompasses several words addressing matters related to the art of creating the quality of discernment, namely, Artificial Intelligence. More specifically, it focuses on one of the most significant foreign contributions to this field: artificial neural networks (ANNs), which are currently highly popular due to their most important functional characteristic—the ability to learn automatically. This capability does not aim to formally create knowledge but rather emulate it through training or learning. Juxtaposed with the results attached to this document, which provide various experiments using MATLAB tools—particularly studying convolutional (artificial) neural networks—it is intended for the reader to accurately grasp and absorb numerous concepts related to these topics and many others that constitute, as a broad ensemble, artificial intelligent systems. All of this is undertaken while keeping in mind the question that, at the time, brilliantly ignited the beginning of this field of study: Can machines think beyond what we can instruct them? A question “whose ramifications continue to be explored to this day.”
     Based on final master's course assignment report.
+    
+- title: Processor vs Controller
+  date: 01 sep. 2021
+  url: '/assets/publications_pdfs/other/Procesador_vs_Controlador.pdf'
+  language: Spanish
+  image: '/assets/publications_images/other/proc_contr.jpg'
+  description: |
+    This document aims to concisely and conclusively outline all the differences between two fundamental elements of electronics and computing: microprocessors and microcontrollers. The title of this report omits the prefixes "micro-" (from the Greek mikrós [small], typically related to devices on a micro or smaller scale) from both terms to emphasize that it is the functions of these components that often confuse those new to these fields of study when trying to differentiate between them. After reviewing some important historical aspects and briefly summarizing the definitions of both, their differences are cited and clarified, concluding with a general framework that introduces basic and common applications of these devices, as well as promoting an understanding of their internal structure and utilization.
+
+- title: The embedded questions
+  date: 01 aug. 2021
+  url: '/assets/publications_pdfs/other/The_embeded_questions.pdf'
+  language: Spanish
+  image: '/assets/publications_images/other/embedded.png'
+  description: |
+    This document is a curious and brief formalization of a series of questions originally intended to be “launched” expressly in job interviews for potential embedded systems developers and programmers (“computerized systems deliberately built for a specific application”). These questions and the concepts they suggest belong to the collective imagination of everyone dedicated to this field of study and research. However, the specific merits (in the case discussed in this report) go to certain contributors and developers in the domain of the website www.eevblog.com (Electronics Engineering Video Blog), founded by Australian electronic engineer David L. Jones. With a total of 12 interesting and varied "questions," the reader will delve into a wide range of concepts, mostly related to fields of knowledge such as analog and digital electronics (devices, microcontrollers, microprocessors, etc.), high-level programming (C and C++ languages, etc.), communications (standards for transferring information between different ICs), or control engineering. Both during the process of understanding each question and while assimilating its possible answers and observations, one can expand and better comprehend the “visible spectrum” of this fascinating topic that encompasses embedded systems in general.
+        
+- title: "The metal-oxide-semiconductor field-effect transistor (MOSFET)"
+  date: 12 jul. 2021
+  url: '/assets/publications_pdfs/other/MOSFET.pdf'
+  language: Spanish
+  image: '/assets/publications_images/other/mosfet.png'
+  description: |
+    This document aims to gather a significant amount of relevant information, of a divulgative, educational, and investigative nature, about a device that has been extremely important for modern electronics for more than fifty years. This device, which holds a central place as the title of the report, is the MOSFET (Metal-Oxide-Semiconductor Field-Effect Transistor). Various aspects will be addressed, such as its history and predecessors (the scientific and technological path that has been followed over the years to reach the actual component), its structure and operation (from a rather general, qualitative, and practical perspective, but still attempting to briefly delve into its characteristics and properties that distinguish its physical behavior from that of other devices), its position within a global classification of different types of transistors, common applications, and other general and specific aspects that will prove to be of great value in helping the reader gain a global, clear, and concise understanding of this marvelous electronic device.
