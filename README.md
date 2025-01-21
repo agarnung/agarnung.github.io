@@ -102,7 +102,7 @@ A typicall organized structure of a Jeckyll project may be something like this:
 This webite is deployed with [Github pages](https://docs.github.com/en/pages/quickstart). Nevertheless, there are many other ways to deploy Jekyll websites remotely, check [this](https://jekyllrb.com/docs/deployment/third-party/#:~:text=Sites%20on%20GitHub%20Pages%20are,Jekyll%2Dpowered%20website%20for%20free.).
 
 ### Troubleshooting
-* Can't see my favicon?: Clear Cache. Try a hard refresh (Ctrl + F5 or Cmd + Shift + R) or open in incognito mode. Browsers often cache favicons aggressively, and sometimes a simple refresh won't show the new favicon.
+* Can't see the favicon?: Clear Cache. Try a hard refresh (Ctrl + F5 or Cmd + Shift + R) or open in incognito mode. Browsers often cache favicons aggressively, and sometimes a simple refresh won't show the new favicon.
 
 ### Licence
 This portfolio is based on th awesome template [portfolYOU](https://github.com/yousinix/portfolYOU).
