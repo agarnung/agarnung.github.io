@@ -6,3 +6,5 @@
 - Meter un juego diario interactivo ligado a la web, mediante algún botón, e.g. una adivinanza diaria y una LLM que valore la respuesta según embeddings.
 - Un contador de lecturas de cada post/projecto/artículo,
 - Algo relacionado con los segundos que quedan de año, con la hora actual de cada region, visitas totales, etc. En la página principal.
+- Zoom aislado en el visor de PDF
+- Refractorizar para no meter en el markdown tanto javascript/html.
