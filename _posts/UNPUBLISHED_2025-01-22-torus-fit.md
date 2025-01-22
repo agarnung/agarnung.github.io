@@ -32,11 +32,16 @@ The workaraound _does the trick_; NOS PERMITE ajustar a una nube de puntos en el
 
 ## References
 
-[1] Libro chernov.
-[2] Stan Birchfield p. 523
-[3] Geometry tools for computer graphics
-[4] RObust and error free goemetric computin schneider and eberly)
+[1] Chernov, N. (2010). *Circular and Linear Regression: Fitting Circles and Lines by Least Squares*. Boca Raton: Chapman and Hall-CRC. ISBN 978-1-439-83590-6. [Journal of the Royal Statistical Society Series A: Statistics in Society, Volume 174, Issue 3, July 2011, Page 843.](https://doi.org/10.1111/j.1467-985X.2011.00709_4.x)
+
+[2] Birchfield, S. (2017). *Image Processing and Analysis*. 1st Edition. Cengage Learning. ISBN 978-1285179520.
+
+[3] Schneider, P., & Eberly, D. H. (2002). *Geometric Tools for Computer Graphics*. 1st Edition. Morgan Kaufmann. ISBN 978-1558605947.
+
+[4] Eberly, D. (2020). *Robust and Error-Free Geometric Computing*. 1st Edition. CRC Press. ISBN 978-0367352943.
+
 [5] https://mathworld.wolfram.com/Torus.html
+
 [6] https://www.geometrictools.com/Documentation/TorusFitting.pdf
  
 ...

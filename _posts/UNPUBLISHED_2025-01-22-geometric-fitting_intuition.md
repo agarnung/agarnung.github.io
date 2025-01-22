@@ -6,44 +6,101 @@ color: warning
 description: A resourceful least-squares Taylor-based torus fitting algorithm.
 ---
 
-<!--<img src="../assets/blog_images/2025-01-22-torus-fit/circle.png" alt="circle" width="64" height="64">-->
-<img src="../assets/blog_images/2025-01-22-torus-fit/circle.png" alt="circle">
+<img src="../assets/blog_images/2025-01-22-geometric-fitting_intuition/circle.png" alt="circle">
 
 ## Introduction
 
-Fitting algorithms are a widely spread topic among geometry processing. Circle fitting algorithms like Taubin, Chernov, etc. or plane fitting algorithms with least-squares, are commonly utilized in 2D and 3D computer vision applications to measure geometric entities or perform registration. For a large bibliographic review in this topic, see [1](HREF A REF. [1])  
+Fitting algorithms are a widely discussed topic in geometry processing. Circle fitting algorithms like Taubin, Chernov, and others, as well as plane fitting algorithms using least-squares, are commonly used in 2D and 3D computer vision applications to measure geometric entities or perform registration. For a comprehensive bibliographic review on this topic, see [1] (HREF A REF. [1]).
 
-Imaginémonos un problema clásico: tenemos un conj8utno de putnos 2D y queremos ajustar una línea recta a ellos. Más aún, la línea que **mejor** se ajuste a ellos, en cierto sentido de la palabra. El enfoque least-squres en forma cerrada es una manera de darle concepción a este sentido de **optimalidad de ajuste**. La ecuación de una recta es:
-ax+by+c=0
-Y  satisface las condiciones de linealidad
+Let’s imagine a classic problem: we have a set of 2D points and we want to fit a straight line to them. Furthermore, the line that **best** fits them, in a certain sense of the word. The closed-form least-squares approach is one way of conceptualizing this **optimal fit**. The equation of a line is:
+$$
+ax + by + c = 0
+$$
 
-eL PROBLEMa de ajuste least squres para una recta es por tanto:
-E(a, b, c) = sum_i=1^m(ax_i + by_i + c)²
+and it is an affine mapping with respect to the $$ x $$ and $$ y $$ variables, meaning that it is not a linear function. However, the mapping is linear with respect to the $$ a $$, $$ b $$, and $$ c $$ variables, which will be useful to us...
 
-y se puede resolver en un solo paso porque representa una parábola, que es estrictamente convexa, pues la función de error es cuadrática en las incógnitas.
+Thus, the least-squares fitting problem for a line is:
+$$
+E(a, b, c) = \sum_{i=1}^{m} (ax_i + by_i + c)^2
+$$
 
-Diferenciando E(.) con respscrto a las incognitas e iualando a 0 resulta (por la gracia de la ecuacíon) en tres ecuaciones lineales en sus incógnitas.
+This can be solved in one step because it represents a parabola, which is strictly convex, as the error function is quadratic in the unknowns.
 
-SIn embargo, las curvas suelen ser funciones de mayor orden que las recrtas, por lo que la fu cion de error, en forma de suma de distancias perpendiculares a una curva, no es cuadrática usualmente, por lo que esos errores geométricos no se pueden minimizar "en un solo paso", sino empleando métodos no lineales iterativos. SIn embargo, mediante diferentes enfoques se puede aproximar "bastante bien" la minimzación del **error geomértico** por la de un **error algebraico**, típicamente cuadrático· Esto categoriza los métodos de ajuste en dos grandes familias: algebraicos y geométricos. En general, el error algebraico es una buena aproximación del geométrico, incluso la semilla inciial del me´doso iterativo geométrico. Véase [2] para una discusión continuada de estos conceptos.
+By differentiating $$E(\cdot)$$ with respect to the unknowns and setting it equal to 0, we get (thanks to the equation) three linear equations in the unknowns.
 
-We will gain some insight about various important geometric fitting algorithm.
+However, curves are usually higher-order functions than straight lines, so the error function, in the form of the sum of perpendicular distances to a curve, is not usually quadratic. Therefore, these geometric errors cannot be minimized "in a single step," but rather by using iterative nonlinear methods. However, through different approaches, it is possible to "quite well" approximate the minimization of **geometric error** with that of an **algebraic error**, typically quadratic. This categorizes fitting methods into two main families: algebraic and geometric. In general, algebraic error is a good approximation of geometric error, even as the initial seed for iterative geometric methods. See [2] for a continued discussion of these concepts.
+
+We will gain some insight into various important geometric fitting algorithms.
 
 ## Paper
 
-TO the benefict of better visualization, you can access the post main content in the LaTex PDF attached below:
+To the benefict of better visualization, you can access the post main content in the LaTex PDF attached below:
 
-**AQUÍ INSERTAR EL PDF DEL LATEX MEDIANTE SCRIPT.JS**
+<script src="/assets/js/pdf.js"></script>
 
-## COnclusiones and future work.
-Ya tenemos una ligera intuición más formada de este tópico, aunque de momento Hemos solamente atisbado el mudno del ajuste geométrico. 
-<img src="../assets/blog_images/2025-01-22-torus-fit/torus2.png" alt="torus2">
+<div class="container text-center" id="pdf-container" style="min-height: 100%;">
+  <div id="viewerContainer align-items-center">
+    <div id="pdf-viewer" class="mt-6"></div>
+  </div>
+  <h4 class="font-weight-bold"><a target="_blank" href="{{ '/assets/blog_pdfs/2025-01-22-geometric-fitting_intuition/geometric_fitting_intuition.pdf' }}">Open as PDF</a></h4>
+</div>
+
+<script>
+  var url = '../assets/blog_pdfs/2025-01-22-geometric-fitting_intuition/geometric_fitting_intuition.pdf';
+
+  pdfjsLib.getDocument(url).promise.then(function (pdf) {
+    var viewer = document.getElementById('pdf-viewer');
+
+    for (var pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+      var pageContainer = document.createElement('div');
+      pageContainer.className = 'pdf-page';
+
+      var canvas = document.createElement('canvas');
+      canvas.className = 'pdf-page-canvas';
+      pageContainer.appendChild(canvas);
+
+      viewer.appendChild(pageContainer);
+
+      renderPage(pageNumber, canvas, pdf);
+    }
+  });
+
+  function renderPage(pageNumber, canvas, pdf) {
+    pdf.getPage(pageNumber).then(function (page) {
+      var viewport = page.getViewport({ scale: 0.2 });
+      var scale = canvas.clientWidth / viewport.width;
+
+      var scaledViewport = page.getViewport({ scale: scale });
+
+      var context = canvas.getContext('2d');
+      canvas.height = scaledViewport.height;
+      canvas.width = scaledViewport.width;
+
+      var renderContext = {
+        canvasContext: context,
+        viewport: scaledViewport,
+      };
+
+      page.render(renderContext);
+    });
+  }
+</script>
+
+## Conclusions and Future Work
+
+We now have a slightly more formed intuition about this topic, although so far we have only glimpsed the world of geometric fitting.
+
+![torus2](../assets/blog_images/2025-01-22-geometric-fitting_intuition/torus2.jpg)
+
 __A work in progress__
 
 ## References
 
-[1] Circular and linear regression: fitting circlean and lines by least sqrueas -nikolai chernov.
-[2] Stan Birchfield p. 523
-[3] Geometry tools for computer graphics - schneider, eberly
-[4] RObust and error free goemetric computin schneider and eberly) - dave eberly
- 
-...
+[1] Chernov, N. (2010). *Circular and Linear Regression: Fitting Circles and Lines by Least Squares*. Boca Raton: Chapman and Hall-CRC. ISBN 978-1-439-83590-6. [Journal of the Royal Statistical Society Series A: Statistics in Society, Volume 174, Issue 3, July 2011, Page 843.](https://doi.org/10.1111/j.1467-985X.2011.00709_4.x)
+
+[2] Birchfield, S. (2017). *Image Processing and Analysis*. 1st Edition. Cengage Learning. ISBN 978-1285179520.
+
+[3] Schneider, P., & Eberly, D. H. (2002). *Geometric Tools for Computer Graphics*. 1st Edition. Morgan Kaufmann. ISBN 978-1558605947.
+
+[4] Eberly, D. (2020). *Robust and Error-Free Geometric Computing*. 1st Edition. CRC Press. ISBN 978-0367352943.
+

@@ -118,6 +118,9 @@ Changes made to fulfil my needs:
 * Added [Latex support](https://talk.jekyllrb.com/t/how-to-use-latex-on-jekyll/4119/2) in _layouts/post.html
 * Added customized "Publications" page
 * Justified ```<p>``` contents
+* Added sass compilation tags in config.xml
+* Added [PDF viewer](https://github.com/alesordo/alesordo.github.io)
+* Added scss and modified ```portfolYOU.scss```
 
 <div align="center">
 <sub><sup>© 2025 Alejandro Garnung Menéndez, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>

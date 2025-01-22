@@ -20,6 +20,11 @@ url: "https://agarnung.github.io"		# En producción
 
 
 
+# Jekyll looks for SCSS in _sass to compile them in /asset/css/
+sass:
+  sass_dir: "_sass"
+  style: compressed
+
 
 
 ### Plugins ###
