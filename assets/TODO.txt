@@ -4,3 +4,5 @@
 	3. ya estaría.
 - Ver si se puede permitir "posts a futuro" (y documentar las reglas de nombrar posts, con fecha primero y formato...)
 - Meter un juego diario interactivo ligado a la web, mediante algún botón, e.g. una adivinanza diaria y una LLM que valore la respuesta según embeddings.
+- Un contador de lecturas de cada post/projecto/artículo,
+- Algo relacionado con los segundos que quedan de año, con la hora actual de cada region, visitas totales, etc. En la página principal.
