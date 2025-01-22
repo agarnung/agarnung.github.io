@@ -1,32 +1,35 @@
 ---
 title: Geometric fitting intuition 
 tags: [math, geometry]
-style: filled
+style: fill
 color: warning
 description: A resourceful least-squares Taylor-based torus fitting algorithm.
 ---
 
-<img src="../assets/blog_images/2025-01-22-geometric-fitting_intuition/circle.png" alt="circle">
+<img src="../assets/blog_images/2025-01-22-geometric-fitting-intuition/circle.png" alt="circle">
 
 ## Introduction
 
-Fitting algorithms are a widely discussed topic in geometry processing. Circle fitting algorithms like Taubin, Chernov, and others, as well as plane fitting algorithms using least-squares, are commonly used in 2D and 3D computer vision applications to measure geometric entities or perform registration. For a comprehensive bibliographic review on this topic, see [1] (HREF A REF. [1]).
+Fitting algorithms are a widely discussed topic in geometry processing. Circle fitting algorithms like Taubin, Chernov, and others, as well as plane fitting algorithms using least-squares, are commonly used in 2D and 3D computer vision applications to measure geometric entities or perform registration. For a comprehensive bibliographic review on this topic, see [1].
 
 Let’s imagine a classic problem: we have a set of 2D points and we want to fit a straight line to them. Furthermore, the line that **best** fits them, in a certain sense of the word. The closed-form least-squares approach is one way of conceptualizing this **optimal fit**. The equation of a line is:
+<div align="center">
 $$
-ax + by + c = 0
+ax + by + c = 0,
 $$
-
+</div>
 and it is an affine mapping with respect to the $$ x $$ and $$ y $$ variables, meaning that it is not a linear function. However, the mapping is linear with respect to the $$ a $$, $$ b $$, and $$ c $$ variables, which will be useful to us...
 
 Thus, the least-squares fitting problem for a line is:
+<div align="center">
 $$
 E(a, b, c) = \sum_{i=1}^{m} (ax_i + by_i + c)^2
 $$
+</div>
 
 This can be solved in one step because it represents a parabola, which is strictly convex, as the error function is quadratic in the unknowns.
 
-By differentiating $$E(\cdot)$$ with respect to the unknowns and setting it equal to 0, we get (thanks to the equation) three linear equations in the unknowns.
+By differentiating $$E(\cdot)$$ with respect to the unknowns and setting it equal to 0, we get (thanks to the nature of this particular equation) three linear equations in the unknowns.
 
 However, curves are usually higher-order functions than straight lines, so the error function, in the form of the sum of perpendicular distances to a curve, is not usually quadratic. Therefore, these geometric errors cannot be minimized "in a single step," but rather by using iterative nonlinear methods. However, through different approaches, it is possible to "quite well" approximate the minimization of **geometric error** with that of an **algebraic error**, typically quadratic. This categorizes fitting methods into two main families: algebraic and geometric. In general, algebraic error is a good approximation of geometric error, even as the initial seed for iterative geometric methods. See [2] for a continued discussion of these concepts.
 
@@ -42,11 +45,11 @@ To the benefict of better visualization, you can access the post main content in
   <div id="viewerContainer align-items-center">
     <div id="pdf-viewer" class="mt-6"></div>
   </div>
-  <h4 class="font-weight-bold"><a target="_blank" href="{{ '/assets/blog_pdfs/2025-01-22-geometric-fitting_intuition/geometric_fitting_intuition.pdf' }}">Open as PDF</a></h4>
+  <h4 class="font-weight-bold" style="text-align: right; margin-top: 5px"><a target="_blank" href="{{ '/assets/blog_pdfs/2025-01-22-geometric-fitting-intuition/geometric-fitting-intuition.pdf' }}">Open as PDF</a></h4>
 </div>
 
 <script>
-  var url = '../assets/blog_pdfs/2025-01-22-geometric-fitting_intuition/geometric_fitting_intuition.pdf';
+  var url = '../assets/blog_pdfs/2025-01-22-geometric-fitting-intuition/geometric-fitting-intuition.pdf';
 
   pdfjsLib.getDocument(url).promise.then(function (pdf) {
     var viewer = document.getElementById('pdf-viewer');
@@ -90,9 +93,7 @@ To the benefict of better visualization, you can access the post main content in
 
 We now have a slightly more formed intuition about this topic, although so far we have only glimpsed the world of geometric fitting.
 
-![torus2](../assets/blog_images/2025-01-22-geometric-fitting_intuition/torus2.jpg)
-
-__A work in progress__
+__A work in progress...__
 
 ## References
 

@@ -8,3 +8,4 @@
 - Algo relacionado con los segundos que quedan de año, con la hora actual de cada region, visitas totales, etc. En la página principal.
 - Zoom aislado en el visor de PDF
 - Refractorizar para no meter en el markdown tanto javascript/html.
+- Habilitar mediante tag en el .md la posibilidad de añadir una foto miniatura en la previsualización del post del blog
