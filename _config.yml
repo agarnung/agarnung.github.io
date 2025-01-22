@@ -2,7 +2,7 @@
 source              : . 		  	# Indica la raíz de tu proyecto. Jekyll busca aquí todo el contenido y los archivos necesarios para generar el sitio
 title               : agarnung.github.io
 description         : >-
-                      Under continuous development
+                      This site is under continuous development
 incremental	    : false
 
 # URL base donde se aloja el sitio:
