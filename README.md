@@ -121,7 +121,7 @@ Changes made to fulfil my needs:
 * Added sass compilation tags in config.xml
 * Added [PDF viewer](https://github.com/alesordo/alesordo.github.io)
 * Added scss and modified ```portfolYOU.scss```
-* Customized landing page
+* Customized landing page with dynamic message
 
 <div align="center">
 <sub><sup>© 2025 Alejandro Garnung Menéndez, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>
