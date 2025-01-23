@@ -11,3 +11,4 @@
 - Habilitar mediante tag en el .md la posibilidad de añadir una foto miniatura en la previsualización del post del blog
 - Dynamically calculate my age and the year of the copyright
 - Debajo de mi foto, ahí algo dinámico (hora del día, quote of the day, etc.)
+- Añadir más colores a la paleta, personalizados, en /_sass/_variables.scss
