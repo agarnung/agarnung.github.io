@@ -12,3 +12,4 @@
 - Dynamically calculate my age and the year of the copyright
 - Debajo de mi foto, ahí algo dinámico (hora del día, quote of the day, etc.)
 - Añadir más colores a la paleta, personalizados, en /_sass/_variables.scss
+- Añadir opción de varios idiomas.
