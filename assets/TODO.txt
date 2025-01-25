@@ -13,3 +13,4 @@
 - Debajo de mi foto, ahí algo dinámico (hora del día, quote of the day, etc.)
 - Añadir más colores a la paleta, personalizados, en /_sass/_variables.scss
 - Añadir opción de varios idiomas.
+- Drpown en navbar.html que enlace a juegos.
