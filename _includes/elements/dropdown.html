@@ -1,8 +1,8 @@
-<span class="dropdown dropup">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="playGameDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+<span class="{{ include.menu_class }}">  
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="{{ include.id }}" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0.125rem 0.3rem;">
     {{ include.label }}
   </button>
-  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="playGameDropdown">
+  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="{{ include.id }}">
     {% for game in include.source %}
       <li>
         <a class="dropdown-item" href="{{ game.url }}" target="_blank">{{ game.name }}</a>
@@ -10,4 +10,3 @@
     {% endfor %}
   </ul>
 </span>
-
