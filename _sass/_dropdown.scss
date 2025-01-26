@@ -53,3 +53,12 @@
   background-color: #5a6268;
 }
 
+.d-flex {
+  display: flex;
+  align-items: center; 
+}
+
+.d-flex > span {
+  margin-right: 10px; 
+}
+

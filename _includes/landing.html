@@ -25,12 +25,16 @@
       I am Alejandro, <span id="age"></span> years old. Here, you can take a look at my (personal) <a href="/projects">projects</a> (I have selected several that are available on my GitHub profile), <a href="/blog">blog</a> (where I document and share insights about computer vision, image processing, math, geometry, engineering, among other topics), <a href="/publications">publications</a> (a mix of informal, formal, and quasi-formal documents I find valuable for anyone interested in my fields), and, if you'd like to know more about me, <a href="/about">additional information</a>.
     </p>
 
-    {% include elements/dropdown.html
-       id="playGameDropdown"
-       label="Play a game!"
-       menu_class="dropdown-menu-dark"
-       source=site.data.games-dropdown-items
-    %}
+	<div class="d-flex justify-content-center align-items-center">
+		<span class="mr-2" style="margin-top: 1.1rem;">Free time?, </span>
+		{% include elements/dropdown.html
+		   id="playGameDropdown"
+		   label="play a game!"
+		   menu_class="dropdown-menu-dark"
+		   source=site.data.games-dropdown-items
+		%}
+	</div>
+
   </div>
 </section>
 
