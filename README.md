@@ -114,7 +114,7 @@ Changes made to fulfil my needs:
 * Added theme colors for skills
 * Disentangled remote theme
 * Edited main page layout
-* Changed footer, header and other includes
+* Changed footer, header and other includes. Added dropdown and a [hits counter}(https://hits.sh/)
 * Added [Latex support](https://talk.jekyllrb.com/t/how-to-use-latex-on-jekyll/4119/2) in _layouts/post.html
 * Added customized "Publications" page
 * Justified ```<p>``` contents
