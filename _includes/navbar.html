@@ -5,9 +5,11 @@
   <a class="navbar-brand" href="{{ site.baseurl }}/" style="text-align:center; padding-bottom: 12.5px;">
     <h5><b>{{ site.title }}</b></h5>
   </a>
-  <a href="https://hits.sh/agarnung.github.io/">
-    <img alt="Hits" src="https://hits.sh/agarnung.github.io.svg?style=plastic&label=visits&extraCount=20&color=5dd032&labelColor=605656&logo=githubpages"/>
-  </a>
+<script>
+  if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
+    document.write('<a href="https://hits.sh/agarnung.github.io/"><img alt="Hits" src="https://hits.sh/agarnung.github.io.svg?style=plastic&label=visits&extraCount=20&color=5dd032&labelColor=605656&logo=githubpages"/></a>');
+  }
+</script>
 </div>
 </a>
 
