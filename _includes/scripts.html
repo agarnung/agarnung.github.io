@@ -20,3 +20,23 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
 </script>
+
+<!-- If the site is in production, include the Bootstrap CSS from a CDN. 
+     The CDN is used for faster loading as it uses global servers. 
+     If the site is not in production (i.e., in development), the same link is used, 
+     but you could customize this further if needed. -->
+{% if site.production %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+{% else %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+{% endif %}
+
+
+<!-- Bootstrap JavaScript file (with Popper.js bundled) is required for interactive components like dropdowns, modals, etc. 
+     The script is loaded from a CDN for fast access from global servers. 
+     The production/development conditional allows you to configure different setups if needed. -->
+{% if site.production %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+{% else %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+{% endif %}

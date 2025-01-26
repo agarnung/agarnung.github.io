@@ -6,17 +6,28 @@
 }
 
 .dropdown-menu {
-  max-width: 250px;  
+  max-width: 250px;
   padding: 0.5rem;
   background-color: #343a40;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: none;
   margin-top: 0.25rem;
+  position: absolute;
+  bottom: 100%; 
+}
+
+.dropdown.dropup .dropdown-menu {
+  margin-bottom:5rem; 
+  margin-top: 0;
+  bottom: 100%; 
 }
 
 .dropdown-item {
+  display: block; 
   color: #f8f9fa;
+  padding: 0.5rem 1rem; 
+  
   &:hover {
     background-color: #495057;
     color: #fff;
@@ -31,7 +42,7 @@
   font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
-  
+
   &:focus {
     outline: none;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
