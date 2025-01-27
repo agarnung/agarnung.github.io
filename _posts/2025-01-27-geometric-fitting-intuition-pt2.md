@@ -18,7 +18,7 @@ $$
 ax + by + c = 0,
 $$
 </div>
-and it is an affine mapping with respect to the $$ x $$ and $$ y $$ variables, meaning that it is not a linear function. However, the mapping is linear with respect to the $ a $, $ b $, and $ c $ variables, which will be useful to us...
+and it is an affine mapping with respect to the $$ x $$ and $$ y $$ variables, meaning that it is not a linear function. However, the mapping is linear with respect to the $$ a $$, $$ b $$, and $$ c $$ variables, which will be useful to us...
 
 Thus, the least-squares fitting problem for a line is:
 <div align="center">
@@ -29,7 +29,7 @@ $$
 
 This can be solved in one step because it represents a parabola, which is strictly convex, as the error function is quadratic in the unknowns.
 
-By differentiating $$E(\cdot)$$ with respect to the unknowns and setting it equal to 0, we get (thanks to the nature of this particular equation) three linear equations in the unknowns.
+By differentiating $$E(\cdot)$$ with respect to the unknowns and setting it equal to $$0$$, we get (thanks to the nature of this particular equation) three linear equations in the unknowns.
 
 However, curves are usually higher-order functions than straight lines, so the error function, in the form of the sum of perpendicular distances to a curve, is not usually quadratic. Therefore, these geometric errors cannot be minimized "in a single step," but rather by using iterative nonlinear methods. However, through different approaches, it is possible to "quite well" approximate the minimization of **geometric error** with that of an **algebraic error**, typically quadratic. This categorizes fitting methods into two main families: algebraic and geometric. In general, algebraic error is a good approximation of geometric error, even as the initial seed for iterative geometric methods. See [2] for a continued discussion of these concepts.
 
