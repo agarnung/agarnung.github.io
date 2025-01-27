@@ -1,8 +1,8 @@
 ---
 title: Shape Normalization 
 tags: [image processing]
-style: 
-color: info
+style: fill
+color: 
 description: A technique to normalize shapes for robustness against varying geometry in identification tasks.
 ---
 
