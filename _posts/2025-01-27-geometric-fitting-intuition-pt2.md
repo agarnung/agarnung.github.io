@@ -91,9 +91,7 @@ To the benefict of better visualization, you can access the post main content in
 
 ## Conclusions and Future Work
 
-We now have a slightly more formed intuition about this topic, although so far we have only glimpsed the world of geometric fitting.
-
-__A work in progress...__
+A cone? A parabola? An unaligned torus? What else can we test under the least-squares gauntlet?... We now have a slightly more formed intuition about this topic, although so far we have only glimpsed the world of geometric fitting.
 
 ## References
 
