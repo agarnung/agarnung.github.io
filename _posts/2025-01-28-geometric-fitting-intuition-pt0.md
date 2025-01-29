@@ -10,7 +10,7 @@ description: A friendly introduction to geometric fitting algorithms.
 
 ## Introduction
 
-Whether you're interested in designing an analytical classification model, calibrating a measurement or instrumentation system quickly and easily, performing linear regression for your chemistry tasks, fitting a simple prediction model to your observed data, tracking 3D eye movements and needing a real-time mathematical model for further processing, or measuring the distance between two walls or any other related task, we will explore and learn, with not much introduction, very interesting concepts about the world of geometric fitting and linear algebra, oriented towards a practical approach.
+Whether you're interested in designing an analytical classification model, calibrating a measurement or instrumentation system quickly and easily, performing linear regression for your chemistry tasks, fitting a simple prediction model to your observed data, tracking 3D eye movements and needing a real-time mathematical model for further processing, deriving the equation of the Wiener filter, or measuring the distance between two walls or any other related task, we will explore and learn, with not much introduction, very interesting concepts about the world of geometric fitting and linear algebra, oriented towards a practical approach.
 
 ## Paper
 
