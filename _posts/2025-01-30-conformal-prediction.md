@@ -2,7 +2,7 @@
 title: Conformal Prediction
 tags: [math, machine learning]
 style: fill
-color: mix(danger, warning, 20%)
+color: success
 description: Quantifying uncertainity in Machine Learning
 ---
 
@@ -50,11 +50,11 @@ $$
 
 Where:
 
-- $ P(Y_{n+1} \in \tau(X_{n+1})) $ is the probability that the real number falls within the range you predicted.
-- $ \tau(X_{n+1}) $ is the prediction range for the next roll.
-- $ 1 - \alpha $ is your confidence level (e.g., a 95% confidence).
+- $$P(Y_{n+1} \in \tau(X_{n+1})) $$is the probability that the real number falls within the range you predicted.
+- $$\tau(X_{n+1}) $$is the prediction range for the next roll.
+- $$1 - \alpha $$is your confidence level (e.g., a 95% confidence).
 
-So, if your confidence is 95% ($ \alpha = 0.05 $), that means the real value must fall within your prediction range 95% of the time.
+So, if your confidence is 95% ($$\alpha = 0.05$$), that means the real value must fall within your prediction range 95% of the time.
 
 The **efficiency** in this case refers to how small or large your predicted range is. If you can make a precise and very narrow prediction, that means your prediction is efficient. For example, if you know the die has a 95% chance of landing on an odd number, but you could also predict between "odd" and "even," this would be less efficient because the range would be larger.
 
@@ -66,17 +66,17 @@ To make a conformal prediction, you first need a **scoring function**: a rule to
 
 - **In classification**, the score measures how confident your model is in its answer. For example, if the model says "there is an 80% chance it’s even," the score would measure how close it was to reality.
 
-Once you have your scores (i.e., how wrong your previous predictions were), you calculate a **percentile** to determine how large your prediction range should be. The $(1 - \alpha)$ percentile gives you the threshold beyond which you would not accept a prediction as valid.
+Once you have your scores (i.e., how wrong your previous predictions were), you calculate a **percentile** to determine how large your prediction range should be. The$$(1 - \alpha)$$percentile gives you the threshold beyond which you would not accept a prediction as valid.
 
-Finally, you create the **prediction range** for the next instance. This range will include all values $ Y $ whose score is less than this percentile value, ensuring that your prediction is reliable with the desired confidence level.
+Finally, you create the **prediction range** for the next instance. This range will include all values$$$Y $$whose score is less than this percentile value, ensuring that your prediction is reliable with the desired confidence level.
 
-For example, if you get a score of $ \hat{e} $, then your prediction set for the next roll would be:
+For example, if you get a score of $$\hat{e}$$, then your prediction set for the next roll would be:
 
 $$
     \tau(X_{n+1}) = \{ Y : s(X_{n+1}, Y) \leq \hat{e} \}
 $$
 
-This set includes all possible answers $ Y $ that fall within a range that gives you a high probability of being correct, based on what you have learned from previous rolls.
+This set includes all possible answers $$Y $$that fall within a range that gives you a high probability of being correct, based on what you have learned from previous rolls.
 
 ## Extensions of CP
 
@@ -117,7 +117,7 @@ $$
     [\hat{Y} - 5, \hat{Y} + 5] = [95, 105]
 $$
 
-this means that the true price will fall within this interval with a probability of $ 1 - \alpha $.
+this means that the true price will fall within this interval with a probability of $$1 - \alpha$$.
 
 # Conclusion
 
@@ -126,11 +126,19 @@ Conformal prediction provides an accurate approach to measuring uncertainty in m
 ## References
 
 [1] Gammerman, Alexander; Vovk, Vladimir; Vapnik, Vladimir (1998). "Learning by transduction". Uncertainty in Artificial Intelligence. 14: 148–155.
+
 [2] Vovk, V., Gammerman, A., & Shafer, G. (2005). Algorithmic learning in a random world. Springer. https://doi.org/10.1007/b106715
+
 [3] Lei, J., Rinaldo, A. & Wasserman, L. A conformal prediction approach to explore functional data. Ann Math Artif Intell 74, 29–43 (2015). https://doi.org/10.1007/s10472-013-9366-6
+
 [4] Jing Lei and Larry Wasserman. Distribution-free prediction bands for non-parametric regression. Journal of the Royal Statistical Society: Series B, 76(1):71–96, 2014
+
 [5] Jing Lei, Max G’Sell, Alessandro Rinaldo, Ryan J. Tibshirani, and Larry Wasserman. Distribution-free predictive inference for regression. Journal of the American Statistical Association, 113(523):1094–1111, 2018.
+
 [6] Anastasios N. Angelopoulos and Stephen Bates. A gentle introduction to conformal prediction and distribution-free uncertainty quantification. Foundations and Trends in Machine Learning, 16(4):494–591, 2023
+
 [7] Shafer, G., & Vovk, V. (2008). A tutorial on conformal prediction. Journal of Machine Learning Research, 9, 371–421.
+
 [8] [Conformal Prediction: An introduction to measuring uncertainty](https://www.bbvaaifactory.com/conformal-prediction-an-introduction-to-measuring-uncertainty/)
+
 [9] [Valeriy Manokhin's course](https://maven.com/valeriy-manokhin/applied-conformal-prediction)
