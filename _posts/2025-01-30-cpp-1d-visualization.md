@@ -1,5 +1,5 @@
 ---
-title: 1D visualization
+title: 1D visualization in C++
 tags: [programming, C++]
 style: fill
 color: danger
@@ -12,7 +12,7 @@ Today, I'd like to share and document what I consider the best library for quick
 
 Compared to other alternatives like QWT or Qt's own libraries, the header-only library matplotlibcpp is extremely simple, free of errors, and as transparent to use as its Python counterpart.
 
-# Matplotlibcpp
+# matplotlibcpp
 
 Available on [GitHub](https://github.com/lava/matplotlib-cpp), this plotting library mirrors the plotting API used by Matlab and matplotlib. Let's give it a try in Qt.
 
