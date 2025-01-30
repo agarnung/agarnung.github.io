@@ -3,7 +3,7 @@ title: Geometric fitting intuition pt. II
 tags: [math, geometry]
 style: fill
 color: warning
-description: A friendly introduction to geometric fitting algorithms.
+description: A friendly introduction to geometric fitting algorithms
 ---
 
 <img src="../assets/blog_images/2025-01-27-geometric-fitting-intuition-pt2/circle.png" alt="circle">
