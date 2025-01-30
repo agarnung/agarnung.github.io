@@ -10,7 +10,7 @@ description: Easy visualizing 1D signals in C++
 
 Today, I'd like to share and document what I consider the best library for quickly plotting 1D signals in C++.
 
-Compared to other alternatives like QWT or Qt's own libraries, the header-only library matplotlibcpp is extremely simple, free of errors, and as transparent to use as its Python counterpart.
+Compared to other alternatives like QWT, gnuplot or Qt's own libraries, the header-only library matplotlibcpp is extremely simple, free of errors, and as transparent to use as its Python counterpart.
 
 # matplotlibcpp
 
