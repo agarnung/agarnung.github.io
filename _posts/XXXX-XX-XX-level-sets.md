@@ -8,79 +8,89 @@ description: Briefly analyzing Linux tree structure
 
 # Introduction
 
-Este concepto se comprende de manera muy intuitica; imaginémonos una imagen como una montaña. La montaña no es una parábola invertida perfecta, por el contrario, tiene un gran relieve y textura; hay pequeñas y grandes piedras en el camino, badenes y resaltes, la grava y arena actúan como sumideros, formaciones rocosas craen distintos niveles en el terreno, hay incluso ríos y meandros que hacen vbarian la altura media de la superficie montañosa, etc. Cuando llueve, experimentamos que algunas zonas se van "llenando" antres que otras. Si hacemos un poco de geongeniería y logramos provocar lluevia durante un lapso controlado de tiempo, veremos que se habrán formado múltiples caminos de agua en la montaña, cada uno discurriendo por distintos lugares pero conectados a través de las conexiones de las moléculas de agua dentro de un mismo caudal. Cada camino de igual caudal se pude ver como un level set.
+En el campo del procesamiento de imagen, el poder detectar y representar contornos de objetos y regionres de interes es crucial, ya sea en la detección de rostros, eliminaciónn de fondo, potenciacíon del seguimiento de objetos en vídeo o aplicaciones de MRI donde interesa estudiar complejos escaneos de las estructuras cerebrales. Los boundaries o contours de los objetos son muy bien capturados por un framework bastante poderoso matemáticamente, el level sets method, que ofrece una manera continua y flexible de represetnar curvas y superficies. En este post daremos una intuición de esta técnica.
 
-En imagen digital, su dominio (típicametne cuadriculado) se mapea en un conjunto de valores discreto, e.g. {0, 255} si tratamos con niveles de intensidad en grises. Haciendo "zoom" a una imagen podremos ver que existen caminos de "mismo nivel de gris", algunos más extendidos que otros. Cada uno de estos caminos, formado por píxeles conectados bajo cierta noción de vecindad, se denominan level sets. EN este post veremos por qué son tan importantes y alguno de sus usos más extendidos.
+Before level sets, lets first dig in the concept of _isocontour_. This concept is very intuitively understood; imagine an image as a mountain. The mountain is not a perfect inverted parabola, on the contrary, it has significant relief and texture; there are small and large stones along the path, bumps and ridges, gravel and sand act as sinks, rock formations create different levels in the terrain, there are even rivers and meanders that vary the average height of the mountainous surface, etc. When it rains, we experience that some areas "fill" before others. If we do some geoengineering and manage to provoke rain for a controlled period of time, we will see that multiple water paths have formed on the mountain, each flowing through different places but connected through the water molecules' connections within the same current. Each path with equal flow can be seen as a level set.
 
-# ¿Para qué queremos los level sets?
+In digital images, its domain (typically grid-based) is mapped into a discrete set of values, e.g., {0, 255} if we are dealing with grayscale intensity levels. By zooming into an image, we will see that there are paths of "same grayscale," some more extended than others. Each of these paths, formed by pixels connected under a certain notion of neighborhood, is called a level set. In this post, we will see why they are so important and some of their most common uses.
 
-Tomemos como prueba esta imagen:
+We can begin drawing the concept of level sets by creating isocontours at various threshold levels of a grayscale image. The provided code generates distinct level sets by applying thresholding and then finding the contours at each threshold level. The contours are drawn with different colors, highlighting how the boundaries evolve at different intensity levels in the image.
+
+Let's test this with the following image:
 
 <img src="../assets/blog_images/2025-01-30-conformal-prediction/squares/original.png" alt="original" width=500 align="center">
 
-Cuántos level sets podrá tener? Fácil, 4, si contamos el borde (extreior) de la imagen,. Y podemos dibujasrlos:
+How many isocontours might it have? Easy, 4, if we count the edge (exterior) of the image. And we can draw them:
 
 <img src="../assets/blog_images/2025-01-30-conformal-prediction/squares/displayImage.png" alt="displayImage" width=500 align="center">
 
-Ya está, esta imagen no tiene más level sets (creamos que el color es realmente uniforme al ser generada sintétciamente, y no hagamos zoom mucho en ella...).
+And that's it, this image doesn't have more isocontours (let's assume the color is really uniform as it was synthetically generated, and let's not zoom in too much on it...). 
 
-...
+A more complex example is shown below:
 
-Los level sets son sumamente importantes en procesamiento de imagen desde una perspefctiva variacional. 
+IMAGENES CON VARIOS NÚMEROS DE ISOCONTORNOS
 
-La fórmula de co-área nos dice que BLABLABLA.
+Although we are only visually simplifying the concept of level sets, let’s take the exercise of asking ourselves a different question. Instead of asking, "If I specify the isocontours by setting the range of gray levels that generate them?", what about more abstract questions like "What if I specify the isocontours through other intrinsic properties of the image?" What attributes and methods can guide certain curves to form visually reasonable isocontours that separate structures that may resemble the objects in the image? Level sets are precisely tools that allow us to provide a robust answer to these abstract suggestions.
+
+# What do we need level sets for?
+
+Level sets are extremely important in image processing from a variational perspective. Variational methods aim to minimize or maximize certain functionals to solve specific problems. In the case of level sets, the evolution of the contour is driven by the minimization of an energy functional, often related to the length of the boundary. This method naturally adapts to the underlying image structure, offering advantages in terms of robustness and flexibility in dealing with complex shapes.
+
+The co-area formula tells us that BLABLABLA.  
 FORMULA
 
-Esto nos dice que el perímetro de los level sets y la variación total BLABLA don ciertamente equivalentes.
+This tells us that the perimeter of the level sets and the total variation BLABLA are certainly equivalent.
 
-The level set formulation is based on the observation that **a closed curve can be seen/described as a zero level/crossing of a function in a higher dimension** and it allows major simplification. Hoy día, esta es una manera ampliamente utilizada para hacer evolucionar numerically curves and surfaces [4].
+The level set formulation is based on the observation that **a closed curve f(s) can be seen/described as a zero level(s)/crossing(s) of a function φ(x, y) in a higher dimension** (often called _characteristic function_ or _embedding function_) and it allows major simplification, easily changing topology and incorporating region-based statistics, which other parametric methods do not allow. That is, it uses an implicit representation of contours by evolving a level set function, often used in segmentation problems. Level sets allow for the dynamic modeling of contours that can split, merge, and move over time, making them a powerful tool for capturing complex shapes in images. In the context of image processing, level sets can be used to extract meaningful regions, detect edges, and segment images into distinct areas. Today, this is a widely used way to evolve curves and surfaces numerically [4].
 
-Por ejemplo, una curva en R² se puede representar como la zero-level linea de una función R²->R, e.g. la signed distance to the curve, negative inside and positive outside:
+Level sets evolve to track and adjust to objects of interest by modifying the underlying function φ(x, y) instead of f(s). To reduce the amount of computation required, only a small strip (frontier) around the locations of the current zero-crossing needs to be updated at each step, which results in what are called fast marching methods [6].
+
+For example, a curve in R² can be represented as the zero-level line of a function R²->R, e.g. the signed distance to the curve, negative inside and positive outside:
 
 <img src="../assets/blog_images/2025-01-30-conformal-prediction/squares/ls.png" alt="lsa" width=500 align="center">
 
+Mathematically, let us assume that the unknown set of edges K is the boundary of an open and bounded subset of Ω; thus K can be represented by K = {x ∈ Ω : φ(x) = 0} for some (unknown) Lipschitz continuous function φ : Ω → R, called a level set function.
+
 ## Segmentation
 
-El propósito principal de la segmentación es encontrar los contornos de los objetos en las imágenes. Dos paradigmas de segmentación de imagen clásicos son los modelos paramétricos (como las snakes de Kass, Witkin, and Terzopoulos) [5] y los *geometric deformable models* (como los *Geodesic Active Contours* [GAC] de Caselles, Kimmel, and Sapiro) [1-3]. Los últimos se formulan para lidiar con las limitaciones de los primeros y se basan en la evolución de curvas (o superficies) con una formulación fundamentada en *level sets*. Esta evolución está guiada por medidas geométricas. 
+The main purpose of segmentation is to find the contours of objects in images. Two very established paradigms of image segmentation, within the framework of active contours, are parametric models (like the snakes of Kass, Witkin, and Terzopoulos and intelligent scissors (Mortensen and Barrett 1995) [5-6]) and *geometric deformable models* (like *Geodesic Active Contours* [GAC] by Caselles, Kimmel, and Sapiro) [1-3]. The latter are formulated to address the limitations of the former and are based on the evolution of curves (or surfaces) with a formulation grounded in *level sets*. This evolution is guided by geometric measures.
 
-Así, el propóstio principal de la segmentacíon emdainte GAC y level sets es  modelar los contornos de los objetos como curvas que (típicamente) deben moverse con cierta velociad para match the highest gradients. 
+Thus, the main purpose of segmentation through GAC and level sets is to model the contours of objects as curves that (typically) must move with a certain speed to match the highest gradients. The level set evolution for a GAC, the characteristic function φ is updated based on the curvature of the underlying surface modulated by an edge/speed function g(I), as well as the gradient of g(I), thereby attracting it to strong edges [6].
 
-El problema es que puede ser costoso lidiar con la evolución de la curva en la imagen de manera explícita (o sea, parametrizando la curva y disrectizando sus ecuaciones); por eso una de las principales ventajas de GAC es que puede formularse como un problem de *level sets*, que afronta esa dificultad. Un *level set* \( \phi \) puede definirse de la siguiente forma:
+The problem is that dealing with the evolution of the curve in the image explicitly (i.e., parametrizing the curve and discretizing its equations) can be costly; that's why one of the main advantages of GAC is that it can be formulated as a *level set* problem, which tackles that difficulty. A *level set* \( \phi \) can be defined as follows:
 
-- \( \phi(x, y) = 0 \) para todos los puntos \( (x, y) \) que se encuentran en la curva.  
-- \( \phi(x, y) > 0 \) para los puntos que están dentro de la región delimitada por la curva.  
-- \( \phi(x, y) < 0 \) para los puntos que están fuera de la región delimitada por la curva.  
+- \( \phi(x, y) = 0 \) for all points \( (x, y) \) that are on the curve.
+- \( \phi(x, y) > 0 \) for points inside the region delimited by the curve.
+- \( \phi(x, y) < 0 \) for points outside the region delimited by the curve.
 
-Gracias a esta representación implícita, se pueden calcular atributos geométricos importantes como la normal unitaria a la curva, que se obtiene mediante:  
+Thanks to this implicit representation, important geometric attributes like the unit normal to the curve can be calculated, which is obtained through:
    \[
    N = \frac{\nabla \phi}{|\nabla \phi|}
    \]
-2. **La curvatura media** \( \kappa \), que está dada por la divergencia de la normal unitaria:  
+2. **The mean curvature** \( \kappa \), which is given by the divergence of the unit normal:
    \[
    \kappa = \nabla \cdot N = \text{div} \left( \frac{\nabla \phi}{|\nabla \phi|} \right)
    \]
 
-El método de *Geodesic Active Contours* se basa en una ecuación de evolución de la forma:
+The *Geodesic Active Contours* method is based on an evolution equation of the form:
 
 \[
 \frac{\partial \phi}{\partial t} = g(I) \left( |\nabla \phi| \cdot \text{div} \left( \frac{\nabla \phi}{|\nabla \phi|} \right) \right) + c g(I) |\nabla \phi|,
 \]
 
-donde:
-- \( g(I) \) es una función basada en el gradiente de la imagen que actúa como criterio de parada, es decir, frena la evolución cuando la curva se encuentra con un borde fuerte.
-- La primera parte de la ecuación contiene el término de curvatura media, que suaviza la curva.
-- La segunda parte contiene un término de velocidad normal \( V \), que mueve la curva según el contenido de la imagen.  
+where:
+- \( g(I) \) is a function based on the image gradient that acts as a stopping criterion, i.e., it halts the evolution when the curve encounters a strong edge.
+- The first part of the equation contains the mean curvature term, which smooths the curve.
+- The second part contains a normal velocity term \( V \), which moves the curve according to the content of the image.
 
-Esta formulación permite que la curva evolucione de manera flexible, dividiéndose o fusionándose sin necesidad de intervención explícita. Así, el método basado en *level sets* supera las limitaciones de los métodos paramétricos tradicionales en la segmentación de imágenes. El modelo de Geodesic Active Contour depende en gran medida de la información de los bordes de la imagen, por lo que prácticamente no es aplicable en imágenes que no tienen bordes bien definidos. El modelo pionero de Chan-Vese es una variante de los Active Contours y puede aplicarse sin necesidad de bordes.
+This formulation allows the curve to evolve flexibly, splitting or merging without explicit intervention. Thus, the level set-based method overcomes the limitations of traditional parametric methods in image segmentation. The Geodesic Active Contour model heavily relies on image edge information, so it is practically not applicable in images with poorly defined edges. Additionally, as it depends on local measures such as image gradients, it is susceptible to local minima. The pioneering Chan-Vese model is a variant of Active Contours and can be applied without the need for edges. Such approaches tackle this problem by making the energy measure the consistency of image statistics (e.g., color, texture, motion) inside and outside the segmented regions [6].
 
 # References
 
-[1] J.A. Sethian, Level Set Methods and Fast Marching Methods: Evolving Interfaces in Computational Geometry, Fluid Mechanics, Computer vision, and Materials Science (Cambridge university press, Cambridge, 1999)
-[2] S. Osher, R. Fedkiw, Level Set Methods and Dynamic Implicit Surfaces (Springer, Berlin, 2002)
-[3] R. Kimmel, Numerical Geometry of Images: Theory, Algorithms, and Applications (Springer, Berlin, 2012)
-[4] Guy Gilboa non linear pag 29
-[5] Mathematical problems in image processing pag 173
-
-
-
+[1] J.A. Sethian, *Level Set Methods and Fast Marching Methods: Evolving Interfaces in Computational Geometry, Fluid Mechanics, Computer vision, and Materials Science* (Cambridge University Press, Cambridge, 1999)  
+[2] S. Osher, R. Fedkiw, *Level Set Methods and Dynamic Implicit Surfaces* (Springer, Berlin, 2002)  
+[3] R. Kimmel, *Numerical Geometry of Images: Theory, Algorithms, and Applications* (Springer, Berlin, 2012)  
+[4] Guy Gilboa *Nonlinear* page 29  
+[5] *Mathematical Problems in Image Processing* page 173  
+[6] Szielisky page 470
 
