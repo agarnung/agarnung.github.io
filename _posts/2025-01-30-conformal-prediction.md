@@ -1,6 +1,6 @@
 ---
 title: Conformal Prediction
-tags: [math, machine learning]
+tags: [math, machine learning, divulgation]
 style: fill
 color: success
 description: Quantifying uncertainity in Machine Learning
