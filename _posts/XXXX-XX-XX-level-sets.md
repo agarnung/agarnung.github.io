@@ -134,7 +134,7 @@ Y estos son el histograma y los level sets (tiene 256):
 <img src="../assets/blog_images/2025-01-30-conformal-prediction/BV_image/hist.png" alt="hist" width=500 align="center">
 <img src="../assets/blog_images/2025-01-30-conformal-prediction/BV_image/displayImage.png" alt="displayImage" width=500 align="center">
 
-El valor del perímetro es 570025 (píxeles) y el valor de la variación total es 610659 (isotrópica) y 662554 (anisotrópica). Aunque todo indica a que ahora los valores tienden a acercarse, el teorema se sigue cumpliendo aún aproximadamente por los motivos antes mencionados derivados de la discretización y digitalización.
+El valor del perímetro es 1.01907e+06 (píxeles) y el valor de la variación total es 1.01668e+06 (isotrópica) y 1.20593e+06 (anisotrópica). Aunque todo indica a que ahora los valores tienden a acercarse, el teorema se sigue cumpliendo aún aproximadamente por los motivos antes mencionados derivados de la discretización y digitalización.
 
 # What do we need level sets for?
 
@@ -146,7 +146,7 @@ For example, a curve in R² can be represented as the zero-level line of a funct
 
 <img src="../assets/blog_images/2025-01-30-conformal-prediction/squares/ls.png" alt="lsa" width=500 align="center">
 
-Mathematically, let us assume that the unknown set of edges K is the boundary of an open and bounded subset of Ω; thus K can be represented by K = {x ∈ Ω : φ(x) = 0} for some (unknown) Lipschitz continuous function φ : Ω → R, called a level set function. Unas condiciones más "continuas" y un método de cálculo de la longgitud de los contornos sub-píxel, entre otros, podrían ayudar a que la fórmula se cumpla más precisamente, pero pasaremos a distcutir otra interesante cuestión...
+Mathematically, let us assume that the unknown set of edges K is the boundary of an open and bounded subset of Ω; thus K can be represented by K = {x ∈ Ω : φ(x) = 0} for some (unknown) Lipschitz continuous function φ : Ω → R, called a level set function. Unas condiciones más "continuas" como una resolución más grande y un método de cálculo de la longgitud de los contornos sub-píxel, entre otros, podrían ayudar a que la fórmula se cumpla más precisamente, pero pasaremos a distcutir otra interesante cuestión...
 
 ## Segmentation
 
