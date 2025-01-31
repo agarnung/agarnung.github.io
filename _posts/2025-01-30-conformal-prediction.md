@@ -89,9 +89,7 @@ For an updated use case, see [8]. This method allows us to quantify and communic
 
 The approach is flexible, model-agnostic, and works across various scenarios. It uses calibration data, non-conformity measures, and prediction intervals to ensure reliable predictions, with specified confidence levels (e.g., 95%). However, challenges include ensuring proper calibration across different datasets and accounting for the assumption of interchangeability in the data.
 
-Conformal prediction is particularly useful in high-stakes fields, offering a clearer understanding of prediction limits and helping make more informed decisions.
-
-Let’s look at two example frameworks...
+Let’s look at two exemplar frameworks...
 
 ### Classification Example
 
@@ -105,7 +103,7 @@ this indicates that the model does not have enough certainty to differentiate be
 
 ### Regression Example
 
-In regression, conformal prediction generates prediction intervals. For example, if the model estimates that the price of a stock will be:
+In regression, conformal prediction generates intrinsic prediction intervals. For example, if the model estimates that the price of a stock will be:
 
 $$
     \hat{Y} = 100
@@ -118,6 +116,12 @@ $$
 $$
 
 this means that the true price will fall within this interval with a probability of $$1 - \alpha$$.
+
+Conformal prediction is particularly useful in high-stakes fields, offering a clearer understanding of prediction limits and helping make more informed decisions.
+
+AI is transforming **healthcare** by providing non-invasive methods to assess critical health metrics, such as BMI, blood glucose levels, and other factors linked to heart disease and diabetes. However, traditional AI models often produce single-value predictions that may not fully capture the complexity of individual health risks. CP addresses this limitation by incorporating uncertainty bands, offering doctors a clearer range of potential outcomes. This approach enhances diagnostic accuracy, builds patient trust, and ensures fairer decision-making across diverse populations. Recently, CP has enabled more reliable obesity risk assessments [10], outperforming conventional methods. By analyzing age, height, weight, ethnicity, and education level, the model estimates waist circumference with 95% accuracy—without physical measurement. This advancement could revolutionize obesity care by replacing BMI with a more precise predictor of health risks. As researchers refine the model to include lifestyle factors like diet and exercise, AI-driven healthcare is becoming not just more innovative, but also safer and more equitable.
+
+As of today, this is not the time to reinvent the wheel unless we are willing to dive into a very low-level approach, even if we understand the mathematical intricacies of CP. To get started, we can mention some **libraries** and **tools** (ordered by preference based on what I was able to research in less than half a day) to experiment with everything related to this framework, especially in time series and forecasting. Examples include: CatBoost, XGBoost, LightGBM, Prophet, AutoTS, NBEATs, ARIMA, the Theta Model, AutoTS and the Holt-Winters method.
 
 # Conclusion
 
@@ -142,3 +146,5 @@ Conformal prediction provides an accurate approach to measuring uncertainty in m
 [8] [Conformal Prediction: An introduction to measuring uncertainty](https://www.bbvaaifactory.com/conformal-prediction-an-introduction-to-measuring-uncertainty/)
 
 [9] [Valeriy Manokhin's course](https://maven.com/valeriy-manokhin/applied-conformal-prediction)
+
+[10] [Catherine Graham's article](https://hub.jhu.edu/2024/10/01/waistline-ai-bmi/)
