@@ -131,20 +131,20 @@ Conformal prediction provides an accurate approach to measuring uncertainty in m
 
 [1] Gammerman, Alexander; Vovk, Vladimir; Vapnik, Vladimir (1998). "Learning by transduction". Uncertainty in Artificial Intelligence. 14: 148–155.
 
-[2] Vovk, V., Gammerman, A., & Shafer, G. (2005). Algorithmic learning in a random world. Springer. https://doi.org/10.1007/b106715
+[2] Vovk, V., Gammerman, A., & Shafer, G. (2005). Algorithmic learning in a random world. Springer. https://doi.org/10.1007/b106715.
 
-[3] Lei, J., Rinaldo, A. & Wasserman, L. A conformal prediction approach to explore functional data. Ann Math Artif Intell 74, 29–43 (2015). https://doi.org/10.1007/s10472-013-9366-6
+[3] Lei, J., Rinaldo, A. & Wasserman, L. A conformal prediction approach to explore functional data. Ann Math Artif Intell 74, 29–43 (2015). https://doi.org/10.1007/s10472-013-9366-6.
 
-[4] Jing Lei and Larry Wasserman. Distribution-free prediction bands for non-parametric regression. Journal of the Royal Statistical Society: Series B, 76(1):71–96, 2014
+[4] Jing Lei and Larry Wasserman. Distribution-free prediction bands for non-parametric regression. Journal of the Royal Statistical Society: Series B, 76(1):71–96, 2014.
 
 [5] Jing Lei, Max G’Sell, Alessandro Rinaldo, Ryan J. Tibshirani, and Larry Wasserman. Distribution-free predictive inference for regression. Journal of the American Statistical Association, 113(523):1094–1111, 2018.
 
-[6] Anastasios N. Angelopoulos and Stephen Bates. A gentle introduction to conformal prediction and distribution-free uncertainty quantification. Foundations and Trends in Machine Learning, 16(4):494–591, 2023
+[6] Anastasios N. Angelopoulos and Stephen Bates. A gentle introduction to conformal prediction and distribution-free uncertainty quantification. Foundations and Trends in Machine Learning, 16(4):494–591, 2023.
 
 [7] Shafer, G., & Vovk, V. (2008). A tutorial on conformal prediction. Journal of Machine Learning Research, 9, 371–421.
 
-[8] [Conformal Prediction: An introduction to measuring uncertainty](https://www.bbvaaifactory.com/conformal-prediction-an-introduction-to-measuring-uncertainty/)
+[8] [Conformal Prediction: An introduction to measuring uncertainty](https://www.bbvaaifactory.com/conformal-prediction-an-introduction-to-measuring-uncertainty/).
 
-[9] [Valeriy Manokhin's course](https://maven.com/valeriy-manokhin/applied-conformal-prediction)
+[9] [Valeriy Manokhin's course](https://maven.com/valeriy-manokhin/applied-conformal-prediction).
 
-[10] [Catherine Graham's article](https://hub.jhu.edu/2024/10/01/waistline-ai-bmi/)
+[10] [Catherine Graham's article](https://hub.jhu.edu/2024/10/01/waistline-ai-bmi/).
