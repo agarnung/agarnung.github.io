@@ -180,7 +180,7 @@ $$
 N = \frac{\nabla \phi}{|\nabla \phi|}
 $$
 
-2. The **mean curvature** $ \kappa $, which is given by the divergence of the unit normal:
+2. The **mean curvature** $$ \kappa $$, which is given by the divergence of the unit normal:
 $$
 \kappa = \nabla \cdot N = \text{div} \left( \frac{\nabla \phi}{|\nabla \phi|} \right)
 $$
