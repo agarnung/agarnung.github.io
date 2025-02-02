@@ -1,5 +1,5 @@
 ---
-title: Conformal Prediction
+title: Conformal Prediction - First glance
 tags: [math, machine learning, divulgation]
 style: fill
 color: success
