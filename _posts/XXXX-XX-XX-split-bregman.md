@@ -31,7 +31,7 @@ D^p_J (u, v) := J(u) - J(v) - <p, u - v>, p \in parc_J(v),
 
 donde <p, u - v> es el producto interno entre p (que pertenece al subdiferncial [derivada en un sentido débil] de Jen el punto v) y el vecotr u-v. Actúa como el plano tangente a la función en v.
 
-![bd](./bd.png)
+![bd](./bd.jpg)
 
 D^p_J (u, v) compara el valor J(u) con el plano tangente (que en 1D es una línea) J(v) + <p, u-v>. Escogiendo una H diferenciable, el subdiferencial se convierte en el gradiente nabla_H. Esta no es estrictamente una distancia, pues no es necesariamente simétrica, pero mantiene muchas propiedades de distancia (ver [8]). En vez de medir distancia directa entre dos puntos, la mide como diferencias entr elos valores d ela función, comparando el valor J(u) con una aproximación lineal de J basada en supunto tangente J(v). En otras paralbras, mide la diferencia entre el valor de la función en u, que es J(u), u la mejor aproximación lineal de J(u) desde v.
 
@@ -89,8 +89,14 @@ En [12] se propuso to solve the above-mentioned problem by an alternating direct
 2. compute the solution of the **d-subproblem** with u fixed by means of a projection or shrinkage/soft-threasholding, que impone sparsity controlando (en la dirección de gra u_i,j + b_ij) la magnitud de d_ij (i.e. que muchos ele,mentos de la solución tiendan ser cero o pequeños, regularizando para reducir el ruido co caracteŕisicas no esenciales). Este problema se desacopla sobre el espacio, lo que significa que se puede resolver independientemente para cada píxel..
 
 3. The auxiliary variable b is initialized to zero and updated as bk+1 = bk + uk+1 dk+1.  A good choice of is one for which both d and u subproblems converge quickly and are numerically well-conditioned. In d subproblem, the shrinking effect is more dramatic when issmall. In u subproblem, the effect of and increase when  gets larger. It is also ill-conditioned in the limit gamma -> infinite. Therefore, should be neither extremely large nor small for good convergence [11].
- 
-Un sencillo pseudocódigo un flujo típicao de resolución de un problema convexo mediante S-B es:
+
+Cabe mencionar que una manera alternativa de ver este procedimiento es que: primero se hace las sustituciones de las variables oportunas (e.g. d_i,j = grad u) , lo cual impone **aproximadamente** las restricciones de igualdad, por ejemplo, añadiendo penalizaciones cuadráticas:
+
+(u^*, d^*) = argmin_u_d ||d||_1 + lambda/2 ||f-u||_2² + gamma/2||d - grad_u||_2²,
+
+y luego querremos reforzar **exactamente** la restricción de igualdad d = grad_U aplicando bregman iteration al problema no restringido, lo cual ya nos leva al procedimiento descrito. Estos osn los pasos que componen SPlit Bregman.
+
+Un sencillo pseudocódigo de este procedimineto nos sirve como regla mnemotécnica:
 
 ```
 initialize u = f, d = b = \mathbf{0}
