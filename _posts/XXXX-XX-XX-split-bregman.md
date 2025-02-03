@@ -6,131 +6,147 @@ color: danger
 description: The marvelous Split Bregman tool
 ---
 
-![braq](./braq.png)
+![braq](../assets/blog_images/XXXX-XX-XX-split-bregman/braq.png)
 
 # Introduction
 
-Alguna vez te has topado con un funcional que no sabes por donde cogerlo? COn alguna "mixtura" der normas y términos de fidelidad y regularización que no sabes manejar "de una", todos a la vez? A veces echas en falta un buen decoupling de las variables No? Pues cuando te pase, que sepas que existe una técnica llamada Split Bregamn que puede serte muy útil.
+Have you ever come across a functional that you don’t know how to handle? With some "mixture" of norms and terms of fidelity and regularization that you can't manage "at once," all at the same time? Sometimes you miss a good decoupling of the variables, right? Well, when that happens, you should know that there is a technique called Split Bregman that can be very useful.
 
-Echemnos un vistazo más aplio al asunto. En procesamiento de imagen una clase muy importante de problemas osn los convex programs involving classical regularization terms like l1, l2 or TV. Las soluciones de estos problemas suelen ser costosos (lentos) de computar, pero **Bregman iteration** techniques y sus variantes, como **linearized Bregman**, **split Bregman** and **Bregman operator splitting**. have been shown to yield simple, fast and effective algorithms for these types of problems. Todos estos algoritmos tienen interesantes conexiones con técnicas clásicas basadas en the **Lagrangian**, como  **method of multipliers**, the **alternating direction method of multipliers** (ADMM) , and the **alternating minimization algorithm** (AMA), for the general problem of minimizing sums of convex functionals subject to linear equality constraints. These algorithms can be especially effective when the convex functionals are based on the l1 norm and the l2 norm squared [4]. 
+Let's take a broader look at the matter. In image processing, a very important class of problems are the convex programs involving classical regularization terms like l1, l2, or TV. The solutions to these problems are usually expensive (slow) to compute, but **Bregman iteration** techniques and their variants, such as **linearized Bregman**, **split Bregman**, and **Bregman operator splitting**, have been shown to yield simple, fast, and effective algorithms for these types of problems. All these algorithms have interesting connections with classical techniques based on the **Lagrangian**, such as the **method of multipliers**, the **alternating direction method of multipliers** (ADMM), and the **alternating minimization algorithm** (AMA), for the general problem of minimizing sums of convex functionals subject to linear equality constraints. In fact, the method originally proposed by Goldstein and Osher has been rediscovered as an equivalent form of ADMM. These algorithms can be especially effective when the convex functionals are based on the l1 norm and the squared l2 norm [4].
 
-Si nuestro problema es conxevo, tenemos la certeza de que podemos usar nuestra navaja suiza de Split Bregan para acelerar su cómputo; además se suele prestar a análisis de convergencia estándar. 
+If our problem is convex, we are certain that we can use our Swiss army knife, Split Bregman, to speed up its computation; additionally, it usually lends itself to standard convergence analysis. We will see that the basic idea is to first split the original minimization problem into several subproblems by introducing some auxiliary variables and then solve each subproblem separately.
 
-> [!NOTE] Remmark 
-> Compressed sensing se refiere a un paradigma que permite reconstruir señales o imaǵenes (e.g. en MRI) a partir de cantidades "muy escasas" datos. Los l1-regularized optimization problems han recibido mucha atención en este sentido. Y los métodos basados en iteraciones de Bregman surgieron para lidiar con las complicaciones en la resolución de estos problemas con la norma l1 y otros demasiado domain-specific.
+> [!NOTE] Remark  
+> Compressed sensing refers to a paradigm that allows reconstructing signals or images (e.g., in MRI) from "very scarce" amounts of data. The l1-regularized optimization problems have received much attention in this regard. And methods based on Bregman iterations emerged to deal with the complications in solving these problems with the l1 norm and other too domain-specific cases.
 
 ## Bregman iteration
 
 Bregman iteration [8] is a technique for solving constrained convex minimization problems of the form:
 
-argmin_u J(u) s.t. (subject to) H(u) = 0,
+\[
+\arg\min_u J(u) \quad \text{s.t.} \quad H(u) = 0,
+\]
 
-where J and H are (possibly non-differentiable, asTV or the L1 norm) convex functionals defined que toman como argumento elementos de un espacio de Hilbert y devuelven valores reales. La idea principal de todo esto es la distancia de Bregman, deifnida como:
+where \(J\) and \(H\) are (possibly non-differentiable, as TV or the \(L1\) norm) convex functionals that take as arguments elements of a Hilbert space and return real values. The main idea behind all of this is the Bregman distance, defined as:
 
-D^p_J (u, v) := J(u) - J(v) - <p, u - v>, p \in parc_J(v),
+\[
+D^p_J (u, v) := J(u) - J(v) - \langle p, u - v \rangle, \quad p \in \partial J(v),
+\]
 
-donde <p, u - v> es el producto interno entre p (que pertenece al subdiferncial [derivada en un sentido débil] de Jen el punto v) y el vecotr u-v. Actúa como el plano tangente a la función en v.
+where \(\langle p, u - v \rangle\) is the inner product between \(p\) (which belongs to the subdifferential [a weak derivative] of \(J\) at point \(v\)) and the vector \(u-v\). It acts as the tangent plane to the function at \(v\).
 
-![bd](./bd.jpg)
+![bd](../assets/blog_images/XXXX-XX-XX-split-bregman/bd.jpg)
 
-D^p_J (u, v) compara el valor J(u) con el plano tangente (que en 1D es una línea) J(v) + <p, u-v>. Escogiendo una H diferenciable, el subdiferencial se convierte en el gradiente nabla_H. Esta no es estrictamente una distancia in the usual sense cause it satisfies neither the symmetry nor the triangle inequality, pero mantiene muchas propiedades de distancia (ver [8]). En vez de medir distancia directa entre dos puntos, la mide como diferencias entr elos valores d ela función, comparando el valor J(u) con una aproximación lineal de J basada en supunto tangente J(v). En otras paralbras, mide la diferencia entre el valor de la función en u, que es J(u), u la mejor aproximación lineal de J(u) desde v.
+\[
+D^p_J (u, v)
+\]
 
-De la figura se nota que se requiere convexidad para una aproximación lineal efectiva. La distancia tiene a cero cuando v tiende al óptimo \hat{u}. Así que, dado un puntoinicial u⁰ y un parámetro gamma>0, el algoritmo de iteración de Bregman es formalmente:
+compares the value \(J(u)\) with the tangent plane (which in 1D is a line) \(J(v) + \langle p, u-v \rangle\). Choosing a differentiable \(H\), the subdifferential becomes the gradient \(\nabla H\). This is not strictly a distance in the usual sense because it satisfies neither symmetry nor the triangle inequality, but it retains many distance properties (see [8]). Instead of directly measuring the distance between two points, it measures it as differences in function values, comparing \(J(u)\) with a linear approximation of \(J\) based on its tangent point \(J(v)\). In other words, it measures the difference between the function value at \(u\), which is \(J(u)\), and the best linear approximation of \(J(u)\) from \(v\).
 
-uk+1 = argmin_u D^p^k_J (u, uk) + gamma*H(u), p^k parc_J(u^k)
+From the figure, it is clear that convexity is required for an effective linear approximation. The distance tends to zero when \(v\) approaches the optimum \(\hat{u}\). So, given an initial point \(u^0\) and a parameter \(\gamma > 0\), the Bregman iteration algorithm is formally:
 
-La condición de optimalidad se convierte en la Bregman iteration:
-```
-p⁰ ºin parc_J(u⁰)
-for k=0,1,... do 
-    u^k+1 = argmin D^p^k_J (u, uk) + gamma*H(u)
-    p^k+1 = p^k - gamma * nabla_H(u^k+1)
-```
+\[
+u^{k+1} = \arg\min_u D^{p^k}_J (u, u^k) + \gamma H(u), \quad p^k \in \partial J(u^k)
+\]
+
+![a1](../assets/blog_images/XXXX-XX-XX-split-bregman/a1.png)
 
 ## Split Bregman
 
-La frecuentemente llamada "Split Bregman Iteration" para resolver problemas convexos consiste esencialmente en formular el unconstrained minization problem as a constrained problem and then apply Bregman iteration to solve it [2]. Esta transformación del problema nos da la ventaja de luego poder usar (variable) splitting para separarlo en subproblemas más fáciles de resolver. Además, usualmente es posible emplear la FFT para resolver algún subproblema, lo que lo dota de especial eficiencia. So, this splitting of Bregman iterations forms the Split Bregman mehtod, first introduced to this field in [12].
+The frequently called "Split Bregman Iteration" for solving convex problems consists essentially in formulating the unconstrained minimization problem as a constrained problem and then applying Bregman iteration to solve it [2]. This transformation of the problem gives us the advantage of then being able to use (variable) splitting to break it into subproblems that are easier to solve. Furthermore, it is usually possible to employ the FFT to solve some subproblem, making it particularly efficient. So, this splitting of Bregman iterations forms the Split Bregman method, first introduced to this field in [12].
 
-Así, si hay una frase que pueda definir al método, esta es _"descomponer problemas complicados en varios subproblemás más sencillos"_. DEfinitivamente, la idea de split bregman es aplicar **operator splitting** y **Bregman iteration** oara resolver problemas de minimzación restringida.
+Thus, if there is one phrase that can define the method, it is _"breaking down complicated problems into several simpler subproblems"_. Definitely, the idea of split Bregman is to apply **operator splitting** and **Bregman iteration** to solve constrained minimization problems.
 
 # Implementation example
 
-Para tener un poco de bagaje y que podamos implementar nosotros mismos el algoritmo, garabatearemos un ejemplo.
+To get some background and be able to implement the algorithm ourselves, let's sketch out an example.
 
-UN caso importante es cuando la imagen u \in R^n con restricciones linear equality. Sea A una atriz y H(u)=1/2||Au-f||_2², cuando A=I estamos ante el infame modelo ROF: 
+An important case is when the image \( u \in \mathbb{R}^n \) with linear equality constraints. Let \( A \) be a matrix and \( H(u) = \frac{1}{2} \| A u - f \|_2^2 \), when \( A = I \) we are dealing with the infamous ROF model: 
 
-min_u integral_Omega |grad u|_L2 d\mathbf{x} + lambda/2 integral_Omega u(\mathbf{x} - f(\mathbf{x})^2 d\mathbf{x}),
+\[
+\min_u \int_{\Omega} |\nabla u|_{L2} d\mathbf{x} + \frac{\lambda}{2} \int_{\Omega} (u(\mathbf{x}) - f(\mathbf{x}))^2 d\mathbf{x},
+\]
 
-y la iteración de Bregman se simplifica a:
+and the Bregman iteration simplifies to:
 
-```
-u \in R^n, b⁰ =0
-for k=0,1,... do 
-    u^k+1 = argmin J(u) + gamma/2 * ||Au-f+b^k||_2²
-    b^k+1 = b^k + A * u^k+1 - f,
-```
+![a2](../assets/blog_images/XXXX-XX-XX-split-bregman/a2.png)
 
-donde b^k es una vriable auxiliar añadida en le penalización cuadrática, que representa al subdiferencial p^k. Cuando las resitrcciones son lineales, esto es equivalente al método de AugmentedLagrangian (i.e. método de los multiplicadores) y está demostrado que converge a la solución tanto para el caso de TB isotrópico como anisotrópico [13].
+where \( b^k \) is an auxiliary variable added in the quadratic penalty, representing the subdifferential \( p^k \). When the constraints are linear, this is equivalent to the Augmented Lagrangian method (i.e., method of multipliers) and it has been proven to converge to the solution both for isotropic and anisotropic TV cases [13].
 
-Retomando esto con más detenimiento: Applying the operator splitting technique, convirtámoslo es un problema de optimizacion restringido:
+Going back to this in more detail: Applying the operator splitting technique, let’s convert it into a constrained optimization problem:
 
-min_d,u sum_i,j|d_i,j| + lambda/2 sum_i,j(f_i,j - u_i,j)²  s.t.  d_i,j = grad u_i,j
+\[
+\min_{d,u} \sum_{i,j} |d_{i,j}| + \frac{\lambda}{2} \sum_{i,j} (f_{i,j} - u_{i,j})^2 \quad \text{s.t.} \quad d_{i,j} = \nabla u_{i,j}
+\]
 
-Por el hecho de integrar la variable d_i,j en lugar del gradiente de u conseguimos que los dos términos del funcional realmente no interactúen. AAsí, podemos resolverlo de manrea iterativa donde en cada iteración ,mantenemos una de las variables fijas y optimizamos el funcional con respecto a la otra. Pero primero debemos reconvertirlo de vuelta en un problema uncontrained...
+By introducing the variable \( d_{i,j} \) instead of the gradient of \( u \), we ensure that the two terms of the functional do not actually interact. Thus, we can solve it iteratively where in each iteration, we keep one of the variables fixed and optimize the functional with respect to the other. But first, we must reconvert it back into an unconstrained problem...
 
-Introduciendo un parámetros de penalizacíon gamma > 0 y una variable auxiliar bi,j (relacionada con la Bregamn iteration) que compensa el error para forzar que se cumpla la restricción impuesta:
+Introducing a penalty parameter \( \gamma > 0 \) and an auxiliary variable \( b_{i,j} \) (related to the Bregman iteration) that compensates for the error to enforce the imposed constraint:
 
-min_d,u sum_i,j|d_i,j| + lambda/2 sum_i,j(f_i,j - u_i,j)² + gamma/2 sum_i,j |d_i,j - grad u_i,j - b_i,j|²
+\[
+\min_{d,u} \sum_{i,j} |d_{i,j}| + \frac{\lambda}{2} \sum_{i,j} (f_{i,j} - u_{i,j})^2 + \frac{\gamma}{2} \sum_{i,j} |d_{i,j} - \nabla u_{i,j} - b_{i,j}|^2
+\]
 
-En [12] se propuso to solve the above-mentioned problem by an alternating direction approach: 
+In [12], it was proposed to solve the above-mentioned problem by an alternating direction approach:
 
-1. Compute the Euler-Lagrange equation of the **u-subproblem** with d fixed and solve it (may be solved for u in the frequecny domain (DFT or DCT with periodic boundary condition) or by the iterative matrix techniques such as the Gauss-Seidel or Jacobi iterative methods, as Goldstein & Osher proposed [12]).
+1. Compute the Euler-Lagrange equation of the **u-subproblem** with \( d \) fixed and solve it (may be solved for \( u \) in the frequency domain (DFT or DCT with periodic boundary conditions) or by iterative matrix techniques such as the Gauss-Seidel or Jacobi iterative methods, as Goldstein & Osher proposed [12]).
 
-2. compute the solution of the **d-subproblem** with u fixed by means of a projection or shrinkage/soft-threasholding, que impone sparsity controlando (en la dirección de gra u_i,j + b_ij) la magnitud de d_ij (i.e. que muchos ele,mentos de la solución tiendan ser cero o pequeños, regularizando para reducir el ruido co caracteŕisicas no esenciales). Este problema se desacopla sobre el espacio, lo que significa que se puede resolver independientemente para cada píxel..
+2. Compute the solution of the **d-subproblem** with \( u \) fixed by means of a projection or shrinkage/soft-thresholding, which imposes sparsity by controlling (in the direction of \( \nabla u_{i,j} + b_{ij} \)) the magnitude of \( d_{ij} \) (i.e., making many elements of the solution tend to be zero or small, regularizing to reduce noise with non-essential features). This problem decouples over space, meaning it can be solved independently for each pixel.
 
-3. The auxiliary variable b is initialized to zero and updated as bk+1 = bk + uk+1 dk+1.  A good choice of is one for which both d and u subproblems converge quickly and are numerically well-conditioned. In d subproblem, the shrinking effect is more dramatic when issmall. In u subproblem, the effect of and increase when  gets larger. It is also ill-conditioned in the limit gamma -> infinite. Therefore, should be neither extremely large nor small for good convergence [11].
+3. The auxiliary variable \( b \) is initialized to zero and updated as \( b^{k+1} = b^k + \nabla u^{k+1} - d^{k+1} \). A good choice of \( \gamma \) is one for which both \( d \) and \( u \) subproblems converge quickly and are numerically well-conditioned. In the \( d \)-subproblem, the shrinking effect is more dramatic when \( \gamma \) is small. In the \( u \)-subproblem, the effect of \( \gamma \) increases when \( \gamma \) gets larger. It is also ill-conditioned in the limit \( \gamma \to \infty \). Therefore, \( \gamma \) should be neither extremely large nor small for good convergence [11].
 
-Cabe mencionar que una manera alternativa de ver este procedimiento es que: primero se hace las sustituciones de las variables oportunas (e.g. d_i,j = grad u) , lo cual impone **aproximadamente** las restricciones de igualdad, por ejemplo, añadiendo penalizaciones cuadráticas:
+It is worth mentioning that an alternative way of viewing this procedure is that: first, we make the appropriate variable substitutions (e.g., \( d_{i,j} = \nabla u \)), which approximately impose the equality constraints, for example, by adding quadratic penalties:
 
-(u^*, d^*) = argmin_u_d ||d||_1 + lambda/2 ||f-u||_2² + gamma/2||d - grad_u||_2²,
+\[
+(u^*, d^*) = \arg\min_{u,d} \| d \|_1 + \frac{\lambda}{2} \| f - u \|_2^2 + \frac{\gamma}{2} \| d - \nabla u \|_2^2,
+\]
 
-y luego querremos reforzar **exactamente** la restricción de igualdad d = grad_U aplicando bregman iteration al problema no restringido, lo cual ya nos leva al procedimiento descrito. Estos osn los pasos que componen SPlit Bregman.
+and then we want to enforce **exactly** the equality constraint \( d = \nabla u \) by applying Bregman iteration to the unconstrained problem, which leads us to the described procedure. These are the steps that make up Split Bregman.
 
-Un sencillo pseudocódigo de este procedimineto nos sirve como regla mnemotécnica:
+A simple pseudocode of this procedure serves as a mnemonic rule:
 
-```
-initialize u = f, d = b = \mathbf{0}
-while ||ucurrent - uprevious||_2² / ||ucurrent||_2² > relative_tolerance do
-    solve the u-subproblem
-    solve the d-subproblem
-    b <- b^k + grad_u - d
-```
+![a3](../assets/blog_images/XXXX-XX-XX-split-bregman/a3.png)
 
-# Aplicaciones
+# Applications
 
-## TV inpainting
+## TV Inpainting
 
-En [1] se implementa un inpainting basado en TV mediante S-B. La gran ventaja es que la formulación para inpainting es igual que para la de denoising (y casi igual para deblurring) salvo por the stially-varying lambda in the u subproblem.
+In [1], a TV-based inpainting method using Split Bregman is implemented. The great advantage is that the formulation for inpainting is the same as for denoising (and almost identical to deblurring), except for the spatially-varying lambda in the \( u \) subproblem.
 
-## TV-TV² inpainting
+## TV-TV² Inpainting
 
-EN [2] se implementa un inpainting basado en TV-TV^2 mediante S-B.
+In [2], a TV-TV²-based inpainting method using Split Bregman is implemented.
 
-# Deconvolution
+## Deconvolution
 
-En [14] usan el enfoque explicado para deconvolutión y no mantienen gamma fijo, sino que lo incrementan en cada iteración.
+In [14], the explained approach is used for deconvolution, and instead of keeping \( \gamma \) fixed, they increase it in each iteration.
 
-[1] Pascal Getreuer Total Variation Inpainting using Split Bregman http://www.ipol.im/pub/art/2012/g-tvi/ 
-[2] Konstantinos Papafitsoros, Carola Bibiane Schoenlieb, Bati Sengul Combined First and Second Order Total Variation Inpainting using Split Bregman http://www.ipol.im/pub/art/2013/40/
-[3] Yin, W., Osher, S., Goldfarb, D., Darbon, J., Bregman Iterative Algorithms for l1-Minimization with Applications to Compressed Sensing, UCLA CAM Report [07-37], 2007
-[4] Applications of Lagrangian-Based Alternating Direction Methods and Connections to Split Bregman Ernie Esser March 2009
-[5] An edge-weighted second order variational model for image decomposition Jinming Duan et al. 2015
-[6] Handbook of  Mathematical Methods in Imaging Otmar Scherzer Second Edition 2015 ISBN 978-1-4939-0789-2 DOI 10.1007/978-1-4939-0790-8
-[7] Image  denoising  feedback  framework  using  split  Bregman approach Jeong Heon Ki  et al 2017
-[8] RudinOsherFatemi Total Variation Denoising using Split Bregman Pascal Getreuer 2012
-[9] A regularization model with adaptive diffusivity for variational image denoising Po-Wen Hsiehet al 2017
-[10] Variational Models and Numerical Methods for Image Processing Jia-Wei Liao 2020
-[11] Variational Models and Numerical Methods for Image Processing Suh-Yuh Yang  2020
-[12] THE SPLIT BREGMAN METHOD FOR L1 REGULARIZED PROBLEMS TOM GOLDSTEIN, STANLEY OSHER 2009
-[13] E. Esser, Applications of Lagrangian-Based Alternating Direction Methods and Connections to Split Bregman, UCLA CAMReport09-21, 2009. ftp://ftp.math.ucla.edu/pub/camreport/ cam09-31.pdf
-[14] Total variation blind deconvolution employing split Bregman iteration Weihong Li et al 2012
+## References
+
+[1] Pascal Getreuer, *Total Variation Inpainting using Split Bregman*, [Online Article](http://www.ipol.im/pub/art/2012/g-tvi/)  
+
+[2] Konstantinos Papafitsoros, Carola Bibiane Schoenlieb, Bati Sengul, *Combined First and Second Order Total Variation Inpainting using Split Bregman*, [Online Article](http://www.ipol.im/pub/art/2013/40/)  
+
+[3] Yin, W., Osher, S., Goldfarb, D., Darbon, J., *Bregman Iterative Algorithms for \( l_1 \)-Minimization with Applications to Compressed Sensing*, UCLA CAM Report [07-37], 2007  
+
+[4] Ernie Esser, *Applications of Lagrangian-Based Alternating Direction Methods and Connections to Split Bregman*, March 2009  
+
+[5] Jinming Duan et al., *An edge-weighted second order variational model for image decomposition*, 2015  
+
+[6] Otmar Scherzer, *Handbook of Mathematical Methods in Imaging*, Second Edition, 2015, ISBN 978-1-4939-0789-2, DOI [10.1007/978-1-4939-0790-8](https://doi.org/10.1007/978-1-4939-0790-8)  
+
+[7] Jeong Heon Ki et al., *Image denoising feedback framework using split Bregman approach*, 2017  
+
+[8] Pascal Getreuer, *Rudin-Osher-Fatemi Total Variation Denoising using Split Bregman*, 2012  
+
+[9] Po-Wen Hsieh et al., *A regularization model with adaptive diffusivity for variational image denoising*, 2017  
+
+[10] Jia-Wei Liao, *Variational Models and Numerical Methods for Image Processing*, 2020  
+
+[11] Suh-Yuh Yang, *Variational Models and Numerical Methods for Image Processing*, 2020  
+
+[12] Tom Goldstein, Stanley Osher, *The Split Bregman Method for \( l_1 \) Regularized Problems*, 2009  
+
+[13] E. Esser, *Applications of Lagrangian-Based Alternating Direction Methods and Connections to Split Bregman*, UCLA CAM Report 09-21, 2009, [FTP Link](ftp://ftp.math.ucla.edu/pub/camreport/cam09-31.pdf)  
+
+[14] Weihong Li et al., *Total Variation Blind Deconvolution Employing Split Bregman Iteration*, 2012  
