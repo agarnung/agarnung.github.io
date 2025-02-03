@@ -164,7 +164,42 @@ void filterSignal(std::vector<double>& u, const std::vector<double>& f, int iter
 }
 ```
 
-The resolution is very high, and the widget's response is dynamic. There's no risk of the application freezing, as per my experiments with it.
+The resolution is very good, and the widget's response is dynamic. There's no risk of the application freezing, as per my experiments with it.
 
 <img src="../assets/blog_images/2025-01-30-cpp-1d-visualization/comp2.png" alt="Comparison of signals after filtering" width="800" height="600" style="display: block; margin-left: auto; margin-right: auto;">
 
+And you can also add labels:
+'''cpp
+plt::plot(xValues, yOriginal, {{"label", "Original"}, {"color", "g"}});
+plt::plot(xValues, yNoisy, {{"label", "Noisy"}, {"color", "k"}});
+plt::plot(xValues, yFiltered, {{"label", "Hard-Threshold"}, {"color", "r"}});
+'''
+
+<img src="../assets/blog_images/2025-01-30-cpp-1d-visualization/labels.png" alt="Labels" width="800" height="600" style="display: block; margin-left: auto; margin-right: auto;">
+
+# Troubleshooting
+
+Nevertheless, if you encounter some problems in your system, you should try playing around with changing the Matplotlib backend, for example, using ```setenv()```.
+```cpp
+#include <cstdlib>
+setenv("MPLBACKEND", "TkAgg", 1); // Or Agg, At5Agg, GTK3Ag...
+```
+
+To save the graph in a file, you must set the backend to 'Agg' to save it without an interface, which will, in turn, prevent it from being viewed interactively:
+```cpp
+plt::save("/path/to/save/path/output.png");
+```
+
+# Other options
+
+Se han estudiado otras opciones también recomendables para según qué aplicación. Por ejemplo, comentaremos brevemente QWT y Gnuplot.
+
+## QWT
+
+...
+
+# Gnuplot
+```bash
+sudo apt-get install gnuplot
+```
+...

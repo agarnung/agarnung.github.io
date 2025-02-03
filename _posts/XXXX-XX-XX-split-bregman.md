@@ -1,6 +1,6 @@
 ---
 title: Split Bregman
-tags: [iamge processing, math]
+tags: [image processing, math]
 style: fill
 color: danger
 description: The marvelous Split Bregman tool
@@ -33,7 +33,7 @@ donde <p, u - v> es el producto interno entre p (que pertenece al subdiferncial 
 
 ![bd](./bd.jpg)
 
-D^p_J (u, v) compara el valor J(u) con el plano tangente (que en 1D es una línea) J(v) + <p, u-v>. Escogiendo una H diferenciable, el subdiferencial se convierte en el gradiente nabla_H. Esta no es estrictamente una distancia, pues no es necesariamente simétrica, pero mantiene muchas propiedades de distancia (ver [8]). En vez de medir distancia directa entre dos puntos, la mide como diferencias entr elos valores d ela función, comparando el valor J(u) con una aproximación lineal de J basada en supunto tangente J(v). En otras paralbras, mide la diferencia entre el valor de la función en u, que es J(u), u la mejor aproximación lineal de J(u) desde v.
+D^p_J (u, v) compara el valor J(u) con el plano tangente (que en 1D es una línea) J(v) + <p, u-v>. Escogiendo una H diferenciable, el subdiferencial se convierte en el gradiente nabla_H. Esta no es estrictamente una distancia in the usual sense cause it satisfies neither the symmetry nor the triangle inequality, pero mantiene muchas propiedades de distancia (ver [8]). En vez de medir distancia directa entre dos puntos, la mide como diferencias entr elos valores d ela función, comparando el valor J(u) con una aproximación lineal de J basada en supunto tangente J(v). En otras paralbras, mide la diferencia entre el valor de la función en u, que es J(u), u la mejor aproximación lineal de J(u) desde v.
 
 De la figura se nota que se requiere convexidad para una aproximación lineal efectiva. La distancia tiene a cero cuando v tiende al óptimo \hat{u}. Así que, dado un puntoinicial u⁰ y un parámetro gamma>0, el algoritmo de iteración de Bregman es formalmente:
 
