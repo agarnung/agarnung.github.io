@@ -1,12 +1,12 @@
 ---
-title: Explaining Neural Networks
+title: Metaphorizing Neural Networks
 tags: [machine learning, divulgation]
 style: fill
 color: info
-description: Metaphorically Explaining Neural Networks
+description: Metaphorically explaining Neural Networks
 ---
 
-![nn](../assets/blog_images/XXXX-XX-XX-explaining-neural-networks/nn.png)
+![nn](../assets/blog_images/2025-02-08-methaphorizing-neural-networks/nn.png)
 
 Richard Feynman had a very simple way of explaining how he would explain complex concepts to people who had no knowledge about the topic, or to anyone in general. The typical thing that is said is that if you can’t explain it to an elderly person (many people like to use the example of their grandmother), you don’t understand it. This comes from the quote by Albert Einstein: "If you can't explain it simply, then you don’t understand it well enough." I don’t like this point of view; it seems incomplete to me. Feynman, for his part, tells us that his (very useful) recipe for success is as follows:
 
@@ -85,14 +85,14 @@ Finally, envision a detective piecing together clues to solve a mystery:
   - **Recurrent Neural Networks (RNNs) and Transformers:** Tailored for sequential data (like text or time series), where past context is essential for understanding the present.
   - **Attention Mechanisms:** Allowing the model to focus on the most relevant parts of the input, much like a detective prioritizes certain clues over others.
 
-- **Activation as the “Eureka” Moment:**  
-  When a clue suddenly makes sense, it’s like an **activation function** firing a neuron that has just recognized a critical feature. This moment of clarity is essential for piecing together the full picture.
+- **Activation as the “eureka” Moment:**  
+  When a clue suddenly makes sense, it’s like an **activation function** firing a neuron that has just transfered a critical feature. This moment of clarity is essential for piecing together the full picture.
 
-Wait, in fact, this post itself is a ~~meta-~~metaphor about how a neural network works... think about it... 🤔
+Wait, in fact, this post itself is a ~~meta-~~metaphor about how a neural network works... think about it 🤔.
 
 I think you now have the tools to explain it to whoever you prefer.
 
 Thanks for reading.
 
-~~Formally, the central idea is to extract linear combinations of the inputs as derived features, and then model the target as a nonlinear function of these features~~
+_Formally, the central idea is to extract linear combinations of the inputs as derived features, and then model the target as a nonlinear function of these features._
 

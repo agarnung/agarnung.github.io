@@ -6,7 +6,7 @@ color: secondary
 description: An introduction to the level sets method in image processing
 ---
 
-![lsa](../assets/blog_images/XXXX-XX-XX-level-sets/ls.png)
+![lsa](../assets/blog_images/2025-02-10-level-sets/ls.png)
 
 # Introduction
 
@@ -20,78 +20,78 @@ We can begin drawing the concept of level sets by creating isocontours at variou
 
 Let's test this with the following image:
 
-![original](../assets/blog_images/XXXX-XX-XX-level-sets/squares/original.png)
+![original](../assets/blog_images/2025-02-10-level-sets/squares/original.png)
 
-How many isocontours might it have? Easy, 4, if we count the edge (exterior) of the image. And we can draw them:
+How many isocontours might it have? Easy, **4**, if we count the edge (exterior) of the image. And we can draw them:
 
-![displayImage](../assets/blog_images/XXXX-XX-XX-level-sets/squares/displayImage.png)
+![displayImage](../assets/blog_images/2025-02-10-level-sets/squares/displayImage.png)
 
 And that's it, this image doesn't have more isocontours (let's assume the color is really uniform as it was synthetically generated, and let's not zoom in too much on it...). You don't believe this? Let's show its histogram. 
 
-![hist](../assets/blog_images/XXXX-XX-XX-level-sets/squares/hist.png)
+![hist](../assets/blog_images/2025-02-10-level-sets/squares/hist.png)
 
 Although it's a work in progress to create a nicer histogram, the image doesn't have more than 4 gray levels; that is the number of isocontours.
 
-A more complex example is shown below:
+A more complex example is shown below. We will draw, let's say, **100** isocontours:
 
-![original](../assets/blog_images/XXXX-XX-XX-level-sets/complex/original.png)
+![original](../assets/blog_images/2025-02-10-level-sets/complex/original.png)
 
-![hist](../assets/blog_images/XXXX-XX-XX-level-sets/complex/hist.png)
+![hist](../assets/blog_images/2025-02-10-level-sets/complex/hist.png)
 
-![displayImage](../assets/blog_images/XXXX-XX-XX-level-sets/complex/displayImage.png)
+![displayImage](../assets/blog_images/2025-02-10-level-sets/complex/displayImage.png)
 
 As a curiosity, we used a ```std::set``` and a custom comparison criterion to iterate through the image pixels and assign a unique color to each level set:
 ```cpp
 struct ScalarComparator {
-bool operator()(const cv::Scalar& a, const cv::Scalar& b) const {
-    if (a[0] != b[0]) return a[0] < b[0];
-    if (a[1] != b[1]) return a[1] < b[1];
-    return a[2] < b[2];
-}
+	bool operator()(const cv::Scalar& a, const cv::Scalar& b) const {
+		if (a[0] != b[0]) return a[0] < b[0];
+		if (a[1] != b[1]) return a[1] < b[1];
+		return a[2] < b[2];
+	}
 };
 
 std::set<cv::Scalar, ScalarComparator> usedColors;
 
 auto getUniqueColor = [&usedColors]() -> cv::Scalar {
-static std::random_device rd;
-static std::mt19937 gen(rd());
-std::uniform_int_distribution<> dis(0, 255);
+	static std::random_device rd;
+	static std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dis(0, 255);
 
-cv::Scalar color;
-do {
-    color = cv::Scalar(dis(gen), dis(gen), dis(gen));
-} while (usedColors.find(color) != usedColors.end());
+	cv::Scalar color;
+	do {
+		color = cv::Scalar(dis(gen), dis(gen), dis(gen));
+	} while (usedColors.find(color) != usedColors.end());
 
-usedColors.insert(color);
-return color;
+	usedColors.insert(color);
+	return color;
 };
 ```
 
 But wait... _aren't we cheating a bit?_ Aren't we predefining the number of isocontours that (we know, or something) the image has? Yes, and this was just for illustrative purposes. What we should do is analyze the number of "independent intensities" in the image to figure out how many level sets it should have. We will use the following image:
 
-![original](../assets/blog_images/XXXX-XX-XX-level-sets/peppers/original.png)
+![original](../assets/blog_images/2025-02-10-level-sets/peppers/original.png)
 
 Its histogram and the number of level sets that we get are (approx.) the following:
 
-![hist](../assets/blog_images/XXXX-XX-XX-level-sets/peppers/hist.png)
+![hist](../assets/blog_images/2025-02-10-level-sets/peppers/hist.png)
 
 They look something like this:
 
-![displayImage](../assets/blog_images/XXXX-XX-XX-level-sets/peppers/displayImage.png)
+![displayImage](../assets/blog_images/2025-02-10-level-sets/peppers/displayImage.png)
 
-We found: 244 unique intensity values, i.e., 244 isocontours. That's quite a few! But they look somewhat off, maybe due to the presence of noise... Let's smooth the peppers a bit and try again:
+We found: 244 unique intensity values, i.e., **244** isocontours. That's quite a few! But they look somewhat off, maybe due to the presence of noise... Let's smooth the peppers a bit and try again:
 
-![original](../assets/blog_images/XXXX-XX-XX-level-sets/smooth_peppers/original.png)
+![original](../assets/blog_images/2025-02-10-level-sets/smooth_peppers/original.png)
 
 Its histogram and the number of level sets that we get are (approx.) the following:
 
-![hist](../assets/blog_images/XXXX-XX-XX-level-sets/smooth_peppers/hist.png)
+![hist](../assets/blog_images/2025-02-10-level-sets/smooth_peppers/hist.png)
 
 They look something like this:
 
-![displayImage](../assets/blog_images/XXXX-XX-XX-level-sets/smooth_peppers/displayImage.png)
+![displayImage](../assets/blog_images/2025-02-10-level-sets/smooth_peppers/displayImage.png)
 
-This time we found: 226 isocontours. Since the image has been smoothed with a Gaussian, it has moved one step closer to its equilibrium state, so the number of level sets has decreased, and with that, the total variation (we will talk about this later). At least now it looks more visual.
+This time we found: **226** isocontours. Since the image has been smoothed with a Gaussian, it has moved one step closer to its equilibrium state, so the number of level sets has decreased, and with that, the total variation (we will talk about this later). At least now it looks more visual.
 
 Although we are only visually simplifying the concept of level sets, let’s take the exercise of asking ourselves a different question. Instead of asking, "If I specify the isocontours by setting the range of gray levels that generate them?", what about more abstract questions like "What if I specify the isocontours through other intrinsic properties of the image?" What attributes and methods can guide certain curves to form visually reasonable isocontours that separate structures that may resemble the objects in the image? **Level sets** are precisely tools that allow us to provide a robust answer to these abstract suggestions.
 
@@ -131,23 +131,61 @@ We will verify this empirically. We will begin by calculating the level sets of 
 
 Here is our image:
 
-![original](../assets/blog_images/XXXX-XX-XX-level-sets/kiel/original.png)
+![original](../assets/blog_images/2025-02-10-level-sets/kiel/original.png)
 
-And here are the histogram and the level sets (it has 256):
+And here are the histogram and the level sets (it has **256**):
 
-![hist](../assets/blog_images/XXXX-XX-XX-level-sets/kiel/hist.png)
+![hist](../assets/blog_images/2025-02-10-level-sets/kiel/hist.png)
 
-![displayImage](../assets/blog_images/XXXX-XX-XX-level-sets/kiel/displayImage.png)
+![displayImage](../assets/blog_images/2025-02-10-level-sets/kiel/displayImage.png)
+
+<table style="width: 50%; margin: 0 auto; text-align: center;">
+  <tr>
+    <th><b>Metric</b></th>
+    <th><b>Value</b></th>
+  </tr>
+  <tr>
+    <td>Perimeter</td>
+    <td>1.01907e+06 pixels</td>
+  </tr>
+  <tr>
+    <td>Total Variation (Isotropic)</td>
+    <td>1.01668e+06</td>
+  </tr>
+  <tr>
+    <td>Total Variation (Anisotropic)</td>
+    <td>1.20593e+06</td>
+  </tr>
+</table>
 
 The **perimeter** value is 1.01907e+06 (pixels), and the **total variation** value is 1.01668e+06 (isotropic) and 1.20593e+06 (anisotropic). The theorem does not seem to hold precisely. If we look closely, the model assuming $$ u(x, y) \in C^2(\Omega) $$ does not fit very well with this image, which contains a considerable amount of edges, rapid intensity jumps, impulsive and white noise (among others), and, above all, low resolution, leading to strong discretization and quantization effects that undermine continuous modeling. However, if we instead use a smoother function (image) — a 2D Gaussian, which is certainly of bounded variation (BV) — like the one below, let's see what happens...:
 
-![original](../assets/blog_images/XXXX-XX-XX-level-sets/BV_image/original.png)
+![original](../assets/blog_images/2025-02-10-level-sets/BV_image/original.png)
 
-And here are the histogram and the level sets (it has 256):
+And here are the histogram and the level sets (it has **256**):
 
-![hist](../assets/blog_images/XXXX-XX-XX-level-sets/BV_image/hist.png)
+![hist](../assets/blog_images/2025-02-10-level-sets/BV_image/hist.png)
 
-![displayImage](../assets/blog_images/XXXX-XX-XX-level-sets/BV_image/displayImage.png)
+![displayImage](../assets/blog_images/2025-02-10-level-sets/BV_image/displayImage.png)
+
+<table style="width: 50%; margin: 0 auto; text-align: center;">
+  <tr>
+    <th><b>Metric</b></th>
+    <th><b>Value</b></th>
+  </tr>
+  <tr>
+    <td>Perimeter</td>
+    <td>570025 pixels</td>
+  </tr>
+  <tr>
+    <td>Total Variation (Isotropic)</td>
+    <td>610659</td>
+  </tr>
+  <tr>
+    <td>Total Variation (Anisotropic)</td>
+    <td>662554</td>
+  </tr>
+</table>
 
 The **perimeter** value is 570025 (pixels), and the **total variation** value is 610659 (isotropic) and 662554 (anisotropic). Although everything suggests that the values are now converging, the theorem is still approximately holding due to the reasons mentioned earlier, derived from discretization and digitalization.
 
@@ -163,7 +201,7 @@ Mathematically, let us assume that the unknown set of edges $$ K $$ is the bound
 
 ## Segmentation
 
-The main purpose of segmentation is to find the contours of objects in images particionándola en regiones disjuntas. Two very established paradigms of image segmentation, within the framework of active contours, are **_parametric model_s** (like the *snakes* of Kass, Witkin, and Terzopoulos and **intelligent scissors** (Mortensen and Barrett 1995) [5-6]) and **_geometric deformable models_** (like **Geodesic Active Contours** [GAC] by Caselles, Kimmel, and Sapiro) [1-3]. The latter are formulated to address the limitations of the former and are based on the evolution of curves (or surfaces) with a formulation grounded in level sets. This evolution is guided by geometric measures.
+The main purpose of segmentation is to find the contours of objects in images particionándola en regiones disjuntas. Two very established paradigms of image segmentation, within the framework of active contours, are **_parametric models_** (like the *snakes* of Kass, Witkin, and Terzopoulos and **intelligent scissors** (Mortensen and Barrett 1995) [5-6]) and **_geometric deformable models_** (like **Geodesic Active Contours** [GAC] by Caselles, Kimmel, and Sapiro) [1-3]. The latter are formulated to address the limitations of the former and are based on the evolution of curves (or surfaces) with a formulation grounded in level sets. This evolution is guided by geometric measures.
 
 Thus, the main purpose of segmentation through GAC and level sets is to model the contours of objects as curves that (typically) must move with a certain speed to match the highest gradients. The level set evolution for a GAC, the characteristic function **φ** is updated based on the curvature of the underlying surface modulated by an edge/speed function g(I), as well as the gradient of g(I), thereby attracting it to strong edges [6].
 
