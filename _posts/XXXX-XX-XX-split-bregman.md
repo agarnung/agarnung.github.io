@@ -37,11 +37,7 @@ where $$\langle p, u - v \rangle$$ is the inner product between $$p$$ (which bel
 
 ![bd](../assets/blog_images/XXXX-XX-XX-split-bregman/bd.jpg)
 
-$$
-D^p_J (u, v)
-$$
-
-compares the value $$J(u)$$ with the tangent plane (which in 1D is a line) $$J(v) + \langle p, u-v \rangle$$. Choosing a differentiable $$H$$, the subdifferential becomes the gradient $$\nabla H$$. This is not strictly a distance in the usual sense because it satisfies neither symmetry nor the triangle inequality, but it retains many distance properties (see [8]). Instead of directly measuring the distance between two points, it measures it as differences in function values, comparing $$J(u)$$ with a linear approximation of $$J$$ based on its tangent point $$J(v)$$. In other words, it measures the difference between the function value at $$u$$, which is $$J(u)$$, and the best linear approximation of $$J(u)$$ from $$v$$.
+$$ D^p_J (u, v) $$ compares the value $$J(u)$$ with the tangent plane (which in 1D is a line) $$J(v) + \langle p, u-v \rangle$$. Choosing a differentiable $$H$$, the subdifferential becomes the gradient $$\nabla H$$. This is not strictly a distance in the usual sense because it satisfies neither symmetry nor the triangle inequality, but it retains many distance properties (see [8]). Instead of directly measuring the distance between two points, it measures it as differences in function values, comparing $$J(u)$$ with a linear approximation of $$J$$ based on its tangent point $$J(v)$$. In other words, it measures the difference between the function value at $$u$$, which is $$J(u)$$, and the best linear approximation of $$J(u)$$ from $$v$$.
 
 From the figure, it is clear that convexity is required for an effective linear approximation. The distance tends to zero when $$v$$ approaches the optimum $$\hat{u}$$. So, given an initial point $$u^0$$ and a parameter $$\gamma > 0$$, the Bregman iteration algorithm is formally:
 
@@ -170,6 +166,174 @@ In [14], the explained approach is used for deconvolution, and instead of keepin
   </table>
 </p>
 
+## Denoising  
+
+We will implement and test the Total Variation (TV) model proposed in [15] using the Split Bregman method in C++. See [16] for another interesting implementation.  
+
+### 1. Total Variation Model Functional  
+
+The combination of an L2 data fidelity term with **total variation (TV)** leads to a variational model proposed by Rudin, Osher, and Fatemi (ROF model). The functional is expressed as:  
+
+$$
+E(u) = \frac{1}{2} \int_\Omega (u - f)^2 + \alpha \int |\nabla u|
+$$  
+
+### 2. Split Bregman for the TV Model  
+
+To minimize this functional, we introduce an auxiliary variable $$ w = (w_1, w_2) $$ and a Bregman iterative parameter $$ b = (b_1, b_2) $$, transforming the original functional into:  
+
+$$
+E(u, w, b) = \frac{1}{2} \int (u - f)^2 + \alpha \int |w|^2 + \beta \int (w - \nabla u - b)^2
+$$  
+
+To solve this functional, we use an alternating optimization method, where each iteration alternates between updating $$ u $$ and $$ w $$.  
+
+### 3. Algorithm and Discretized Equations  
+
+The authors provide a pseudocode representation of the algorithm, which closely resembles the previously presented implementation:
+
+![sbtv](../assets/blog_images/XXXX-XX-XX-split-bregman/sbtv.png)
+
+#### 3.1. Updating $$ u $$  
+
+For $$ u $$, the Euler equation is obtained as:  
+
+$$
+\frac{\partial u}{\partial t} = \nabla \cdot (\nabla u) = f - \nabla \cdot (w - b)
+$$  
+
+This equation is discretized using finite differences and the Discrete Fourier Transform (DFT), applying the Fast Fourier Transform (FFT):  
+
+$$
+u_{i,j} = \mathcal{F}^{-1} \left( \frac{\mathcal{F}(f - \nabla \cdot (w - b))}{G_{i,j}} \right)
+$$  
+
+where $$ G_{i,j} $$ is a precomputed matrix related to the image frequencies:  
+
+```cpp
+auto computeCosineMatrix = [](int size, float scale, bool trueForRows) -> cv::Mat {
+    cv::Mat indices(size, 1, CV_32F);
+    for (int i = 0; i < size; ++i)
+        indices.at<float>(i, 0) = static_cast<float>(i);
+    if (!trueForRows)
+        indices = indices.t();
+    cv::Mat cos_mat;
+    cv::multiply(indices, scale, cos_mat);
+    cos_mat.forEach<float>([](float& pixel, const int*) { pixel = std::cos(pixel); });
+
+    return cos_mat;
+};
+cv::Mat cos_i = computeCosineMatrix(m, 2 * CV_PI / m, true);
+cv::Mat cos_j = computeCosineMatrix(n, 2 * CV_PI / n, false);
+cv::Mat G = repeat(cos_i, 1, n) + repeat(cos_j, m, 1) - 2;
+```
+
+Thus, the update of $$ u $$ is performed in the frequency (Fourier) domain:
+```cpp
+// Update u using FFT
+Mat w1_b1, w2_b2;
+subtract(w1, b1, w1_b1);
+subtract(w2, b2, w2_b2);
+div_w_b = Bx(w1_b1) + By(w2_b2);
+multiply(theta, div_w_b, g);
+subtract(f0, g, g);
+
+// FFT processing
+dft(g, g_fft, DFT_COMPLEX_OUTPUT);
+divide(g_fft, denominator_complex, g_fft);
+dft(g_fft, u, DFT_INVERSE | DFT_SCALE | DFT_REAL_OUTPUT);
+```
+
+It should be mentioned that a padding of 10 pixels is added to avoid artifacts in the boundary during the filtering process:
+
+```cpp
+// Clone and add padding
+Mat f0 = inputImage.clone();
+int padNum = 10;
+copyMakeBorder(f0, f0, padNum, padNum, padNum, padNum, BORDER_REPLICATE);
+```
+
+In the end, the useful (original) subset of the image is cropped again in the spatial domain.
+Al final, se vuelve a recortar en el dominio espacial el subconjunto útil (original) de la imagen.
+
+```cpp
+Mat result;
+u(Rect(padNum, padNum, inputImage.cols, inputImage.rows)).copyTo(result);
+```
+
+#### 3.2. Updating $$ w $$
+
+Once $$ u $$ is updated, $$ w $$ is updated using the **soft-thresholding** equation:
+
+$$
+w_{i,j} = \max\left(\left|\nabla u_{i,j} + b_{i,j}\right| - \frac{\alpha}{\theta}, 0 \right)
+$$
+
+Here, the value of $$ w $$ is computed component-wise using the gradient of $$ u $$ and the Bregman variables $$ b = (b_1, b_2)^ $$.
+
+```cpp
+// Update w with soft-thresholding
+Mat ux = Fx(u), uy = Fy(u);
+Mat c1, c2;
+add(ux, b1, c1);
+add(uy, b2, c2);
+
+Mat abs_c;
+magnitude(c1, c2, abs_c);
+abs_c += 1e-10; // Avoid division by zero
+
+Mat thresholded;
+threshold(abs_c - lambda/theta, thresholded, 0, 0, THRESH_TOZERO);
+
+multiply(thresholded, c1 / abs_c, w1);
+multiply(thresholded, c2 / abs_c, w2);
+```
+
+#### 3.3 Updating $$ b $$
+Finally, we update the Bregman iterative parameter b, which serves as an error adjustment term in each iteration to reinforce the constraint  $$ w = \nabla u $$:
+
+$$
+b \leftarrow b + \nabla u - w
+$$
+
+```cpp
+// Update Bregman variables
+subtract(c1, w1, b1);
+subtract(c2, w2, b2);
+```
+
+### Results
+
+We conclude by showing some original, noisy, and denoised versions of various images using Gaussian and impulsive noise to degrade them. The model parameters are sensibly modulated by hand, proportionally to the level of noise generated:
+
+<p align="center">
+  <table>
+    <tr>
+      <th>Original</th>
+      <th>Degraded</th>
+      <th>Restored</th>
+    </tr>
+    <tr>
+      <td class="image-cell"><img src="../assets/blog_images/XXXX-XX-XX-split-bregman/input1.png" alt="input1" style="width: 400px; height: 300px;" /></td>
+      <td class="image-cell"><img src="../assets/blog_images/XXXX-XX-XX-split-bregman/noisy1.png" alt="noisy1" style="width: 400px; height: 300px;" /></td>
+      <td class="image-cell"><img src="../assets/blog_images/XXXX-XX-XX-split-bregman/denoised1.png" alt="denoised1" style="width: 400px; height: 300px;" /></td>
+    </tr>
+    <tr>
+      <td class="image-cell"><img src="../assets/blog_images/XXXX-XX-XX-split-bregman/input2_lena.png" alt="input2_lena" style="width: 400px; height: 300px;" /></td>
+      <td class="image-cell"><img src="../assets/blog_images/XXXX-XX-XX-split-bregman/noisy2.png" alt="noisy2" style="width: 400px; height: 300px;" /></td>
+      <td class="image-cell"><img src="../assets/blog_images/XXXX-XX-XX-split-bregman/denoised2.png" alt="denoised2" style="width: 400px; height: 300px;" /></td>
+    </tr>
+    <tr>
+      <td class="image-cell"><img src="../assets/blog_images/XXXX-XX-XX-split-bregman/input3_mouth.png" alt="input3_mouth" style="width: 400px; height: 300px;" /></td>
+      <td class="image-cell"><img src="../assets/blog_images/XXXX-XX-XX-split-bregman/noisy3.png" alt="noisy3" style="width: 400px; height: 300px;" /></td>
+      <td class="image-cell"><img src="../assets/blog_images/XXXX-XX-XX-split-bregman/denoised3.png" alt="denoised3" style="width: 400px; height: 300px;" /></td>
+    </tr>
+
+  </table>
+</p>
+
+Probably a data fidelity modeled under the L1 norm would have dealt better with the impulsive noise, but we'll leave that for another post.
+
 ## References
 
 [1] Pascal Getreuer, *Total Variation Inpainting using Split Bregman*, [Online Article](http://www.ipol.im/pub/art/2012/g-tvi/)  
@@ -199,3 +363,7 @@ In [14], the explained approach is used for deconvolution, and instead of keepin
 [13] E. Esser, *Applications of Lagrangian-Based Alternating Direction Methods and Connections to Split Bregman*, UCLA CAM Report 09-21, 2009, [FTP Link](ftp://ftp.math.ucla.edu/pub/camreport/cam09-31.pdf)  
 
 [14] Weihong Li et al., *Total Variation Blind Deconvolution Employing Split Bregman Iteration*, 2012, [Online Article](https://www.ipol.im/pub/art/2012/g-tvdc/)
+
+[15] Lu, W., Duan, J., Qiu, Z., Pan, Z., Liu, R. W., & Bai, L. (2016). Implementation of high-order variational models made easy for image processing. Mathematical Methods in the Applied Sciences, 39(18), 5371–5387. https://doi.org/10.1002/mma.3858
+
+[16] [GitHub - L1-norm-total-variation-inpainting-using-Split_Bregman-Iteration](https://github.com/ycynyu007/L1-norm-total-variation-inpainting-using-Split_Bregman-Iteration)
