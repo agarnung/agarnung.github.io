@@ -7,6 +7,11 @@ weight: 2
 
 # **Publications**
 
+
+<div class="row">
+{% include about/publications.html %}
+</div>
+
 ## **Preprints**
 
 Eventually, I research a few exciting topics in image processing and computer vision.
