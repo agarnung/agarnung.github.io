@@ -2,11 +2,11 @@
 title: Linux tree
 tags: [Linux, programming, divulgation]
 style: fill
-color: info
+color: success
 description: Briefly analyzing Linux tree structure
 ---
 
-![linux](../assets/blog_images/2025-02-13-linux-tree/linux.png)
+![linux](../assets/blog_images/XXXX-XX-XX-linux-tree/linux.png)
 
 # Introduction
 
@@ -21,7 +21,7 @@ But enough talking about competitions, since each option meets different needs, 
 # The Linux structure
 
 Before anything else, let's take a look and appreciate this beautiful tree of Linux distributions (GNU/Linux):  
-![distros](../assets/blog_images/2025-02-13-linux-tree/distros.png)  
+![distros](../assets/blog_images/XXXX-XX-XX-linux-tree/distros.png)  
 
 This is my system:
 ```bash
