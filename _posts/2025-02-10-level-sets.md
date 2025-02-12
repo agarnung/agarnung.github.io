@@ -201,7 +201,7 @@ Mathematically, let us assume that the unknown set of edges $$ K $$ is the bound
 
 ## Segmentation
 
-The main purpose of segmentation is to find the contours of objects in images particionándola en regiones disjuntas. Two very established paradigms of image segmentation, within the framework of active contours, are **_parametric models_** (like the *snakes* of Kass, Witkin, and Terzopoulos and **intelligent scissors** (Mortensen and Barrett 1995) [5-6]) and **_geometric deformable models_** (like **Geodesic Active Contours** [GAC] by Caselles, Kimmel, and Sapiro) [1-3]. The latter are formulated to address the limitations of the former and are based on the evolution of curves (or surfaces) with a formulation grounded in level sets. This evolution is guided by geometric measures.
+The main purpose of segmentation is to find the contours of objects in images particionándola en regiones disjuntas. Two very well established paradigms of image segmentation, within the framework of active contours, are **_parametric models_** (like the *snakes* of Kass, Witkin, and Terzopoulos and **intelligent scissors** (Mortensen and Barrett 1995) [5-6]), in which the evolving contour is represented explicitly using splines, and **_geometric deformable models_** (like **Geodesic Active Contours** [GAC] by Caselles, Kimmel, and Sapiro), in which the curve is represented implicitly as the zero level line of a function [1-3][8]. The latter are formulated to address the limitations of the former and are based on the evolution of curves (or surfaces) with a formulation grounded in level sets. This evolution is guided by geometric measures.
 
 Thus, the main purpose of segmentation through GAC and level sets is to model the contours of objects as curves that (typically) must move with a certain speed to match the highest gradients. The level set evolution for a GAC, the characteristic function **φ** is updated based on the curvature of the underlying surface modulated by an edge/speed function g(I), as well as the gradient of g(I), thereby attracting it to strong edges [6].
 
@@ -253,3 +253,5 @@ This formulation allows the curve to evolve flexibly, splitting or merging witho
 [6] Richard Szeliski, Computer Vision: Algorithms and Applications, 2nd ed., 2022, p. 470.
 
 [7] Carlos Brito Loeza et al., Introducción a los Métodos Variacionales en Procesamiento de Imágenes: Filtros de Ruido, 2014.
+
+[8] Le Guyader, C., & Vese, L. A. (2019). Variational Methods in Image Processing. T&F India.
