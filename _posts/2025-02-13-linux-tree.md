@@ -2,7 +2,7 @@
 title: Linux tree
 tags: [Linux, programming, divulgation]
 style: fill
-color: success
+color: info
 description: Briefly analyzing Linux tree structure
 ---
 
