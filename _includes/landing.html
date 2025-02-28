@@ -1,5 +1,5 @@
-<div class="row justify-content-center align-items-center p-4">
-  <div class="col-md-6 text-center mt-4">
+<div class="row justify-content-center align-items-center p-0 m-0">
+  <div class="col-md-6 text-center mt-0">
 
     <!-- Fine Circle Responsive Image -->
     <div id="container" class="my-2">
@@ -11,14 +11,14 @@
 
     <div class="text-muted wow animated slideInUp" data-wow-delay=".2s">
       <div class="container mt-4">
-        <h3 class="font-weight-bold">Hi! Welcome to my website</h3>
+        <h3 class="font-weight-bold" style="margin-top: 0px">Hi! Welcome to my website</h3>
       </div>
     </div>
     
   </div>
 
 <section class="p-4 align-items-start" class="text-muted wow animated slideInUp" data-wow-delay=".1s">
-  <div class="col-lg-8 mx-auto markdown-body" style="text-align: justify; margin-top: 12px">
+  <div class="col-lg-8 mx-auto markdown-body" style="text-align: justify; margin-top: 0px">
     <p>
       I am Alejandro, <span id="age"></span> years old. Here, you can take a look at my (personal) <a href="/projects">projects</a> (I have selected several that are available on my GitHub profile), <a href="/blog">blog</a> (where I document and share insights about computer vision, image processing, math, geometry and engineering, among other topics), <a href="/publications">publications</a> (a mix of informal, formal, and quasi-formal documents I find valuable for anyone interested in my fields), and, if you'd like to know more about me, <a href="/about">additional information</a>.
     </p>
@@ -36,28 +36,12 @@
   </div>
 </section>
 
-
 </div>
 
-<div style="white-space: nowrap; overflow: hidden; position: relative; width: 100%; height: 50px; background-color: transparent;">
-  <div style="display: inline-block; position: absolute; animation: scroll-left 10s linear infinite; font-family: monospace; color: grey;">
+<div id="scroll-container">
+  <div id="scroll-text">
     &lt;div&gt; 🚀 {{ site.description }} 🚀 &lt;/div&gt;
   </div>
 </div>
-
-<style>
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(200%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  
-    div[style*="animation: scroll-left"] {
-    white-space: nowrap;
-  }
-</style>
 
 <script src="{{ '/assets/js/age-calculator.js' | relative_url }}"></script>
