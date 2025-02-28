@@ -123,6 +123,7 @@ Changes made to fulfil my needs:
 * Added [PDF viewer](https://github.com/alesordo/alesordo.github.io)
 * Added scss and modified ```portfolYOU.scss```
 * Customized landing page with dynamic message
+* Added date dropdown page to list posts in blog
 
 <div align="center">
 <sub><sup>© 2025 Alejandro Garnung Menéndez, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>
