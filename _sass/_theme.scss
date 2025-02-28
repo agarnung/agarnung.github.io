@@ -31,3 +31,7 @@
   @include themed(background-color, $light, $dark);
 }
 
+hr {
+  color: $text-black !important;
+}
+
