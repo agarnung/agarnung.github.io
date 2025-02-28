@@ -1,11 +1,19 @@
-- name: OpenCV
+- name: Computer Science & Engineering
   percentage: 90
   color: primary
+  subtitle: 2D & 3D Computer Vision, ML, DL, Computer Graphics
 
-- name: Qt
+- name: Libraries
   percentage: 80
-  color: success
-
-- name: OpenGL
-  percentage: 50
   color: info
+  subtitle: OpenCV, PyTorch, PCL, Open3D, CloudCompare
+
+- name: Dev Tools 
+  percentage: 60
+  color: success
+  subtitle: Linux, Bash, Qt, OpenGL, GLSL, CUDA
+
+- name: DevOps & Automation
+  percentage: 30
+  color: secondary
+  subtitle: Docker, Git, CMake, qmake

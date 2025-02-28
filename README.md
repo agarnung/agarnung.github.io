@@ -124,6 +124,7 @@ Changes made to fulfil my needs:
 * Added scss and modified ```portfolYOU.scss```
 * Customized landing page with dynamic message
 * Added date dropdown page to list posts in blog
+* Added subtitle to skills bars
 
 <div align="center">
 <sub><sup>© 2025 Alejandro Garnung Menéndez, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>

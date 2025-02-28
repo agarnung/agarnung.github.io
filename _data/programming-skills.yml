@@ -1,20 +1,24 @@
-- name: C++
+- name: C/C++
   percentage: 70
-  color: danger 
-
-- name: C
-  percentage: 60
-  color: success  
+  color: danger
+  subtitle: 
 
 - name: Python
   percentage: 40
   color: info
+  subtitle: 
 
-- name: Assembly
+- name: Assembly (x86/64)
   percentage: 20
-  color: secondary 
+  color: secondary
+  subtitle: 
 
-- name: HTML/CSS/JavaScript
+- name: Web development
   percentage: 20
-  color: primary   
+  color: primary
+  subtitle: HTML, (S)CSS, JavaScript, Jekyll, Flask, Svelte, Astro
 
+- name: Databases
+  percentage: 20
+  color: dark
+  subtitle: SQLite, PostgreSQL, MySQL, MongoDB, MariaDB 
