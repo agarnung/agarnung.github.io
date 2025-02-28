@@ -1,25 +1,16 @@
-<!-- Group posts by date -->
-{%- assign posts_by_date = {} -%}
-{%- for post in site.posts -%}
-  {%- assign post_date = post.date | date: "%Y-%m" -%}  <!-- Group by year and month -->
-  {%- if posts_by_date[post_date] == nil -%}
-    {%- assign posts_by_date[post_date] = "" -%}
-  {%- endif -%}
-  {%- assign posts_by_date[post_date] = posts_by_date[post_date] | append: post.url | append: "|" -%}
-{%- endfor -%}
+{%- assign posts_by_date = site.posts | group_by_exp: "post", "post.date | date: '%Y-%m'" -%}
 
 <!-- Create a dropdown list by date -->
-{% for date, posts in posts_by_date %}
-  <div class="py-3">
-    <h4 id="{{ date }}">{{ date }}</h4>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#posts-{{ date }}" aria-expanded="false" aria-controls="posts-{{ date }}">
-      Ver posts
-    </button>
-    <div class="collapse" id="posts-{{ date }}">
+{% for group in posts_by_date %}
+  <div class="py-0"> 
+    <h4 class="date-item">
+      <a href="javascript:void(0)" class="date-toggle" data-toggle="collapse" data-target="#posts-{{ group.name }}" aria-expanded="false" aria-controls="posts-{{ group.name }}">
+        {{ group.name }}
+      </a>
+    </h4>
+    <div class="collapse" id="posts-{{ group.name }}">
       <ol>
-        {% assign post_urls = posts | split: '|' %}
-        {% for post_url in post_urls %}
-          {%- assign post = site.posts | where: "url", post_url | first -%}
+        {% for post in group.items %}
           <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
           <small class="text-muted"> - {{ post.date | date_to_long_string }}</small>
           <br/>
