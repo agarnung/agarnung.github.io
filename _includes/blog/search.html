@@ -7,10 +7,19 @@
       <i class="fas fa-search"></i>
     </span>
   </div>
-  <button class="btn btn-outline-primary ml-1" onclick="location.href = '{{ '/blog/calendar' | relative_url }}';">
+  <button class="btn btn-outline-primary ml-1" 
+          onclick="location.href = '{{ '/blog/music' | relative_url }}';"
+          title="See music posts">
+    <i class="fas fa-music"></i>
+  </button>
+  <button class="btn btn-outline-primary ml-1" 
+          onclick="location.href = '{{ '/blog/calendar' | relative_url }}';"
+          title="See blog calendar">
     <i class="fas fa-calendar"></i>
   </button>
-  <button class="btn btn-outline-primary ml-1" onclick="location.href = '{{ '/blog/tags' | relative_url }}';">
+  <button class="btn btn-outline-primary ml-1" 
+          onclick="location.href = '{{ '/blog/tags' | relative_url }}';"
+          title="See blog tags">
     <i class="fas fa-tags"></i>
   </button>
 </div>
