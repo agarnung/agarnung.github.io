@@ -104,6 +104,7 @@ This webite is deployed with [Github pages](https://docs.github.com/en/pages/qui
 
 ### Troubleshooting
 * Can't see the favicon?: Clear Cache. Try a hard refresh (Ctrl + F5 or Cmd + Shift + R) or open in incognito mode. Browsers often cache favicons aggressively, and sometimes a simple refresh won't show the new favicon.
+* `inotify` limit for monitoring file changes has been reached? Temporarily increase the inotify watcher limit (this change will be lost after a reboot): `sudo sysctl fs.inotify.max_user_watches=524288`
 
 ### Licence
 This portfolio is based on the awesome template [portfolYOU](https://github.com/yousinix/portfolYOU).
