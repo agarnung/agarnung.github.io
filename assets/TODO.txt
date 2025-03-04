@@ -1,4 +1,4 @@
-- Usar un DNS propio (hay que registrarlo) (ver https://github.com/alesordo):
+- Usar un DNS propio (hay que registrarlo) (ver https://www.youtube.com/watch?v=rIXWUJ5U8bY&ab_channel=KennyYipCoding):
 	1. crear archivo CNAME en raíz con contenido: www.agarnung.com 
 	2. en _cofig.yml poner:   url               : https://agarnung.com
 	3. ya estaría.
