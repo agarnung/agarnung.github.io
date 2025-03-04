@@ -106,7 +106,7 @@ This webite is deployed with [Github pages](https://docs.github.com/en/pages/qui
 * Can't see the favicon?: Clear Cache. Try a hard refresh (Ctrl + F5 or Cmd + Shift + R) or open in incognito mode. Browsers often cache favicons aggressively, and sometimes a simple refresh won't show the new favicon.
 
 ### Licence
-This portfolio is based on th awesome template [portfolYOU](https://github.com/yousinix/portfolYOU).
+This portfolio is based on the awesome template [portfolYOU](https://github.com/yousinix/portfolYOU).
 
 Changes made to fulfil my needs:
 * Separate timeline in two different trees.
