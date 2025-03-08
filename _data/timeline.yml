@@ -2,7 +2,7 @@
   from: 2024
   to: present
   description: |
-    Specialization in 3D computer vision.
+    Advanced 3D Point Cloud Noise Filtering and Denoising Techniques.
     
 - title: "Master's Degree in Automation Engineering and Industrial Informatics, UniOvi"
   from: 2022
@@ -10,7 +10,7 @@
   description: |
     Grade: 9.34.
     Specializations in computer vision, applied mathematics, image processing, algorithms, integrated industrial systems, detection, classification, simulation, advanced experimentation, and artificial intelligence.
-    Master's Thesis: Development of a system for the validation of industrial parts pose on conveyor belts with a focus on simulation and advanced experimentation (<a href="https://hdl.handle.net/10651/76231" target="_blank">hdl.handle.net/10651/76231</a>) (grade: 10).
+    Master's Thesis: Development of a system for the validation of industrial parts pose on conveyor belts with a focus on simulation and advanced experimentation (<a href="https://hdl.handle.net/10651/76231" target="_blank">link/a>) (grade: 10).
     
 - title: "Bachelor's Degree in Industrial Electronics and Automation Engineering, UniOvi"
   from: 2018
@@ -18,4 +18,4 @@
   description: |
     Grade: 7.43.
     Specializations in mobile robotics, programming in ROS, and embedded systems.
-    Bachelor's Thesis: Integration of an omnidirectional autonomous educational mobile robot in ROS (<a href="https://hdl.handle.net/10651/76274" target="_blank">hdl.handle.net/10651/76274</a>) (grade: 10).
+    Bachelor's Thesis: Integration of an omnidirectional autonomous educational mobile robot in ROS (<a href="https://hdl.handle.net/10651/76274" target="_blank">link</a>) (grade: 10).
