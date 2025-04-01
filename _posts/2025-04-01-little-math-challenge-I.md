@@ -63,7 +63,7 @@ Hice una pequeña simulación en Desmos para comprobar el método en tiempo real
 Entra desde [este enlace](https://www.desmos.com/calculator/xb2osal6jk?lang=es) y mueve los _input parameters_ para jugar con ello. También puedes jugar con ello en este _widget web_:
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh; margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0;">
-    <iframe src="https://www.desmos.com/calculator/eaxo2ddfmt?embed" width="400" height="400" style="border: 1px solid #ccc;" frameborder="0"></iframe>
+    <iframe src="https://www.desmos.com/calculator/eaxo2ddfmt?embed" width="800" height="800" style="border: 1px solid #ccc;" frameborder="0"></iframe>
 </div>
 
 ---
@@ -405,11 +405,11 @@ $$
 
 La condición de mínimo $$\frac{dJ}{dx} = 0$$ se interpreta geométricamente como la igualdad de ángulos entre $$PA$$, $$PB$$ y la recta $$L$$, lo que lleva al principio de reflexión. La solución explícita se obtiene reflejando uno de los puntos y encontrando la intersección con la recta.
 
-[!WARNING] Casos degenerados:
-
-1. $$ AB' \parallel L $$ (Reflexión falla): Solución tiende al infinito.
-2. Puntos equidistantes: $$ P $$ es punto medio de las proyecciones.
-3. Punto en la recta: Si $$ A \in L $$, entonces $$ P = A $$ .
+> Atención: Casos degenerados:
+> 
+> 1. $$ AB' \parallel L $$ (reflexión falla): Solución tiende a infinito
+> 2. Puntos equidistantes: $$ P $$ es punto medio de las proyecciones
+> 3. Punto en la recta: Si $$ A \in L $$, entonces $$ P = A $$ 
 
 ---
 
@@ -420,7 +420,7 @@ Hice otra pequeña simulación en Desmos para comprobar el método en tiempo rea
 Entra desde [este enlace](https://www.desmos.com/calculator/vzltvx4vds?lang=es) y mueve los _input parameters_ para jugar con ello. También puedes jugar con ello en este _widget web_:
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh; margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0;">
-    <iframe src="https://www.desmos.com/calculator/szhjzbi7si?embed" width="400" height="400" style="border: 1px solid #ccc;" frameborder="0"></iframe>
+    <iframe src="https://www.desmos.com/calculator/szhjzbi7si?embed" width="800" height="800" style="border: 1px solid #ccc;" frameborder="0"></iframe>
 </div>
 
 # Conclusión
