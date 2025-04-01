@@ -63,7 +63,7 @@ Hice una pequeña simulación en Desmos para comprobar el método en tiempo real
 Entra desde [este enlace](https://www.desmos.com/calculator/xb2osal6jk?lang=es) y mueve los _input parameters_ para jugar con ello. También puedes jugar con ello en este _widget web_:
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh; margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0;">
-    <iframe src="https://www.desmos.com/calculator/eaxo2ddfmt?embed" width="800" height="800" style="border: 1px solid #ccc;" frameborder="0"></iframe>
+    <iframe src="https://www.desmos.com/calculator/eaxo2ddfmt?embed" width="700" height="700" style="border: 1px solid #ccc;" frameborder="0"></iframe>
 </div>
 
 ---
@@ -420,7 +420,7 @@ Hice otra pequeña simulación en Desmos para comprobar el método en tiempo rea
 Entra desde [este enlace](https://www.desmos.com/calculator/vzltvx4vds?lang=es) y mueve los _input parameters_ para jugar con ello. También puedes jugar con ello en este _widget web_:
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh; margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0;">
-    <iframe src="https://www.desmos.com/calculator/szhjzbi7si?embed" width="800" height="800" style="border: 1px solid #ccc;" frameborder="0"></iframe>
+    <iframe src="https://www.desmos.com/calculator/szhjzbi7si?embed" width="700" height="700" style="border: 1px solid #ccc;" frameborder="0"></iframe>
 </div>
 
 # Conclusión
