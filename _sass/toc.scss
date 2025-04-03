@@ -1,0 +1,100 @@
+#toc-container {
+    position: fixed;
+    top: 20%;
+    width: 220px; 
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 14px;
+    z-index: 1000;
+    transition: transform 1.3s ease; 
+}
+
+#toc-container.hidden {
+    transform: translateX(100%); /* Desplazar el índice fuera de la pantalla */
+    visibility: hidden;
+    opacity: 0;
+    transition: transform 1.3s ease, visibility 1.3s ease, opacity 1.3s ease;
+}
+
+/* Mantener el botón de mostrar visible aunque el índice esté oculto */
+#toggle-toc-visibility {
+    position: fixed;
+    top: 20%;
+    right: 15px; 
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 5px;
+    @include themed(color, black, $text-white);
+}
+
+/* Quitar estilos predeterminados de los botones */
+button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#toc-container.right { right: 20px; }
+#toc-container.left { left: 20px; }
+
+#toggle-toc {
+    position: absolute;
+    top: 5px;
+    right: 0px; 
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    @include themed(color, black, $text-white);
+}
+
+#toc a {
+    display: block;
+    text-decoration: none;
+    padding: 5px;
+    transition: all 0.3s ease;
+    @include themed(color, black, $text-white);
+
+    /* Permitir salto de línea en títulos largos */
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Hover y selección en modo claro/oscuro */
+#toc a:hover, 
+#toc a.active {
+    @include themed(background, rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.1));
+    border-radius: 5px;
+}
+
+/* Estilos por nivel de encabezado */
+#toc .level-h1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#toc .level-h2 {
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 15px;
+}
+
+#toc .level-h3 {
+    font-size: 14px;
+    font-weight: 500;
+    padding-left: 25px;
+}
+
+#toc .level-h4 {
+    font-size: 13px;
+    font-weight: 400;
+    padding-left: 35px;
+}
+

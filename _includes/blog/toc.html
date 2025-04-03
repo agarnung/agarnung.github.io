@@ -1,0 +1,55 @@
+<aside id="toc-container" class="right">
+    <button id="toggle-toc">⇄</button>
+    <!--<button id="toggle-toc-visibility">👁️</button>-->
+    <h3>Index</h3>
+    <nav id="toc"></nav>
+</aside>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let headers = document.querySelectorAll("h1, h2, h3");
+    let toc = document.getElementById("toc");
+
+    headers.forEach((header, index) => {
+        if (header.textContent.trim() === "Index") {
+            return; // Si el encabezado es "Index", ignorarlo y continuar con el siguiente
+        }
+        
+        if (!header.id) header.id = "header-" + index; // Asegura un ID único
+        let link = document.createElement("a");
+        link.href = "#" + header.id;
+        link.textContent = header.textContent;
+        link.classList.add("toc-link", "level-" + header.tagName.toLowerCase());
+        toc.appendChild(link);
+    });
+
+    // Resaltar sección activa al hacer scroll
+    window.addEventListener("scroll", () => {
+        let fromTop = window.scrollY + 20;
+        let links = document.querySelectorAll(".toc-link");
+
+        links.forEach(link => {
+            let section = document.querySelector(link.getAttribute("href"));
+            if (section && section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+                link.classList.add("active");
+            } else {
+                link.classList.remove("active");
+            }
+        });
+    });
+
+    // Alternar posición (izquierda/derecha)
+    document.getElementById("toggle-toc").addEventListener("click", function () {
+        let tocContainer = document.getElementById("toc-container");
+        tocContainer.classList.toggle("left");
+        tocContainer.classList.toggle("right");
+    });
+
+    // Alternar visibilidad del índice
+    document.getElementById("toggle-toc-visibility").addEventListener("click", function () {
+        let tocContainer = document.getElementById("toc-container");
+        tocContainer.classList.toggle("hidden"); // Alterna la visibilidad
+    });
+});
+</script>
+
