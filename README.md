@@ -71,10 +71,12 @@ Follow the official instructions to test GitHub Pages sites with [Jekyll](https:
 	bundle install
 	```
 (or run it with sudo if necessary)
+
 7. Verify that the Jekyll gem is installed correctly:
 	```bash
 	bundle exec jekyll --version
 	```
+
 8. Run your Jekyll site locally with:
 	```bash
 	bundle exec jekyll serve
