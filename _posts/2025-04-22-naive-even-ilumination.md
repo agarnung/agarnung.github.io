@@ -6,8 +6,6 @@ color: success
 description: A simple and efficient method to correct uneven ilumination in images
 ---
 
-TAGS: image processing
-
 # Introduction
 
 A way to improve uneven illumination in images → just as we can fit a line to a 1D signal, we can fit a plane to an image, as if it were a parallelepiped with a certain tilt. We convert this plane into a grayscale image, center it at 0±tol (with both negative and positive values), and add it to the grayscale channel of the unevenly illuminated image. This will make bright areas darker and dark areas brighter—or something like that. It’s like applying a proportional shadow correction to make the luminance channel more homogeneous.
@@ -18,7 +16,7 @@ When we observe an image with uneven illumination, we often sense that something
 
 # Theoretical Background
 
-Imagine a grayscale image as a 3D surface, where each pixel has coordinates \((x, y)\) and an intensity \(z\). If we fit a plane to this surface using linear regression (least squares), we obtain a representation of the general intensity trend across the image.
+Imagine a grayscale image as a 3D surface, where each pixel has coordinates $$(x, y)$$ and an intensity $$z$$. If we fit a plane to this surface using linear regression (least squares), we obtain a representation of the general intensity trend across the image.
 
 This plane can be interpreted as capturing the global illumination or tonal bias of the image. By centering this plane around zero and scaling it appropriately, we can add it to the original image to enhance intensity differences: bright areas become darker and dark areas become brighter, thus improving the homogeneity of illumination.
 
@@ -60,10 +58,10 @@ c
 = I,
 $$
 
-where $I$ is the vector of intensities and:
+where $$I$$ is the vector of intensities and:
 
 $$
-A = \begin{bmatrix} x_1 & y_1 & 1; \\ x_2 & y_2 & 1; \\ \cdots & \cdots & \cdots \end{bmatrix}
+A = \begin{bmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ \vdots & \vdots & \vdots \end{bmatrix}
 $$
 
 Solve using least squares:
@@ -97,29 +95,31 @@ Finally, clip values to valid range and convert back to `uint8`:
 I_out = np.clip(I_out, 0, 255).astype(np.uint8)
 ```
 
-# 3D Visualization
+# Experimentation
 
-This visualization helps to understand how the plane fits the image’s intensity surface and how its addition enhances illumination.
+The 3D visualization helps to understand how the plane fits the image’s intensity surface and how its addition enhances illumination.
 
 Testing with some synthetic images:
 
 | Uneven | Heightmap and plane | Corrected |
 |--------|----------------------|-----------|
-| ![](../assets/blog_images/2025-04-22-naive-even-ilumination/1.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_1.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_1.png) |
-| ![](../assets/blog_images/2025-04-22-naive-even-ilumination/2.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_2.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_2.png) |
-| ![](../assets/blog_images/2025-04-22-naive-even-ilumination/3.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_3.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_3.png) |
-| ![](../assets/blog_images/2025-04-22-naive-even-ilumination/4.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_4.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_4.png) |
+| <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/1.png" width="300" height="300" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_1.png" width="450" height="450" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_1.png" width="300" height="300" /> |
+| <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/2.png" width="300" height="300" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_2.png" width="450" height="450" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_2.png" width="300" height="300" /> |
+| <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/3.png" width="300" height="300" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_3.png" width="450" height="450" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_3.png" width="300" height="300" /> |
+| <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/4.png" width="300" height="300" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_4.png" width="450" height="450" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_4.png" width="300" height="300" /> |
 
 And with some real images:
 
 | Uneven | Heightmap and plane | Corrected |
 |--------|----------------------|-----------|
-| ![](../assets/blog_images/2025-04-22-naive-even-ilumination/5.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_5.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_5.png) |
-| ![](../assets/blog_images/2025-04-22-naive-even-ilumination/6.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_6.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_6.png) |
-| ![](../assets/blog_images/2025-04-22-naive-even-ilumination/7.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_7.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_7.png) |
-| ![](../assets/blog_images/2025-04-22-naive-even-ilumination/8.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_8.png) | ![](../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_8.png) |
+| <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/5.png" width="300" height="300" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_5.png" width="450" height="450" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_5.png" width="300" height="300" /> |
+| <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/6.png" width="300" height="300" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_6.png" width="450" height="450" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_6.png" width="300" height="300" /> |
+| <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/7.png" width="300" height="300" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_7.png" width="450" height="450" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_7.png" width="300" height="300" /> |
+| <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/8.png" width="300" height="300" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/3d_surface_8.png" width="450" height="450" /> | <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/perceptually_improved_8.png" width="300" height="300" /> |
 
 # Conclusion
 
 When vignetting is strong or the uneven distribution is very unimodal (e.g., in case 3), the method tends to perform worse than when the plane fit is clearly dominated by a directional tilt.
+
+Additionally, the idea behind the model is to counteract the nearly saturated regions in the opposite way, so it’s not a very intelligent algorithm and relies on a manual parameter. However, as seen in the paper's case, it is particularly useful for specific applications where an aesthetically pleasing perception of the image is desired in real time, Avoiding uneven lighting effects characteristic of a real outdoor scene.
 
