@@ -86,7 +86,7 @@ plane_centered /= max(np.std(plane_centered), tol)
 Counteract uneven illumination by subtracting the (scaled) plane from the original image:
 
 $$
-I_{\text{out}} = I + \alpha \cdot \text{Plano centrado} \cdot 127
+I_{\text{out}} = I + \alpha \cdot \text{Centered plane} \cdot 127
 $$
 
 Finally, clip values to valid range and convert back to `uint8`:
