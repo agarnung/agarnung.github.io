@@ -1,8 +1,8 @@
 ---
-title: ATMega328P with two LEDs
+title: ATMega328PU with two LEDs
 tags: [electronics, IoT]
-style: success
-color: none
+style: none
+color: success
 description: Developing a basic ATMega328P application
 ---
 
