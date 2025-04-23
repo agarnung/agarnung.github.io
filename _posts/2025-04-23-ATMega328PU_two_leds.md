@@ -6,7 +6,7 @@ color: success
 description: Developing a basic ATMega328P application
 ---
 
-<img src="../assets/blog_images/2025-04-23-ATMega328P_two_leds/leds.jpg" width="400" height="400" />
+<img src="../assets/blog_images/2025-04-23-ATMega328PU_two_leds/leds.jpg" width="400" height="400" />
 
 # Introduction
 
@@ -157,7 +157,7 @@ If all components are active continuously, the total current is 137 mA. This mea
 
 This low power total consumption < 10mA enables battery operation. But to power the system, we choose to use the very useful [Elegoo power supply module](https://flaviocopes.com/electronics-component-power-supply/), directly connected to the breadboard:
 
-![5V](../assets/blog_images/2025-04-23-ATMega328P_two_leds/5V.jpg)
+![5V](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/5V.jpg)
 
 # Bill of materiales (BOM)
 
@@ -185,9 +185,9 @@ We will, later, mount the prototype circuit in a very simple breadboard basis.
 
 The circuit was first simulated in Proteus ISIS using WinAVR compiler. This allowed verification of LED timing patterns before physical implementation.
 
-![code](../assets/blog_images/2025-04-23-ATMega328P_two_leds/code.png)
+![code](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/code.png)
 
-![schematic](../assets/blog_images/2025-04-23-ATMega328P_two_leds/schematic.png)
+![schematic](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/schematic.png)
 
 All the firmware code is written in C using the AVR libraries and is compiled in the following main.c:
 
@@ -254,23 +254,23 @@ int main(void) {
 }
 ```
 
-![simul](../assets/blog_images/2025-04-23-ATMega328P_two_leds/simul.gif)
+![simul](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/simul.gif)
 
 ## Firmware uploading
 
 1. Compiled in Atmel/Microchip Studio 7 to generate HEX file
 
-![studio](../assets/blog_images/2025-04-23-ATMega328P_two_leds/studio.png)
+![studio](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/studio.png)
 
 One should see the USBasp programmer under System Devices like this (some issues may arise with the required drivers, as noted below):
 
-![dispos](../assets/blog_images/2025-04-23-ATMega328P_two_leds/dispos.png)
+![dispos](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/dispos.png)
 
 2. Used AVRDUDE via AVRDUDESS GUI with USBasp programmer:
 
-![usbasp_programmer](../assets/blog_images/2025-04-23-ATMega328P_two_leds/usbasp_programmer.jpg)
+![usbasp_programmer](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/usbasp_programmer.jpg)
 
-![avrdudess](../assets/blog_images/2025-04-23-ATMega328P_two_leds/avrdudess.png)
+![avrdudess](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/avrdudess.png)
 
 This is the specific command that burns the firmware (one could just use avrdude in command-line interface mode):
 
@@ -280,29 +280,29 @@ avrdude.exe -c usbasp -p m328p -P usb -B 5.33 -U flash:w:"C:\Users\Alejandro\Doc
 
 The fuses (low, high, and extended fuses) of the microcontroller had to be configured according to the required clock, divider, etc., using the AVRDUDESS fuse calculator:
 
-![fuses](../assets/blog_images/2025-04-23-ATMega328P_two_leds/fuses.png)
+![fuses](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/fuses.png)
 
 Furthermore, the acquired programmer included a very useful accessory to avoid any confusion with the orientation of the SPI connector pins:
 
-![interfac_10_to_6_SPI](../assets/blog_images/2025-04-23-ATMega328P_two_leds/interfac_10_to_6_SPI.jpg)
+![interfac_10_to_6_SPI](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/interfac_10_to_6_SPI.jpg)
 
 3. Verified SCK signal during programming. Next, we checked that the programming circuit is working by selecting the "Detect" option in AVRDUDESS. We can see an active pulse in the SCK pin:
 
-![sck_detect](../assets/blog_images/2025-04-23-ATMega328P_two_leds/sck_detect.gif)
+![sck_detect](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/sck_detect.gif)
 
 # Testing
 
 The circuit we used to program the microcontroller would be the following:
 
-![programmer_circuit](../assets/blog_images/2025-04-23-ATMega328P_two_leds/programmer_circuit.jpg)
+![programmer_circuit](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/programmer_circuit.jpg)
 
 After flashing the firmware in the (non-volatile) uC flash memory, we transferred it to the prototype of the actual circuit:
 
-![breadboard_circuit](../assets/blog_images/2025-04-23-ATMega328P_two_leds/breadboard_circuit.png)
+![breadboard_circuit](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/breadboard_circuit.png)
 
 Final implementation showing alternating LED pattern:
 
-![real](../assets/blog_images/2025-04-23-ATMega328P_two_leds/real.gif)
+![real](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/real.gif)
 
 # Troubleshooting
 
@@ -317,7 +317,7 @@ Due to using a USBasp clone programmer, several issues were encountered during t
   - [Alternative fix method](https://www.youtube.com/watch?v=tzekKRCbITQ)
   - [Arduino Forum Thread](https://forum.arduino.cc/t/built-in-avrdude-refuses-to-work-with-usbasp-clone/995372/2)
 
-![zadig](../assets/blog_images/2025-04-23-ATMega328P_two_leds/zadig.png)
+![zadig](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/zadig.png)
 
 2 - ISP programmer appears as HID instead of USBasp
 - Requires the **Chinese PROGISPV172** tool:
@@ -326,7 +326,7 @@ Due to using a USBasp clone programmer, several issues were encountered during t
   - More info on [AVRfreaks](https://www.avrfreaks.net/s/topic/a5C3l000000UZPzEAO/t149941)
 - This often occurs with USBasp clones using outdated or modified firmware.
 
-![solution_is_reinstall_drivers](../assets/blog_images/2025-04-23-ATMega328P_two_leds/solution_is_reinstall_drivers.png)
+![solution_is_reinstall_drivers](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/solution_is_reinstall_drivers.png)
 
 3 - `avrdude: program enable: target doesn't answer (0x01)` Error
 - Common error during flashing.
