@@ -6,6 +6,8 @@ color: success
 description: A simple and efficient method to correct uneven ilumination in images
 ---
 
+<img src="../assets/blog_images/2025-04-22-naive-even-ilumination/naive.jpg" width="400" height="400" />
+
 # Introduction
 
 A way to improve uneven illumination in images → just as we can fit a line to a 1D signal, we can fit a plane to an image, as if it were a parallelepiped with a certain tilt. We convert this plane into a grayscale image, center it at 0±tol (with both negative and positive values), and add it to the grayscale channel of the unevenly illuminated image. This will make bright areas darker and dark areas brighter—or something like that. It’s like applying a proportional shadow correction to make the luminance channel more homogeneous.
