@@ -260,7 +260,7 @@ int main(void) {
 
 ## Firmware uploading
 
-1. Compiled in Atmel/Microchip Studio 7 to generate HEX file
+1 - Compiled in Atmel/Microchip Studio 7 to generate HEX file
 
 ![studio](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/studio.png)
 
@@ -268,7 +268,7 @@ One should see the USBasp programmer under System Devices like this (some issues
 
 ![dispos](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/dispos.png)
 
-2. Used AVRDUDE via AVRDUDESS GUI with USBasp programmer:
+2 - Used AVRDUDE via AVRDUDESS GUI with USBasp programmer:
 
 ![usbasp_programmer](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/usbasp_programmer.jpg)
 
@@ -288,7 +288,7 @@ Furthermore, the acquired programmer included a very useful accessory to avoid a
 
 ![interfac_10_to_6_SPI](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/interfac_10_to_6_SPI.jpg)
 
-3. Verified SCK signal during programming. Next, we checked that the programming circuit is working by selecting the "Detect" option in AVRDUDESS. We can see an active pulse in the SCK pin:
+3 - Verified SCK signal during programming. Next, we checked that the programming circuit is working by selecting the "Detect" option in AVRDUDESS. We can see an active pulse in the SCK pin:
 
 ![sck_detect](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/sck_detect.gif)
 
