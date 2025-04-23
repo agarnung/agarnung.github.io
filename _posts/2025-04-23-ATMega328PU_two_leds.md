@@ -155,9 +155,9 @@ We assumed 20 mA for the initial LED resistor design, but the commercial resisto
 | 2N3904 (base)    | Per transistor             | (5V - 0.9V) / 2.2kΩ = 1.86mA x2                                    | 3.7          |
 | **Total Consumption** |                        |                                                                     | **75.4 mA**   |
 
-If all components are active continuously, the total current is 137 mA. This means that, every second, your circuit uses 75.4 milliamps of current. So, how much power does it consume in one hour? The hourly consumption is 75.4 mAh (milliampere-hours). Let’s assume we use a 1000 mAh battery (like many 5V Li-Ion batteries). If the system consumes 75.4 mA constantly, we can calculate how long it will last: 1000 / 75.4 mA ≈ 13.26 hours. Depending on our requirements, we can calculate the needed capacity based on the desired operation time. But there are also other power systems...
+If all components are active continuously, the total current is 75.4 mA. This means that, every second, the circuit uses 75.4 milliamps of current. So, how much power does it consume in one hour? The hourly consumption is 75.4 mAh (milliampere-hours). Let’s assume we use a 1000 mAh battery (like many 5V Li-Ion batteries). If the system consumes 75.4 mA constantly, we can calculate how long it will last: 1000 / 75.4 mA ≈ 13.26 hours. Depending on our requirements, we can calculate the needed capacity based on the desired operation time. But there are also other power systems...
 
-This low power total consumption < 10mA enables battery operation. But to power the system, we choose to use the very useful [Elegoo power supply module](https://flaviocopes.com/electronics-component-power-supply/), directly connected to the breadboard:
+This low power total consumption (< 10mA) enables battery operation. But to power the system, we choose to use the very useful [Elegoo power supply module](https://flaviocopes.com/electronics-component-power-supply/), directly connected to the breadboard, in this particular fashion:
 
 ![5V](../assets/blog_images/2025-04-23-ATMega328PU_two_leds/5V.jpg)
 
