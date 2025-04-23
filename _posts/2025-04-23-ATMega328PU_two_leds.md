@@ -145,7 +145,7 @@ Assuming an ATmega328P running at 16 MHz all the time:
 
 (Capacitors and Crystal Net consumption: 0 mA (passive components))
 
-We assumed 20 mA for the initial LED resistor design, but the commercial resistors give a slightly different real consumption. The LEDs are connected with resistors to limit the current, so we will estimate their current using Ohm's law: Red (with 47 Ω) Current = (5V - 2V) / 47Ω ≈ 64 mA, Green (with 82 Ω) Current = (5V - 2.2V) / 82Ω ≈ 34 mA. Total LEDs: ~98 mA when both are on.
+We assumed 20 mA for the initial LED resistor design, but the commercial resistors give a slightly different real consumption. The LEDs are connected with resistors to limit the current, so we will estimate their current using Ohm's law, assuming both can be on, to slightly oversize the required capacity of a posible battery.
 
 | Component         | Condition                  | Calculation                                                         | Current (mA) |
 |-------------------|----------------------------|---------------------------------------------------------------------|--------------|
