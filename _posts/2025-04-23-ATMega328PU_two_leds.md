@@ -40,7 +40,8 @@ Other low-cost alternatives:
 
 Naturally, we’ll use pull-up or pull-down resistors to ensure that the inputs connected to buttons have a defined state when the buttons are not pressed. The ATMega328 already includes internal pull-up or pull-down resistors, so we might omit them from the PCB design.
 
-> [!NOTE]  
+> NOTE 
+>
 > **When should you use or avoid the microcontroller’s internal pull-up or pull-down resistors?**  
 >  
 > ✅ **Recommended usage** for simple applications, especially when:  
@@ -69,6 +70,7 @@ Some advantages of using transistors:
 So, despite 20mA capability, transistors protect GPIO pins. Thus, we use the classic NPN BJT 2N3904 as the LED driver (a PNP or MOSFET could also be used depending on specific needs, but for this small project, this is sufficient). We won’t use PWM; the LED will always be on in a high state because we are not concerned with dimming.
 
 > INFO 
+>
 > Watch [this video](https://www.youtube.com/watch?v=wKIHAbnBCJM) and [this schematic](https://www.circuitlab.com/circuit/gmmqaq/2n2222-led/).
 
 #### LED Resistor Calculation
