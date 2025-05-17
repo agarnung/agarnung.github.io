@@ -255,3 +255,10 @@ This formulation allows the curve to evolve flexibly, splitting or merging witho
 [7] Carlos Brito Loeza et al., Introducción a los Métodos Variacionales en Procesamiento de Imágenes: Filtros de Ruido, 2014.
 
 [8] Le Guyader, C., & Vese, L. A. (2019). Variational Methods in Image Processing. T&F India.
+
+[9] Courant, R., & John, F. (1989). Introduction to Calculus and Analysis: Vol. 2 (1st ed.). Springer-Verlag.
+
+# TODO
+
+More relevant info. about level sets:
+- [9, págs 14-15, 206-207, 233-234]
