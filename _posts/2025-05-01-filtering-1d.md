@@ -163,7 +163,7 @@ $$
 
 ## Hampel Variant Filter
 
-Optimized Hampel version approximating MAD using secondary median filter.
+Optimized Hampel version approximating MAD using secondary median filter. See [the official paper](https://www.mdpi.com/1424-8220/25/11/3319) for this filter.
 
 **Decision Equation**:
 $$
@@ -297,7 +297,7 @@ Audio Samples:
 | L0               | 18.6888   | 0.013525    |
 | Exponential      | 23.2828   | 0.004696    |
 
-Surprisingly for the author, the best method (under these highly controlled conditions) is Moving Average .
+Not so surprisingly, the best method (under these highly controlled conditions) is the Moving Average. This is due, besides the synthetic and ideal nature of the noise added to the synthetic signal, to the inherently "smooth" nature of the sum of sines. It is well known that the mean norm promotes smooth solutions and "eliminates" any sharp features in the signal, similar to L2 norm-based regularizers. However, this is usually not desirable in real-world applications. Filters such as the Hampel variant manage to be robust against outliers and achieve a good reconstruction result compared to other filters.
 
 ### Laser Profile
 
@@ -314,7 +314,8 @@ Parameter tuning is critical for optimal performance. Methods with fewer paramet
 # References
 
 - L0 Smoothing: http://www.cse.cuhk.edu.hk/leojia/projects/L0smoothing/index.html
-
+- [A Novel Approach to Speed Up Hampel Filter for Outlier Detection ](https://www.mdpi.com/1424-8220/25/11/3319)
+   
 # TODO 
 
 - Savitzky-Golay Filter.
