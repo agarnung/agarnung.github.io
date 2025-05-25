@@ -322,4 +322,3 @@ Parameter tuning is critical for optimal performance. Methods with fewer paramet
 - L1-Trend Filtering (solve with CVXPY): https://www.cvxpy.org/examples/applications/l1_trend_filter.html.  
 - TV-1D Filter Theory: https://github.com/benchopt/benchmark_tv_1d  .
 - Evaluate profile filtering.
-- Cite Hampel Variant Article when published
