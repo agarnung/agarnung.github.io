@@ -10,7 +10,7 @@ description: Filtering a chord and a profile
 
 1D filtering is used in a wide variety of use cases: time series, forecasting, ECC signals, or, as focused here, filtering profiles like those scanned with laser profilometers, where causality (dependency on distant past values) is less critical than spatial contiguity/coherence in neighborhood points, robustness against data loss, extreme outliers, and preservation of central trends.
 
-In this post, we will explore various 1D filtering techniques and apply them (implemented in C++) to two different 1D signals: a C Major chord signal and a real laser-scanned profile.
+In this post, we will explore various 1D filtering techniques and apply them (implemented in C++) to two different 1D signals: a C Major chord signal and a real laser-scanned profile. See [here](https://github.com/agarnung/computerVisionMiscellaneous/tree/main/2025-05-01-1d-filtering) the implemented code!
 
 # Algorithms
 
