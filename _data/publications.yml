@@ -2,7 +2,7 @@
   date: 23 may 2025
   url: https://www.mdpi.com/1424-8220/25/11/3319
   publisher: Sensors (MDPI)
-  image: '/assets/publications_images/preprints/hfv.png'
+  image: '/assets/publications_images/hfv.png'
   description: |
     Outlier detection is a critical task in time series analysis, essential to maintaining data quality and allowing for accurate subsequent analysis. The Hampel filter, a decision filter that replaces outliers in a data window with the median, is widely used for outlier detection in time series due to its simplicity and effectiveness. While effective, its computational complexity, primarily due to the calculation of the Median Absolute Deviation (MAD), poses limitations for large-scale and real-time applications. This paper proposes a novel Hampel filter variant that replaces the MAD with an original estimator (mMAD) that retains statistical robustness but is computationally more efficient. This reduces the filter’s computational complexity from 𝑂(𝑁·𝑤log𝑤) to 𝑂(𝑁·𝑤), where N is the data length and w the window size. The proposed variant significantly lowers processing time and resource consumption, making it especially suitable for large-scale and real-time data processing while preserving robust outlier detection performance.
     
