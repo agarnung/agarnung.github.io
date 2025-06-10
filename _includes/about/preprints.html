@@ -1,15 +1,15 @@
 <div class="col mt-4">
   <div class="timeline-body bg-themed">
-    {% for item in site.data.papers %}
+    {% for item in site.data.preprints %}
       <div class="timeline-item">
         <div class="content">
           <h2>{{ item.title }}</h2>
           <h6 class="date">{{ item.date }}</h6>
           <div style="display: flex; align-items: center; gap: 10px;">
-          	<h6 class="url"><a target="_blank" href="{{ item.url }}">Link to paper</a></h6>
-          	<h6 class="publisher">- {{ item.publisher }}</h6>
+          	<h6 class="url"><a target="_blank" href="{{ item.url }}">Link to preprint</a></h6>
+          	<h6 class="language">- {{ item.language }}</h6>
           </div>
-          <strong>Abstract:</strong>
+          <strong>Description:</strong>
           <p style="text-align:justify; font-size:13px"><i>{{ item.description }}</i></p>
           <img src="{{ item.image }}" alt="" class="center">
         </div>

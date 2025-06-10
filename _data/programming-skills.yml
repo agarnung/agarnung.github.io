@@ -1,4 +1,4 @@
-- name: C/C++
+- name: C/C++/C#
   percentage: 70
   color: danger
   subtitle: 
@@ -8,15 +8,15 @@
   color: info
   subtitle: 
 
+- name: Web development
+  percentage: 20
+  color: primary
+  subtitle: HTML, (S)CSS, JavaScript, Jekyll, Flask, FastAPI, Vercel, Jekyll, Svelte, Astro
+  
 - name: Assembly (x86/64)
   percentage: 20
   color: secondary
   subtitle: 
-
-- name: Web development
-  percentage: 20
-  color: primary
-  subtitle: HTML, (S)CSS, JavaScript, Jekyll, Flask, Svelte, Astro
 
 - name: Databases
   percentage: 20

@@ -11,7 +11,7 @@
 - name: Dev Tools 
   percentage: 60
   color: success
-  subtitle: Linux, Bash, Qt, OpenGL, GLSL, CUDA
+  subtitle: Linux, Bash, Qt, GLSL, CUDA, OpenGL
 
 - name: DevOps & Automation
   percentage: 30
