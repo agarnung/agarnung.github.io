@@ -45,6 +45,7 @@ El restaurante dispone, por día, de:
 - 10 horas de cocina
 
 El uso de recursos por plato es algo así:
+
 | Plato | Ingredientes (kg) | Tiempo cocina (h) | Salsa especial (unid.) |
 |-------|--------------------|--------------------|----------------------|
 | P1    | 0.3                  | 0.75                  | 0                    |
