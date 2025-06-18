@@ -8,7 +8,7 @@ description: Solving a real LP basic problem
 
 # Introducción
 
-A veces los problemas que de ejemplo en optimización convexa ya parten de una formulación matemática y luego esta se fuerza a encajar en una aplicación. Pero esa forma solo la reconoce alguien que ya ha pasado por el entrenamiento de saber cómo funciona la optimización convexa.
+A veces los problemas ejemplares en optimización convexa ya parten de una formulación matemática, la cual luego se fuerza a encajar en una aplicación específica. Pero este enfoque solo lo "sigue" bien alguien que ya ha pasado por el entrenamiento de saber precisamente cómo funciona la optimización convexa.
 
 Aquí vamos a tratar de hacerlo al revés, como es debido, formulando un caso de uso del día a día y luego entendiendo cómo podemos "castearlo" como un problema de optimización convexa.
 
@@ -53,7 +53,7 @@ El uso de recursos por plato es algo así:
 | P3    | 0.75                  | 0.25                  | 1                    |
 | P4    | 0.5                  | 1                  | 1                    |
 
-¿Cuál es el problema? El dueño del restaurante no puede cocinar platos ilimitados, porque se queda sin tiempo, sin salsa o sin ingredientes (recursos). Entonces se pregunta: “¿Cuál es la combinación óptima de platos que debo preparar al día para ganar lo máximo posible, sin pasarme de los ingredientes ni del tiempo de cocina?” (obviamente, independiente de lo que quiera la genta [aquí se ofrece lo que está preparado...]).
+¿Cuál es el problema? El dueño del restaurante no puede cocinar platos ilimitados, porque se queda sin tiempo, sin salsa o sin ingredientes (recursos). Entonces se pregunta: “¿Cuál es la combinación óptima de platos que debo preparar al día para ganar lo máximo posible, sin pasarme de los ingredientes ni del tiempo de cocina?” (obviamente, independiente de lo que quiera la gente [aquí se ofrece lo que está preparado...]).
 
 Esta es la intuición del problema. No hay ecuaciones todavía, pero ya se empieza a ver la naturaleza del dilema: asignar recursos limitados para maximizar una ganancia.
 
@@ -66,7 +66,7 @@ Nuestras variables (de decisión) son:
 - x1: número de platos P1 (pasta)
 - x2: número de platos P2 (pollo)
 - x3: número de platos P3 (hamburguesa)
-- x4: número de platos P4 (tacos)
+- x4: número de platos P4 (pescado)
 
 Función objetivo (ganancia total a maximizar, considerando ganancias unitarias por producto):
 
