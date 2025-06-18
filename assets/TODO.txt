@@ -3,12 +3,10 @@
 	2. en _cofig.yml poner:   url               : https://agarnung.com
 	3. ya estaría.
 - Ver si se puede permitir "posts a futuro" (y documentar las reglas de nombrar posts, con fecha primero y formato...)
-- Un contador de lecturas de cada post/projecto/artículo,
 - Algo relacionado con los segundos que quedan de año, con la hora actual de cada region, visitas totales, etc. En la página principal.
-- Zoom aislado en el visor de PDF
 - Refractorizar para no meter en el markdown tanto javascript/html.
 - Habilitar mediante tag en el .md la posibilidad de añadir una foto miniatura en la previsualización del post del blog
 - Dynamically calculate the year of the copyright
 - Añadir más colores a la paleta, personalizados, en /_sass/_variables.scss. Ver cómo se hace en bootstrap.
 - Añadir opción de varios idiomas.
-- Añadir barra de navegación de markdown/HTML para los blogs
+- Nuevos formatos de presentación de las tarjetas del blog, e.g. movimiento horizontal en vez de vertical
