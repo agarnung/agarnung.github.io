@@ -9,4 +9,5 @@
 - Dynamically calculate the year of the copyright
 - Añadir más colores a la paleta, personalizados, en /_sass/_variables.scss. Ver cómo se hace en bootstrap.
 - Añadir opción de varios idiomas.
-- Nuevos formatos de presentación de las tarjetas del blog, e.g. movimiento horizontal en vez de vertical
+- Nuevos formatos de presentación de las tarjetas del blog, e.g. movimiento horizontal en vez de vertical.
+- Meter imágenes dentro a la derecha de cada tarjeta de posts.
