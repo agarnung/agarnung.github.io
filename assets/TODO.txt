@@ -11,3 +11,4 @@
 - Añadir opción de varios idiomas.
 - Nuevos formatos de presentación de las tarjetas del blog, e.g. movimiento horizontal en vez de vertical.
 - Meter imágenes dentro a la derecha de cada tarjeta de posts.
+- meter la documentació doxygen TFM enlazada dentro de los assets de im web!! que al final solo es un HTML. Y enlazar en Publications, en mi TFM
