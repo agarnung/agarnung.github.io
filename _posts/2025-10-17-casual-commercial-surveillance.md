@@ -1,5 +1,6 @@
 ---
 title: Casual commercial surveillance
+tags: [IoT]
 style: fill
 color: info
 description: Installing and configuring a simple home surveillance camera
