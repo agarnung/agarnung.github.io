@@ -216,6 +216,8 @@ Finally, Ojoloco looks like this:
 
 ![app](../assets/blog_images/2025-10-17-casual-commercial-surveillance/app.jpg)
 
+As a curiosity, it would be possible and even advisable to add additional infrared LEDs to greatly improve night vision, making them turn on by connecting (“splicing”) them to an additional power source and a switch, or something similar, at the input of the existing ones. As shown in [this video](https://www.youtube.com/watch?v=L9mwGeDAxhk&list=FLY-ZiZ-ClyNsc4osNBfF2lA&index=30).
+
 ---
 
 # References
