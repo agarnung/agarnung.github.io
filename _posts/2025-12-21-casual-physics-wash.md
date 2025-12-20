@@ -148,7 +148,7 @@ Aunque hayamos escogido este compuesto para analizar el caso de uso, los éstere
 
 #### Medidas adicionales
 
-###### Usar agua caliente
+##### **Usar agua caliente**
    
 El agua caliente ayuda a volatilizar los compuestos aromáticos. Muchos ésteres tienen [puntos de ebullición bajos](https://espanol.libretexts.org/Quimica/Qu%C3%ADmica_General/Libro%3A_ChemPrime_(Moore_et_al.)/08%3A_Propiedades_de_los_Compuestos_Org%C3%A1nicos/8.18%3A_%C3%89steres) debido a su estructura molecular, por lo que se evaporan fácilmente con el calor. Esto implica que el agua caliente aumenta la volatilización de estos compuestos, reduciendo su concentración en la superficie y, por tanto, el olor. El acetato de etilo, por ejemplo, hierve a 77.1°C, menor que el etanol (78.5°C).
 
@@ -167,7 +167,7 @@ El agua caliente ayuda a volatilizar los compuestos aromáticos. Muchos ésteres
 
 Visto de otra forma, podemos fijarnos en la energía térmica necesaria para [romper enlaces covalentes simples](https://quimicax2011.blogspot.com/2011/07/energetica-de-enlaces-covalentes.html) (simples, como los C–H o C–C), que es $$E_a \approx 200\text{--}400 \, \text{kJ/mol}$$.
 
-A 100 °C (373 K), la [energía térmica promedio](http://hyperphysics.phy-astr.gsu.edu/hbasees/Kinetic/eqpar.html#c2) por mol de moléculas se puede estimar utilizando la constante de los gases ideales $ R $ (8.314 J/mol·K):
+A 100 °C (373 K), la [energía térmica promedio](http://hyperphysics.phy-astr.gsu.edu/hbasees/Kinetic/eqpar.html#c2) por mol de moléculas se puede estimar utilizando la constante de los gases ideales $$ R $$ (8.314 J/mol·K):
 
 $$
 E = R \cdot T = 8.314\,\text{J/mol·K} \times 373\,\text{K} \approx 3.1\,\text{kJ/mol}
@@ -178,7 +178,7 @@ $$
 
 Así, la energía necesaria para romper enlaces covalentes fuertes es significativamente mayor que la proporcionada por agua en ebullición. Por ello, se requiere acción mecánica o química adicional para potenciar la rotura de los enlaces más fuertes frecuentemente presentes en los restos de comida.
 
-###### Jabón o detergente
+##### **Jabón o detergente**
    
 Aplicar jabón o detergente con carácter básico ([pH básico](https://torkalpormayor.cl/blogs/tork-ph-blog/ph-del-jabon) entre 9 y 11) puede favorecer la hidrólisis básica o, al menos, la disolución y arrastre de los ésteres. Y aunque no se complete la hidrólisis, el jabón rompe la película superficial de grasa o residuos y permite que el agua los arrastre.
 
@@ -194,24 +194,24 @@ Más precisamente, como se ha [comprobado](https://onlinelibrary-wiley-com.trans
 
 A [temperaturas bajas](https://nailib.com/ia-sample/ib-chemistry-hl/667f8b6735560f690d3e1a62#conclusion), la [CMC](https://riull.ull.es/xmlui/bitstream/handle/915/19980/Tensioactivos.%20CMC%20a%20temperaturas%20bajas%20o%20moderadas.%20Influencia%20sobre%20la%20CMC%20de%20la%20presencia%20de%20compuestos%20neutros%20o%20polares.%20L-valina%20.pdf?sequence=1&isAllowed=y) disminuye conforme la temperatura sube, favoreciendo la formación de micelas. Sin embargo, al superar [cierto umbral](https://nailib.com/ia-sample/ib-chemistry-hl/667f8b6735560f690d3e1a62#conclusion), la CMC comienza a aumentar de forma casi lineal. Esto tiene implicaciones prácticas: usar agua caliente puede facilitar la limpieza porque, en un rango óptimo de temperatura, la CMC disminuye, lo que permite que las micelas (las estructuras responsables de encapsular y arrastrar la grasa) se formen con menos cantidad de detergente. Esto significa que más moléculas están disponibles para interactuar con la suciedad antes de saturarse en forma de micelas. Sin embargo, a temperaturas excesivamente altas, la CMC vuelve a aumentar, por lo que se necesita más concentración de detergente para formar micelas eficaces, reduciendo la eficiencia del proceso si no se ajusta la cantidad de detergente. Por tanto, hay un rango de temperatura ideal (alrededor de 30–40 °C) donde el agua caliente ayuda a lavar mejor (con menos producto), no solo por su efecto físico (disolver grasas más fácilmente), sino también por su impacto químico en la eficiencia del detergente.
 
-###### Frotar con estropajo
+##### **Frotar con estropajo**
 
-Como es lógico, la acción mecánica facilita la eliminación de residuos adheridos a la superficie. Así, aunque no se rompan todos los ésteres por completo, se logra reducir significativamente su presencia y, con ello, el olor asociado.
-
-Como conclusión, relacionándolo con lo anterior, solo el agua, especialmente si está caliente, puede ser casi suficiente para limpiar algunos platos poco sucios, ya que ayuda a desprender grasas y aceites. Sin embargo, para que esto sea realmente eficaz, es esencial que la superficie sea casi nada porosa y que los utensilios queden completamente secos, ya que la humedad residual en combinación con restos mínimos puede favorecer la proliferación de bacterias a futuro.
+Como es lógico, la acción mecánica facilita la eliminación de residuos adheridos a la superficie, máxime en materiales porosos o de mayor rugosidad, como se comentó al principio. Así, aunque no se rompan todos los ésteres por completo, se logra reducir significativamente su presencia y, con ello, el olor asociado.
 
 ---
 
 ## Conclusión
 
 El agua caliente optimiza la limpieza mediante:
-1. Reducción de $$\gamma$$ y $$\eta$$.
+1. Reducción de $$\gamma$$ (tensión superficial) y $$\eta$$ (viscosidad).
 2. Aceleración de reacciones de hidrólisis.
 3. Debilitamiento de fuerzas de Van der Waals.
 
 Sin embargo, su eficacia es insuficiente ante residuos complejos (ej. biopelículas, polímeros), requiriendo tensioactivos para romper enlaces covalentes y estabilizar emulsiones. La sinergia entre temperatura y química de detergentes maximiza la termodinámica de la limpieza y se evidencia en la optimización del proceso de lavado, ya que el aumento de la temperatura reduce la viscosidad y el punto de fusión de las grasas, facilitando su emulsificación y desplazamiento, lo que permite obtener altos niveles de detergencia incluso con concentraciones de tensioactivos moderadas. 
 
 La acción del [detergente](https://digibug.ugr.es/bitstream/handle/10481/856/15847093.pdf;jsessionid=41DA81AA585B71EEF0F8B2DF4BA1AFBB?sequence=1) se potencia aún más cuando se controlan otros parámetros críticos, como el caudal de recirculación y la composición óptima de agentes secuestrantes, lo que se traduce en un proceso de limpieza más eficiente y en tiempos reducidos. Además, la incorporación de modelos cinéticos y experimentos estadísticos ha permitido comprender que, a temperaturas cercanas a 40ºC, el efecto del arrastre de suciedad predomina sobre otros factores, concluyendo que la combinación ajustada de agua caliente y formulaciones detergentes adecuadas resulta esencial para maximizar la eficacia del lavado sobre superficies duras.
+
+Como conclusión, relacionándolo con lo anterior, solo el agua, especialmente si está caliente, puede ser casi suficiente para limpiar algunos platos poco sucios, ya que ayuda a desprender grasas y aceites. Sin embargo, para que esto sea realmente eficaz, es esencial que la superficie sea casi nada porosa y que los utensilios queden completamente secos, ya que la humedad residual en combinación con restos mínimos puede favorecer la proliferación de bacterias a futuro.
 
 ---
 
