@@ -129,6 +129,7 @@ Changes made to fulfil my needs:
 * Added date dropdown page to list posts in blog
 * Added subtitle to skills bars
 * Added a Table of Contents for the HTML in the blog posts (.html and .scss)
+* Added Mermaid support for Markdown posts
 
 <div align="center">
 <sub><sup>© 2025 Alejandro Garnung Menéndez, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>
