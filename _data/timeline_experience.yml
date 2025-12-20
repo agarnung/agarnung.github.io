@@ -1,9 +1,15 @@
-- title: "Computer Vision Engineer, CIN Advanced Systems Group"
-  from: 14/11/2024
+
+- title: "Research & Development Engineer and Computer Sciencist, CTIC Centro Tecnológico"
+  from: 01/06/2025
   to: present
   description: |
-    Implementation of real-time metrology systems – high-precision inspection and measurement algorithms with 3D laser technology – point cloud reconstruction and filtering – deployment of computer vision solutions.
+    Artificial Intelligence – Computer Science – Data Analysis – 3D Industrial Simulators – Predictive Models – Time Series – Generative and Diffusion Models – Information and Communication Technologies.
 
+- title: "Computer Vision Engineer, CIN Advanced Systems Group"
+  from: 14/11/2024
+  to: 31/05/2025
+  description: |
+    Implementation of real-time metrology systems – high-precision inspection and measurement algorithms with 3D laser technology – point cloud reconstruction and filtering – deployment of computer vision solutions.
 
 - title: "Computer Vision Engineering Intern, CIN Advanced Systems Group"
   from: 14/11/2023
@@ -11,8 +17,9 @@
   description: |
     Surface defect detection – study of industrial solutions – software for continuous monitoring and real-time analysis with 2D cameras – image processing using analytical techniques and artificial intelligence.
     
-- title: "Research Development Engineering Intern, CIN Advanced Systems Group"
+- title: "Research & Development Engineering Intern, CIN Advanced Systems Group"
   from: 04/09/2023
   to: 13/11/2023
   description: |
     Advanced simulation – detection and classification algorithms – industrial software deployment – sensor integration.
+
