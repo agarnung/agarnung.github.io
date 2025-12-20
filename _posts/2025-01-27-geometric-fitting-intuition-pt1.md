@@ -69,5 +69,5 @@ To the benefict of better visualization, you can access the post main content in
 
 ## References
 
-[1] https://understandinglinearalgebra.org/sec-least-squares.html
+[1] [https://understandinglinearalgebra.org/sec-least-squares.html](https://understandinglinearalgebra.org/sec-least-squares.html)
 

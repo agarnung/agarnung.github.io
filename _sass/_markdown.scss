@@ -78,6 +78,83 @@
     border-left: 0.25em solid $primary;
     color: $secondary;
     padding: 0 1em;
+    
+    // GitHub-style alert blocks (processed by JavaScript)
+    &.markdown-alert-note {
+      border-left-color: #0969da;
+      background-color: #ddf4ff;
+      color: #0550ae;
+      padding: 1em;
+      margin: 1em 0;
+      border-radius: 6px;
+      
+      p:first-child {
+        font-weight: 500;
+        margin-top: 0;
+        
+        &::before {
+          content: "ℹ️ ";
+          margin-right: 0.5em;
+        }
+      }
+    }
+    
+    &.markdown-alert-warning {
+      border-left-color: #9a6700;
+      background-color: #fff8c5;
+      color: #7d4e00;
+      padding: 1em;
+      margin: 1em 0;
+      border-radius: 6px;
+      
+      p:first-child {
+        font-weight: 500;
+        margin-top: 0;
+        
+        &::before {
+          content: "⚠️ ";
+          margin-right: 0.5em;
+        }
+      }
+    }
+    
+    &.markdown-alert-tip {
+      border-left-color: #1a7f37;
+      background-color: #dafbe1;
+      color: #116329;
+      padding: 1em;
+      margin: 1em 0;
+      border-radius: 6px;
+      
+      p:first-child {
+        font-weight: 500;
+        margin-top: 0;
+        
+        &::before {
+          content: "💡 ";
+          margin-right: 0.5em;
+        }
+      }
+    }
+    
+    &.markdown-alert-important {
+      border-left-color: #8250df;
+      background-color: #fbefff;
+      color: #6e40c9;
+      padding: 1em;
+      margin: 1em 0;
+      border-radius: 6px;
+      
+      p:first-child {
+        font-weight: 500;
+        margin-top: 0;
+        
+        &::before {
+          content: "⭐ ";
+          margin-right: 0.5em;
+        }
+      }
+    }
   }
 
   ul.task-list {
