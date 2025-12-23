@@ -766,7 +766,7 @@ function updateProcessing() {
 
 1. **Tamaño del archivo**: `opencv.js` tiene ~8 MB, la primera carga puede ser lenta.
 2. **Memoria limitada**: WebAssembly tiene restricciones; imágenes grandes pueden consumir muchos recursos.
-3. **Operaciones avanzadas no disponibles**: Machine learning, stitching, calibración, y módulos contrib/third-party.
+3. **Operaciones avanzadas no disponibles**: Machine learning, stitching, calibración, módulos contrib/third-party...
 4. **Compatibilidad de navegador**: Solo funciona en navegadores modernos con soporte WebAssembly.
 
 ---
