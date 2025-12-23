@@ -749,36 +749,11 @@ function updateProcessing() {
 }
 ```
 
-### Solución de Problemas Comunes
-
-```javascript
-// Verificar si OpenCV está cargado
-if (typeof cv === 'undefined') {
-  console.error('OpenCV.js no está cargado');
-  return;
-}
-
-// Verificar si la imagen se cargó correctamente
-if (!srcMat || srcMat.empty()) {
-  console.error('No hay imagen para procesar');
-  return;
-}
-
-// Manejar errores de WebAssembly
-try {
-  cv.imshow(outputCanvas, dst);
-} catch (e) {
-  if (e.message.includes('out of memory')) {
-    console.error('Memoria insuficiente. Intenta con una imagen más pequeña.');
-  }
-}
-```
-
 ---
 
-### Ventajas y limitaciones
+## Ventajas y limitaciones
 
-#### Ventajas
+### Ventajas
 
 1. **Privacidad total**: Las imágenes nunca salen del dispositivo del usuario.
 2. **Baja latencia y velocidad**: Todo se procesa localmente con WebAssembly, casi tan rápido como código nativo.
@@ -787,7 +762,7 @@ try {
 5. **API similar a Python**: Facilita la migración de proyectos existentes.
 6. **Interactividad en tiempo real**: Controles como sliders actualizan los resultados inmediatamente.
 
-#### Limitaciones
+### Limitaciones
 
 1. **Tamaño del archivo**: `opencv.js` tiene ~8 MB, la primera carga puede ser lenta.
 2. **Memoria limitada**: WebAssembly tiene restricciones; imágenes grandes pueden consumir muchos recursos.
