@@ -489,7 +489,8 @@ function initializeOpenCV() {
 }
 ```
 
-**Verificaciones críticas antes de usar OpenCV:**
+Verificaciones críticas antes de usar OpenCV:
+
 - `typeof cv !== 'undefined'`: Verifica que el objeto `cv` exista
 - `cvReady`: Bandera que confirma que OpenCV está completamente inicializado
 - `srcMat && !srcMat.empty()`: Verifica que haya una imagen válida cargada
@@ -801,6 +802,7 @@ try {
 - [WebAssembly Documentation](https://webassembly.org/)
 - [Ejemplos de visualizaciones interactivas en Jekyll](https://www.zachburchill.ml/plotly_with_jekyll/)
 - [Trucos con Knitr y Plotly](https://www.zachburchill.ml/knitr_tricks/#rightplotly)
+- [cv.Mat is not a constructor opencv](https://stackoverflow.com/questions/56671436/cv-mat-is-not-a-constructor-opencv)
 
 ---
 
