@@ -61,6 +61,11 @@ spotify:
   icon  : fab fa-spotify
   color : 1db954
 
+buymeacoffee:
+  url   : https://buymeacoffee.com/agarnung
+  icon  : fas fa-mug-hot
+  color : 6f4e37
+
 stackoverflow:
   url   : https://stackoverflow.com/u/
   icon  : fab fa-stack-overflow
