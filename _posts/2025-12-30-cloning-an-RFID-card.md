@@ -77,51 +77,11 @@ RFID funciona usando **ondas de radio**, un tipo de radiación electromagnética
 
 ### Usando Arduino
 
-#### ¿Qué se necesita para clonar?
+En [este post](https://naylampmechatronics.com/blog/22_tutorial-modulo-lector-rfid-rc522.html) se explica cómo **clonar tags RFID utilizando Arduino y el módulo lector RC522**, describiendo tanto el hardware como el software necesarios. Se parte de una configuración bastante accesible: una placa Arduino (Uno, Nano o Mega), el lector RC522, tags RFID originales y en blanco, además del cableado correspondiente. La interfaz de comunicación involucrada es SPI, entre el RC522 y Arduino. Se se usa la librería [**MFRC522**](https://github.com/miguelbalboa/rfid), que simplifica la lectura y escritura de datos en los tags compatibles.
 
-Ver https://naylampmechatronics.com/blog/22_tutorial-modulo-lector-rfid-rc522.html
+Pero, a nivel de funcionamiento, este setup típico permite llevar a cabo un  **proceso básico de clonación**, que consiste en leer el UID del tag original, escribir ese mismo UID en un tag nuevo y, finalmente, verificar que ambos identificadores coinciden. El método no es suficiente para algunos tags que tienen el UID bloqueado por el fabricante y no permiten sobrescritura, o para usar ciertas funciones de escritura más avanzadas.
 
-##### Resumen: Qué se necesita para clonar un Tag RFID con RC522
-
-**Equipo necesario**
-- **Arduino** (Uno/Nano/Mega)
-- **Módulo Lector RFID RC522**
-- **Tags RFID** originales y en blanco (tarjetas/llaveros)
-- **Cables de conexión**
-
-**Conexiones básicas**
-```
-RC522 → Arduino Uno/Nano:
-SDA  → Pin 10
-SCK  → Pin 13
-MOSI → Pin 11
-MISO → Pin 12
-GND  → GND
-RST  → Pin 9
-3.3V → 3.3V
-```
-
-**Software requerido**
-1. **IDE Arduino**
-2. **Librería MFRC522** (Miguel Balboa)
-3. **Sketch de lectura/escritura** (ver tutorial completo)
-
-**Proceso básico**
-1. **Leer UID** del Tag original
-2. **Escribir UID** en Tag nuevo (con funciones de escritura)
-3. **Verificar** que ambos Tags tengan el mismo código
-
-**⚠️ Consideraciones importantes**
-- **Seguridad baja**: Los UIDs básicos son fáciles de clonar
-- **Solo lectura**: Algunos Tags tienen UID bloqueado por fabricante
-- **Uso ético**: Solo para proyectos personales/prototipos
-
-**Recursos adicionales**
-- Tutorial completo incluye ejemplos de lectura y escritura
-- Posibilidad de trabajar con bloques de memoria (datos adicionales)
-- Sistema de control de acceso básico incluido en tutorial
-
-*Nota: Para clonación completa se requieren funciones adicionales de escritura no mostradas en este resumen breve.*
+Con **mi setup concreto con tarjetas T5577 o EM410x de 125 kHz**, esto no va a funcionar, peus el **RC522 trabaja a 13,56 MHz** y está diseñado para tags tipo **MIFARE**, no para RFID de baja frecuencia (LF) como estos. Requerimos un lector/escritor distinto; a continuación veremos una opción que funcionó muy bien.
 
 ### Usando Proxmark
 
@@ -139,11 +99,10 @@ Cada tipo de tarjeta con las que venia el dispositivo:
 
 | Nombre | Descripción | Fotografía | Enlace a AliExpress |
 |--------|-------------|------------|----------------------|
-| ID-5577 | Tarjeta RFID clonable y programable compatible con emuladores de varias frecuencias y protocolos. | ![ID-5577](/opt/agarnung.github.io/assets/blog_images/2025-12-30-cloning-an-RFID-card/id-5577.jpg) | [Comprar]() |
-| UID | Identificador único fijo de una tarjeta RFID, usado para distinguirla. | ![UID](/opt/agarnung.github.io/assets/blog_images/2025-12-30-cloning-an-RFID-card/uid.jpg) | [Comprar]() |
-| CUID | Un UID "combinado" o extendido, a veces usado para tarjetas con un identificador más largo o encriptado. | ![CUID](/opt/agarnung.github.io/assets/blog_images/2025-12-30-cloning-an-RFID-card/cuid.jpg) | [Comprar]() |
-| IC-M1 | También llamada MIFARE Classic, es una tarjeta RFID con memoria y autenticación para almacenamiento seguro. | ![IC-M1](/opt/agarnung.github.io/assets/blog_images/2025-12-30-cloning-an-RFID-card/ic-m1.jpg) | [Comprar]() |
-| M1 | Abreviatura común para tarjetas MIFARE Classic, ampliamente usadas en acceso y transporte. | ![M1](/opt/agarnung.github.io/assets/blog_images/2025-12-30-cloning-an-RFID-card/m1.jpg) | [Comprar]() |
+| ID-5577 | Tarjeta RFID de **125 kHz**, regrabable y clonable. Basada en el chip **T5577**, permite emular múltiples protocolos LF (EM4100, HID, etc.). Muy usada en clonación de tarjetas de baja frecuencia. | ![ID-5577](../assets/blog_images/2025-12-30-cloning-an-RFID-card/id-5577.jpg) | [Comprar](https://www.amazon.es/sourcing-map-Proximidad-Regrabable-Contacto/dp/B09LCNN3XB?dib=eyJ2IjoiMSJ9.W2FXhPkKpuD7Q91BirA9RRqDftFD8w0Bqsyk45PNkqMUDOqiD7VDdcOFLcS5tR1-vNXuBSPbKEp_OBEWAj46gTBTDcPywNUhPwvg5VJsysj5XZ6TPHwa139gl9nn-eVMGsFmzrdutgNQ1n3D6Ay9yA.OjGWEUnTCCAKVEyJ3p9O-9gzmiYbDPsS4XY2I8Lkpas&dib_tag=se&keywords=id+5577&qid=1766601550&sr=8-5) |
+| UID | Tarjeta RFID de **13,56 MHz** con **UID fijo**, solo identificador. No dispone de memoria útil ni autenticación; se usa en sistemas de acceso simples basados únicamente en el UID. | ![UID](../assets/blog_images/2025-12-30-cloning-an-RFID-card/uid.jpg) | [Comprar](https://www.amazon.es/UHPPOTE-Modificable-Grabable-Reescribible-Programable/dp/B072QDTKLF) |
+| CUID | Tarjeta de **13,56 MHz** con **UID modificable**, compatible con lectores MIFARE. Permite clonar el identificador de otras tarjetas, aunque con limitaciones de seguridad y compatibilidad. | ![CUID](../assets/blog_images/2025-12-30-cloning-an-RFID-card/cuid.jpg) | [Comprar](https://www.amazon.es/YARONGTECH-Tarjeta-intercambiable-tarjetas-escribir/dp/B0CHLR64LH) |
+| IC-M1 | Tarjeta **MIFARE Classic (13,56 MHz)** con memoria sectorizada y autenticación por claves. Permite almacenar datos y es común en control de accesos y transporte, aunque con seguridad hoy considerada débil. | ![IC-M1](../assets/blog_images/2025-12-30-cloning-an-RFID-card/ic-m1.png) | [Comprar](https://www.amazon.es/tarjetas-blancas-gruesas-agujeros-tarjeta/dp/B0DLNF4VSX?dib=eyJ2IjoiMSJ9.cDlfNKw36AKRWgMaJ7wGGta102a6GQCg2I1mV8bbXUOmIqm8Nme0Yfc4OxW1io5it8830IFwiVb7H7KeUoLR7Pas4WQS7PnhjEEA_X8Nz8D90fF-JbbOEvYfgLK4h1Zn17s9a7gl8pwobm67oS5o_bFC6W3t0ZIQD5jNO0M3kGqIQJRbDE9Ge26BkNprN3lJOvwcFu3Da3M9dISsgUcrhZhm4qHRLQu3L9WrGlD4e98GH8umR--xLpsvKPLCHGF_xRNlDV-RPuqiowIjSbODvjanXOaAjWzKEJBbTv98BAc.vcLnNsJxp6zC3-XS-dk_V_OywAyLH28W_2sk3pUBKyM&dib_tag=se&keywords=ic+m1+tarjeta&qid=1766601505&sr=8-5) |
 
 #### Descargando el software de Proxmark3
 
@@ -191,7 +150,7 @@ lf t55xx detect
 
 ##### 📝 **COMANDOS PARA GRABAR/CLONAR TARJETAS**
 
-###### **Clonación EM4100 (Método Correcto):**
+###### **Clonación EM4100:**
 
 ```bash
 # PASO 1: Leer tarjeta original
@@ -315,32 +274,30 @@ lf config
 - **Voltajes de antena**: 30.41V @ 125kHz, 28.43V @ 13.56MHz
 - **Alimentación**: 3.5-5.5V, 50-130mA (funciona con power bank)
 
-##### **Limitaciones:**
+##### **Limitaciones de Proxmarkv3:**
 
-- ❌ No clona tarjetas "en vivo" (bank cards)
-- ❌ No clona cifrados avanzados
-- ✅ Cubre ~98% de sistemas RFID comunes
-- ✅ Compatible con firmware oficial Iceman
+- ❌ No clona tarjetas bancarias “en vivo” (EMV = Europay, MasterCard y Visa): no puede clonar tarjetas de crédito o débito reales porque EMV usa chips con autenticación y criptografía dinámica.
 
-##### **Incluye:**
+- ❌ No clona cifrados avanzados: el Proxmark3 no puede romper ni duplicar sistemas que usan criptografía fuerte moderna correctamente implementada (EMV, AES, RSA, 3DES).
 
-1. Proxmark3 con antena HF
-2. Tarjeta UID reemplazable
-3. Llavero UID
-4. Tarjeta T5577 en blanco
+- ✅ Compatible con la mayoría de sistemas RFID comunes: el Proxmark3 puede leer, analizar, emular o clonar muchos sistemas RFID de acceso y transporte (125 kHz y 13,56 MHz) con seguridad débil o conocida.
 
-#### 💡 **Consejos Prácticos:**
+- ✅ Funciona plenamente con el firmware Iceman, que amplía soporte, ataques y protocolos RFID/NFC.
+
+- ⚠️ Puede realizar ataques de fuerza bruta con limitaciones: el Proxmark3 permite fuerza bruta únicamente contra sistemas RFID con claves cortas o cifrados débiles, siendo ineficaz o inviable contra claves largas, protección por intentos o criptografía moderna.
+
+#### 💡 **Consejos Prácticos**
 
 1. **Posicionamiento**: Mantén la tarjeta centrada en la antena LF (generalmente lado derecho)
 2. **Distancia**: 0-2cm máximo entre tarjeta y antena
 3. **Verificación**: Siempre prueba la tarjeta clonada en el lector original
 4. **Compatibilidad**: Las T5577 son las más versátiles para clonación 125kHz
 
-#### Clonando una tarjeta 125 kHz de puerta
+#### Clonando la tarjeta 125 kHz de la puerta de mi trabajo 
 
 Mi código final; comentar que para las sencillas e.g. 10 kHz sin seguridad basta con leer y escribir, pero que puede ser necesario hacer ataques si están protegidas (e.g. 14,65 MHz cifradas, etc.)
 
-**Lectura y Clonación de Tarjeta EM410x**
+**Resultados de lectura y clonación de mi tarjeta EM410x**:
 
 Comandos y salida del dispositivo:
 ```bash
@@ -373,14 +330,15 @@ Comandos y salida del dispositivo:
 [=] Couldn't identify a chipset
 ```
 
-**Leer tarjeta:**
+**Leer tarjeta**:
 
 ```bash
 [usb] pm3 --> lf em 410x read
 [+] EM 410x ID ************
 ```
 
-**Clonar tarjeta:**
+**Clonar tarjeta**:
+
 ```bash
 lf em 410x clone --id ************
 ```
@@ -421,7 +379,7 @@ lf em 410x clone --id ************
 
 ## Ideas y notas  
 
-*(Cosas a añadir, curiosidades, teoría, otras opciones…)*
+*(Cosas a añadir, curiosidades, teoría, otras opciones...)*
 
 - **Experiencias con Flipper Zero** (bueno para lo básico, dispositivo multiusos)  
   https://www.reddit.com/r/hacking/comments/10e72et/flipper_zero_worth_it/
