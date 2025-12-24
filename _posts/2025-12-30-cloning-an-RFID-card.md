@@ -68,13 +68,20 @@ RFID funciona usando **ondas de radio**, un tipo de radiación electromagnética
 
 ## Práctica
 
+> [!INFORMATION] 🔒 **Aspectos Legales:**
+>
+> Obviamente, este post es educativo y no se debe usar nada de esto para otros fines diferentes:
+> - Solo clona tarjetas que poseas o tengas permiso para probar
+> - No uses para evadir sistemas de seguridad
+> - Ideal para pruebas de penetración autorizadas
+
 ### Usando Arduino
 
-### ¿Qué se necesita para clonar?
+#### ¿Qué se necesita para clonar?
 
 Ver https://naylampmechatronics.com/blog/22_tutorial-modulo-lector-rfid-rc522.html
 
-#### Resumen: Qué se necesita para clonar un Tag RFID con RC522
+##### Resumen: Qué se necesita para clonar un Tag RFID con RC522
 
 **Equipo necesario**
 - **Arduino** (Uno/Nano/Mega)
@@ -139,9 +146,10 @@ Cada tipo de tarjeta con las que venia el dispositivo:
 | M1 | Abreviatura común para tarjetas MIFARE Classic, ampliamente usadas en acceso y transporte. | ![M1](/opt/agarnung.github.io/assets/blog_images/2025-12-30-cloning-an-RFID-card/m1.jpg) | [Comprar]() |
 
 #### Descargando el software de Proxmark3
+
 La manera más sencilla de manejar el dispositivo es descargando su [firmware y herramienta oficiales](https://github.com/Proxmark/proxmark3/wiki/Windows), incluyendo la instalación de los drivers USB (se usa USB-C para conectarlo al PC).
 
-Una vez [instalada](https://github.com/Proxmark/proxmark3/wiki/Windows#development-environment-installation), para abrir la herramienta, ejecútese `proxmark3` desde la consola.
+Una vez [instalada](https://github.com/Proxmark/proxmark3/wiki/Windows#development-environment-installation), para abrir la herramienta, ejecútese `proxmark3` (C:\Program Files (x86)\proxmark3\client\proxmark3.exe) desde la consola.
 
 También se puede seguir el [tutorial de ICEMAN](https://lab401.com/es-es/blogs/academy/proxmark-3-windows-installation) y soltar en terminal los .bat que nos da, especificando el COMX en el que estemos. Es mucho más fácil.
 
@@ -169,6 +177,7 @@ lf em 410x reader
 ```
 
 ###### **Comandos de diagnóstico:**
+
 ```bash
 # Verificar estado de antena LF
 hw tune
@@ -183,6 +192,7 @@ lf t55xx detect
 ##### 📝 **COMANDOS PARA GRABAR/CLONAR TARJETAS**
 
 ###### **Clonación EM4100 (Método Correcto):**
+
 ```bash
 # PASO 1: Leer tarjeta original
 lf em 410x read
@@ -196,6 +206,7 @@ lf em 410x clone
 ```
 
 ###### **Escritura manual en T5577:**
+
 ```bash
 # Configurar T5577 como EM4100
 lf t55xx write --em 0417E614D8
@@ -205,6 +216,7 @@ lf em 410x write 0417E614D8
 ```
 
 ###### **Comandos avanzados de escritura:**
+
 ```bash
 # Borrar tarjeta T5577
 lf t55xx wipe
@@ -216,9 +228,10 @@ lf t55xx config --em
 lf t55xx write -b 0 -d 0417E614D8
 ```
 
-##### 🔧 **Flujo de Trabajo Completo para Clonar**
+#### 🔧 **Flujo de Trabajo Completo para Clonar**
 
-###### **1. Preparación:**
+##### **1. Preparación:**
+
 ```bash
 # Conectar Proxmark3
 ./client/proxmark3.exe COM3
@@ -230,7 +243,8 @@ hw version
 hw tune
 ```
 
-###### **2. Leer tarjeta original:**
+##### **2. Leer tarjeta original:**
+
 ```bash
 lf search
 # Si detecta EM4100, luego:
@@ -238,7 +252,8 @@ lf em 410x read
 # Anotar UID: 0417E614D8
 ```
 
-###### **3. Preparar tarjeta destino:**
+##### **3. Preparar tarjeta destino:**
+
 ```bash
 # Colocar tarjeta T5577 en blanco
 lf t55xx detect
@@ -246,7 +261,8 @@ lf t55xx detect
 lf t55xx wipe
 ```
 
-###### **4. Clonar:**
+##### **4. Clonar:**
+
 ```bash
 # Método automático (recomendado)
 lf em 410x clone
@@ -255,7 +271,8 @@ lf em 410x clone
 lf em 410x write 0417E614D8
 ```
 
-###### **5. Verificar:**
+##### **5. Verificar:**
+
 ```bash
 lf search
 lf em 410x read
@@ -265,6 +282,7 @@ lf em 410x read
 #### ⚠️ **Solución de Problemas Comunes**
 
 ##### **Si `lf em 410x clone` no funciona:**
+
 ```bash
 # 1. Verificar que hay lectura previa
 lf em 410x list
@@ -277,6 +295,7 @@ lf t55xx write --em [UID]
 ```
 
 ##### **Si la tarjeta no se detecta:**
+
 ```bash
 # Ajustar ganancia de antena
 lf config
@@ -285,33 +304,39 @@ lf config
 # La tarjeta debe estar centrada en la antena
 ```
 
-### 📊 **Información Importante del Proxmark3 512M**
+#### 📊 **Información Importante del Proxmark3 512M**
 
-#### **Características clave:**
+##### **Características clave:**
+
+> [!WARNING] ¡Que no te estafen! Asegúrate de que la versión o el clon que estás comprando sea realmente de 512KB flash (mínimo), si no, no cabrá el firmware bueno! 
+
 - **512M** = Microcontrolador AT91SAM7S512 con 512KB flash (doble capacidad)
 - **Doble antena integrada**: HF (13.56MHz) y LF (125kHz)
 - **Voltajes de antena**: 30.41V @ 125kHz, 28.43V @ 13.56MHz
 - **Alimentación**: 3.5-5.5V, 50-130mA (funciona con power bank)
 
-#### **Limitaciones:**
+##### **Limitaciones:**
+
 - ❌ No clona tarjetas "en vivo" (bank cards)
 - ❌ No clona cifrados avanzados
 - ✅ Cubre ~98% de sistemas RFID comunes
 - ✅ Compatible con firmware oficial Iceman
 
-#### **Incluye:**
+##### **Incluye:**
+
 1. Proxmark3 con antena HF
 2. Tarjeta UID reemplazable
 3. Llavero UID
 4. Tarjeta T5577 en blanco
 
-### 💡 **Consejos Prácticos:**
+#### 💡 **Consejos Prácticos:**
+
 1. **Posicionamiento**: Mantén la tarjeta centrada en la antena LF (generalmente lado derecho)
 2. **Distancia**: 0-2cm máximo entre tarjeta y antena
 3. **Verificación**: Siempre prueba la tarjeta clonada en el lector original
 4. **Compatibilidad**: Las T5577 son las más versátiles para clonación 125kHz
 
-### Clonando una tarjeta 125 kHz de puerta
+#### Clonando una tarjeta 125 kHz de puerta
 
 Mi código final; comentar que para las sencillas e.g. 10 kHz sin seguridad basta con leer y escribir, pero que puede ser necesario hacer ataques si están protegidas (e.g. 14,65 MHz cifradas, etc.)
 
@@ -349,6 +374,7 @@ Comandos y salida del dispositivo:
 ```
 
 **Leer tarjeta:**
+
 ```bash
 [usb] pm3 --> lf em 410x read
 [+] EM 410x ID ************
@@ -359,7 +385,8 @@ Comandos y salida del dispositivo:
 lf em 410x clone --id ************
 ```
 
-**Verificar tarjeta clonada**
+**Verificar tarjeta clonada** (información potencialmente sensible tapada):
+
 ```bash
 [usb] pm3 --> lf search
 
@@ -392,17 +419,9 @@ lf em 410x clone --id ************
 [+] Valid EM410x ID found!
 ```
 
-## 🔒 **Aspectos Legales:**
-Obviamente, este post es educativo y no se debe usar nada de esto para otros fines diferentes:
-- Solo clona tarjetas que poseas o tengas permiso para probar
-- No uses para evadir sistemas de seguridad
-- Ideal para pruebas de penetración autorizadas
-
 ## Ideas y notas  
-*(Cosas a añadir, curiosidades, teoría, otras opciones…)*
 
-- **Flipper Zero**  
-  https://flipperzero.one/
+*(Cosas a añadir, curiosidades, teoría, otras opciones…)*
 
 - **Experiencias con Flipper Zero** (bueno para lo básico, dispositivo multiusos)  
   https://www.reddit.com/r/hacking/comments/10e72et/flipper_zero_worth_it/
@@ -415,20 +434,19 @@ Obviamente, este post es educativo y no se debe usar nada de esto para otros fin
   Datasheet HID Global: `HID-Global_World-tag_datasheet.pdf`
 
 - **Otras opciones**:  
-  - Flipper Zero para pruebas básicas  
+  - [Flipper Zero](https://flipperzero.one/) para pruebas básicas  
   - Proxmark3 para usuarios avanzados, especialmente con **Kali Linux**  
     https://es.aliexpress.com/item/4001126619892.html  
     Guía en Kali Linux: https://blog.thehackingday.com/2021/02/primeros-pasos-con-la-proxmark3-en-kali.html
 
 ## Referencias
 
-- https://www.youtube.com/watch?v=PXE8nsXh4eg
-- https://www.luisllamas.es/arduino-nfc-pn532/#conexion-por-i2c
-- https://how2electronics.com/interfacing-pn532-nfc-rfid-module-with-arduino/
-- https://www.youtube.com/watch?v=cSZE3buFyi4
-- https://www.geeksforgeeks.org/computer-networks/introduction-of-radio-frequency-identification-rfid/
-- https://en1.fongwah.com/dt_testimonials/rfid-2
-- https://advantech-inc.com/the-how-of-rfid-systems/
-- https://rfid4u.com/rfid-basics-resources/inductive-and-backscatter-coupling/
-- https://www.trace-id.com/es/que-es-la-rfid-y-como-funciona-principios-funcionamiento-y-aplicaciones-de-la-identificacion-por-radiofrecuencia/
-
+- [PN532 NFC RFID Module Tutorial | Interfacing PN532 with Arduino in UART, I2C & SPI Mode](https://www.youtube.com/watch?v=PXE8nsXh4eg)
+- [Leer, grabar o emular tags NFC con Arduino y PN532](https://www.luisllamas.es/arduino-nfc-pn532/#conexion-por-i2c)
+- [Interfacing PN532 NFC RFID Module with Arduino](https://how2electronics.com/interfacing-pn532-nfc-rfid-module-with-arduino/)
+- [Proxmark3 Easy Iceman RFID – Unboxing, Setup & Using](https://www.youtube.com/watch?v=cSZE3buFyi4)
+- [Introduction of Radio Frequency Identification (RFID)](https://www.geeksforgeeks.org/computer-networks/introduction-of-radio-frequency-identification-rfid/)
+- [Working principle of RFID (illustrated)](https://en1.fongwah.com/dt_testimonials/rfid-2)
+- [The “How” of RFID Systems](https://advantech-inc.com/the-how-of-rfid-systems/)
+- [Inductive and Backscatter Coupling](https://rfid4u.com/rfid-basics-resources/inductive-and-backscatter-coupling/)
+- [¿Qué es la RFID y cómo funciona? Principios, funcionamiento y aplicaciones de la identificación por radiofrecuencia](https://www.trace-id.com/es/que-es-la-rfid-y-como-funciona-principios-funcionamiento-y-aplicaciones-de-la-identificacion-por-radiofrecuencia/)
