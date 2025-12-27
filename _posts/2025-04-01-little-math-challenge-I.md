@@ -3,7 +3,7 @@ title: Little math challenge I
 tags: [math]
 style: fill
 color: warning
-description: Una vez alguien me lanzó una adivinanza matemática a modo de desafío. Decía "más o menos" así, pues daremos aquí dos versiones...
+description: Una vez alguien me lanzó una adivinanza matemática a modo de desafío. Decía "más o menos" así (pues daremos aquí dos versiones)...
 ---
 
 ![her](../assets/blog_images/2025-04-01-little-math-challenge-I/her.png)
