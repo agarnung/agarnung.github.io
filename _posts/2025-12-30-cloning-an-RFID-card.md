@@ -2,7 +2,7 @@
 title: Cloning a RFID card
 tags: [IoT]
 style: fill
-color: danger
+color: info
 description: That's it, how to clone a simple RFID card.
 ---
 
