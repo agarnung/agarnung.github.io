@@ -87,6 +87,10 @@ Con **mi setup concreto con tarjetas T5577 o EM410x de 125 kHz**, esto no va a f
 
 Tras mucho ensayo y error con diferentes aparatos, incluso tras haber intentado usar alguno de "solo lectura" como elemento de escritura, por puro despiste, trataré de realizar esta tarea empleando uno de los pequeños equipos más alabados y empleados en el mundo del pentesting casero, el Proxmark3; algo así como un Flipper más profesional.
 
+Este es el cacharrillo:
+
+<img src="https://m.media-amazon.com/images/I/51Zf+6tWpYL.jpg" align="center" />
+
 Este dispositivo es capaz de leer, escribir, copiar (emular) y analizar tarjetas RFID e IC/ID, así como llaves NFC (13.56 MHz), incluso de realizar ataques de fuerza bruta, con fines éticos, por supuesto.
 
 En concreto, debido al bajo presupuesto con el que se cuenta, usaremos una versión China del producto, que no tiene tan mala pinta según veo en la reseñas, [aquí disponible](https://es.aliexpress.com/item/1005005598628165.html?spm=a2g0o.order_list.order_list_main.41.3922194dxGdsWG&gatewayAdapt=glo2esp#nav-description). Lo importante de este clon es que es 512M, i.e. que usa un microcontrolador At91SAM7S512, que tiene 512 kilobytes (KB) de memoria flash para el firmware y programas internos, por lo que se puede cargar la versión 2.0, i.e. el firmware el oficial actualizado de la versión original. Otras versiones o clones usan un At91SAM7S256 tiene 256 KB de memoria flash, que no tiene capacidad suficiente como para cargar el firmware avanzado o actualizado.
