@@ -33,7 +33,7 @@ Un sistema RFID típico tiene tres partes:
 
 #### 1) **Campos electromagnéticos y ondas de radio**
 
-RFID funciona usando **ondas de radio**, un tipo de radiación electromagnética gobernada por las [**ecuaciones de Maxwell**](INSERTAR ENLACE) y la [**inducción electromagnética de Faraday**](INSERTAR ENLACE). Estas leyes describen cómo campos eléctricos y magnéticos variables transmiten energía a través del espacio y pueden inducir corrientes en conductores.
+RFID funciona usando **ondas de radio**, un tipo de radiación electromagnética gobernada por las [**ecuaciones de Maxwell**](https://es.wikipedia.org/wiki/Ecuaciones_de_Maxwell) y la [**inducción electromagnética de Faraday**](https://es.wikipedia.org/wiki/Ley_de_Faraday). Estas leyes describen cómo campos eléctricos y magnéticos variables transmiten energía a través del espacio y pueden inducir corrientes en conductores.
 
 ### ⚙️ Dos mecanismos físicos principales
 
@@ -42,7 +42,7 @@ RFID funciona usando **ondas de radio**, un tipo de radiación electromagnética
 * Este principio se basa en el **campo magnético alternante** que genera el lector.
 * La antena del tag (una bobina) **induce corriente por el cambio de campo magnético** (Ley de Faraday), lo cual **alimenta el chip del tag** y permite la comunicación.
 * Es típico de frecuencias **bajas y medias** como **125 kHz o 13.56 MHz** y funciona en el **campo cercano** (corto alcance).
-* El acoplamiento se parece a un [**transformador sin contacto físico**](INSERTAR ENLACE).
+* El acoplamiento se parece a un [**transformador sin contacto físico o de acoplamiento**](https://www.orteanext.com/es/transformadores-y-reactores-de-bt/transformador-aislamiento-funcionamiento-ventajas-aplicaciones/).
 
 #### 📡 2) **Backscatter (reflexión modulada)**
 
