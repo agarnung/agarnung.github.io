@@ -1,5 +1,5 @@
 ---
-title: Srinivasa says
+title: Srinivasa Says
 tags: [electronics]
 style: fill
 color: warning
