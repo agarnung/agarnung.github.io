@@ -1,8 +1,8 @@
 ---
 title: Srinivasa says
-tags: [electrónica]
+tags: [electronics]
 style: fill
-color: danger
+color: warning
 description:  Un juego al estilo Simon Says basado en ATmega328P que reproduce dígitos de π en notas musicales. 
 ---
 
