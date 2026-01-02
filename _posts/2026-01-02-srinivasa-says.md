@@ -35,3 +35,5 @@ El desarrollo del proyecto integró diversas disciplinas de ingeniería mediante
 * **Modelado mecánico**: [Blender](https://www.blender.org/) para diseñar la carcasa protectora. [Fusion](https://www.autodesk.com/es/products/fusion-360/overview) para el diseño de los botones táctiles personalizados.
 * **Fabricación aditiva**: [BambuStudio](https://bambulab.com/es/download/studio) para la laminación y [Bambulab A1 mini](https://bambulab.com/es/a1-mini) para la impresión 3D de las piezas.
 * **Grabación de hardware**: programador [USBASP](https://www.tiendatec.es/maker-zone/programadores/526-programador-usbasp-v20-avr-icsp-con-cable-para-arduino-8405261440008.html) y la herramienta [AVRDUDE](https://github.com/avrdudes/avrdude) (a través de su GUI [AVRDUDESS](https://blog.zakkemble.net/avrdudess-a-gui-for-avrdude/)) para cargar el archivo .hex directamente en el chip mediante la interfaz ISP.
+
+> [!TIP] Véase el proyecto enlazado al principio para ver la documentación y los adjuntos completos.
