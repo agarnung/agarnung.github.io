@@ -15,7 +15,7 @@ Enlace al proyecto: **[https://github.com/agarnung/srinivasa-says](https://githu
 
 <img src="https://github.com/agarnung/srinivasa-says/raw/main/assets/full1.png" alt="Imagen 1">
 
-<img src="https://github.com/agarnung/srinivasa-says/raw/main/assets/full2.png" alt="Imagen 2
+<img src="https://github.com/agarnung/srinivasa-says/raw/main/assets/full2.png" alt="Imagen 2">
   
 <img src="https://github.com/agarnung/srinivasa-says/raw/main/assets/full3.png" alt="Imagen 3">
 
