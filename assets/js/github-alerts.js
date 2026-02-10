@@ -44,7 +44,14 @@ document.addEventListener('DOMContentLoaded', function() {
           strong.remove();
         }
       } else {
-        firstP.textContent = alertText;
+        // Preserve HTML (links, etc.) when removing the alert marker
+        if (firstP.innerHTML !== firstP.textContent) {
+          // Contains HTML elements, preserve them
+          firstP.innerHTML = innerHTML.replace(/\[![A-Z]+\]\s*/i, '').trim();
+        } else {
+          // Plain text only
+          firstP.textContent = alertText;
+        }
       }
     }
   });
