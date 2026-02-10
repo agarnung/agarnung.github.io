@@ -61,6 +61,11 @@ spotify:
   icon  : fab fa-spotify
   color : 1db954
 
+spotify_artist:
+  url   : 
+  icon  : fab fa-spotify
+  color : 1db954
+
 buymeacoffee:
   url   : https://buymeacoffee.com/
   icon  : fas fa-mug-hot
@@ -92,7 +97,7 @@ vimeo:
   color : 162221
 
 youtube:
-  url   : https://www.youtube.com/
+  url   : https://www.youtube.com/@
   icon  : fab fa-youtube
   color : ff0000
 

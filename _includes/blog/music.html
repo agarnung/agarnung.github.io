@@ -1,2 +1,69 @@
-<!-- Music page... -->
-<p>🚧This page is under construction...🚧</p>
+<div class="text-center mb-4">
+  <div class="container-fluid justify-content-center">
+    {%- assign unfocused_color = "6c757d" -%}
+    
+    {%- comment -%} SoundCloud {%- endcomment -%}
+    {%- if site.author.soundcloud -%}
+      {%- assign service_data = site.data.social-media.soundcloud -%}
+      <a class="social mx-2" href="{{ service_data.url }}{{ site.author.soundcloud }}"
+         target="_blank"
+         style="color: #{{ unfocused_color }}"
+         onMouseOver="this.style.color='#{{ service_data.color }}'"
+         onMouseOut="this.style.color='#{{ unfocused_color }}'">
+        <i class="{{ service_data.icon }} fa-2x"></i>
+      </a>
+    {%- endif -%}
+    
+    {%- comment -%} Spotify (Music) {%- endcomment -%}
+    {%- if site.author.spotify_music -%}
+      {%- assign service_data = site.data.social-media.spotify_artist -%}
+      {%- if site.author.spotify_music contains 'http' -%}
+        {%- assign spotify_url = site.author.spotify_music -%}
+      {%- else -%}
+        {%- assign spotify_url = service_data.url | append: site.author.spotify_music -%}
+      {%- endif -%}
+      <a class="social mx-2" href="{{ spotify_url }}"
+         target="_blank"
+         style="color: #{{ unfocused_color }}"
+         onMouseOver="this.style.color='#{{ service_data.color }}'"
+         onMouseOut="this.style.color='#{{ unfocused_color }}'">
+        <i class="{{ service_data.icon }} fa-2x"></i>
+      </a>
+    {%- elsif site.author.spotify -%}
+      {%- comment -%} Fallback to regular spotify if spotify_music not set {%- endcomment -%}
+      {%- assign service_data = site.data.social-media.spotify -%}
+      <a class="social mx-2" href="{{ service_data.url }}{{ site.author.spotify }}"
+         target="_blank"
+         style="color: #{{ unfocused_color }}"
+         onMouseOver="this.style.color='#{{ service_data.color }}'"
+         onMouseOut="this.style.color='#{{ unfocused_color }}'">
+        <i class="{{ service_data.icon }} fa-2x"></i>
+      </a>
+    {%- endif -%}
+    
+    {%- comment -%} YouTube {%- endcomment -%}
+    {%- if site.author.youtube -%}
+      {%- assign service_data = site.data.social-media.youtube -%}
+      <a class="social mx-2" href="{{ service_data.url }}{{ site.author.youtube }}"
+         target="_blank"
+         style="color: #{{ unfocused_color }}"
+         onMouseOver="this.style.color='#{{ service_data.color }}'"
+         onMouseOut="this.style.color='#{{ unfocused_color }}'">
+        <i class="{{ service_data.icon }} fa-2x"></i>
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+<center><p class="text-muted"><b>Collection of my non-professional musical experimentation.</b></p></center>
+
+<div class="card-group mt-2">
+
+  {% assign sorted_music = site.music | sort: 'date' | reverse %}
+  
+  {% for music_item in sorted_music %}
+    {%- assign music = music_item -%}
+    {% include music/card.html %}
+  {% endfor %}
+  
+</div>

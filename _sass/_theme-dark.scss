@@ -49,6 +49,60 @@ $dark-900: #17191a;
       background-color: rgba(0, 0, 0, 0.1);
     }
   }
+  
+  // Music cards
+  .music-card {
+    background-color: $dark-600;
+    color: $text-white;
+    
+    .card-body {
+      background-color: $dark-600;
+      color: $text-white;
+    }
+    
+    .card-footer {
+      background-color: $dark-300;
+      color: $text-white;
+    }
+    
+    .card-title,
+    .card-text {
+      color: $text-white;
+    }
+  }
+  
+  // Music modals
+  .modal-content {
+    background-color: $dark-600;
+    color: $text-white;
+    border-color: $dark-300;
+    
+    .modal-header {
+      border-bottom-color: $dark-300;
+      color: $text-white;
+      
+      .modal-title {
+        color: $text-white;
+      }
+      
+      .close {
+        color: $text-white;
+        opacity: 0.8;
+        
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+    
+    .modal-body {
+      color: $text-white;
+      
+      p {
+        color: $text-white;
+      }
+    }
+  }
 
   // Tables
   table:not(.highlight) {

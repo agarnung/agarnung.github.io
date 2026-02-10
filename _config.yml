@@ -41,7 +41,6 @@ github:
 nav_exclude: # The following paths are excluded from navbar
   - pages/tags.html
   - pages/calendar.html
-  - pages/music.html
   - pages/404.html
   - pages/index.md
 
@@ -62,14 +61,15 @@ author:
 # kaggle            : your_username
   linkedin          : alejandro-garnung-menéndez-640085342
   medium            : agarnung
-# soundcloud        : your_username
+  soundcloud        : alejandro-garnung
   spotify           : fxzk0pywygvy66miq1aai9yji
+  spotify_music     : spotify:artist:0atx8gCARTOSlE62PpxEfF
 # stackoverflow     : your_user_id
 # tumblr            : your_username.tumblr.com
 # twitch            : your_username
 #  twitter           : your_username
 # vimeo             : your_username
-# youtube           : your_channel_name
+  youtube           : agarnungm
 # keybase           : your_username
   buymeacoffee      : agarnung
 
@@ -85,6 +85,8 @@ collections:
   projects:
     output: true
     permalink: /projects/:name
+  music:
+    output: false
 
 
 
@@ -125,6 +127,11 @@ defaults:
       type: "posts"
     values:
       comments: false                                   # Set to true to enable disqus comments
+  - scope:
+      path: ""
+      type: "music"
+    values:
+      layout: "page"
 
 
 

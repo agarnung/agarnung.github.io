@@ -1,0 +1,99 @@
+{%- comment -%} Get music object - use include parameter or current_music variable {%- endcomment -%}
+{%- if include.music -%}
+  {%- assign music = include.music -%}
+{%- elsif current_music -%}
+  {%- assign music = current_music -%}
+{%- endif -%}
+
+{%- comment -%} Default Styles {%- endcomment -%}
+{%- assign card_style  = '' -%}
+{%- assign text_style  = 'text-themed' -%}
+{%- assign badge_style = 'badge-dark' -%}
+
+{%- comment -%} Update Styles - Only apply colors if explicitly specified {%- endcomment -%}
+{%- if music.color and music.color != '' -%}
+  {%- if music.style == 'fill' -%}
+    {%- assign card_style = music.color | prepend: 'bg-' -%}
+    {%- if music.color != 'light' -%}
+      {%- assign text_style  = 'text-white' -%}
+      {%- assign badge_style = 'badge-light text-' -%}
+      {%- assign badge_style = badge_style | append: music.color -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- assign card_style = music.color | prepend: 'border border-' -%}
+    {%- assign badge_style =  music.color | prepend: 'badge-' -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- comment -%} Get title from music object {%- endcomment -%}
+{%- assign music_title = music.title | default: music.name -%}
+
+{%- comment -%} Generate unique modal ID {%- endcomment -%}
+{%- assign modal_id = music_title | slugify | prepend: 'music-modal-' -%}
+
+<div class="col-lg-6 my-3 wow animated fadeIn" data-wow-delay=".15s">
+  <div class="post card {{ card_style }} music-card" data-toggle="modal" data-target="#{{ modal_id }}" style="cursor: pointer;">
+    {%- if music.image -%}
+      {%- if music.image contains 'http://' or music.image contains 'https://' -%}
+        {%- assign image_url = music.image -%}
+      {%- else -%}
+        {%- assign image_url = music.image | relative_url -%}
+      {%- endif -%}
+    <img class="card-img-top" src="{{ image_url }}" alt="{{ music_title }}" style="object-fit: cover; height: 200px;" />
+    {%- endif -%}
+    <div class="card-body {{ text_style }}">
+      <h3 class="card-title">{{ music_title }}</h3>
+      <p class="card-text">
+        {%- if music.description -%}
+        {{ music.description }}
+        {%- else -%}
+        {{ music.content | truncatewords: 25 }}
+        {%- endif -%}
+      </p>
+    </div>
+    <div class="card-footer {{ text_style }}">
+      {{ music.date | date_to_long_string }}
+    </div>
+  </div>
+</div>
+
+{%- comment -%} Modal for video {%- endcomment -%}
+{%- if music.video_url -%}
+<div class="modal fade" id="{{ modal_id }}" tabindex="-1" role="dialog" aria-labelledby="{{ modal_id }}-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="{{ modal_id }}-label">{{ music_title }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="embed-responsive embed-responsive-16by9">
+          {%- if music.video_url contains 'youtube.com' or music.video_url contains 'youtu.be' -%}
+            {%- assign video_id = '' -%}
+            {%- if music.video_url contains 'youtube.com/watch?v=' -%}
+              {%- assign video_id = music.video_url | split: 'v=' | last | split: '&' | first -%}
+            {%- elsif music.video_url contains 'youtu.be/' -%}
+              {%- assign video_id = music.video_url | split: 'youtu.be/' | last | split: '?' | first -%}
+            {%- endif -%}
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video_id }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          {%- elsif music.video_url contains 'vimeo.com' -%}
+            {%- assign video_id = music.video_url | split: '/' | last | split: '?' | first -%}
+            <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/{{ video_id }}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+          {%- else -%}
+            <iframe class="embed-responsive-item" src="{{ music.video_url }}" allowfullscreen></iframe>
+          {%- endif -%}
+        </div>
+        {%- if music.description -%}
+        <p class="mt-3"><strong>{{ music.description }}</strong></p>
+        {%- endif -%}
+        {%- if music.content and music.content != '' -%}
+        <p class="mt-2">{{ music.content }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+{%- endif -%}
+

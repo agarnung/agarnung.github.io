@@ -35,3 +35,22 @@
 .date-toggle:hover {
   text-decoration: underline;
 }
+
+.music-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  // Ensure content is visible in light mode
+  .card-title,
+  .card-text {
+    color: $text-black;
+  }
+  
+  .card-footer {
+    color: $text-black;
+  }
+}

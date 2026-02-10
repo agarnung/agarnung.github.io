@@ -1,0 +1,11 @@
+<div class="card-group mt-2">
+
+  {% assign sorted_music = site.music | sort: 'date' | reverse %}
+  
+  {% for music_item in sorted_music %}
+    {%- assign music = music_item -%}
+    {% include music/card.html %}
+  {% endfor %}
+  
+</div>
+
