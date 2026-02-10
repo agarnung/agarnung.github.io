@@ -120,7 +120,7 @@ echo "                                                                  "
 ![alejandro](../assets/blog_images/2026-02-10-linux-utils/alejandro.png)
 
 > [!TIP] 
-> Puedes usar `neofetch` o `screenfetch` para mostrar información del sistema con estilo ASCII. Instala con `sudo apt install neofetch`.
+> Puedes usar `neofetch` o `screenfetch` para mostrar información del sistema con estilo ASCII. Instálalo con `sudo apt install neofetch`.
 
 ## Recarga la Configuración
 
