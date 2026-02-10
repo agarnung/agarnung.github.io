@@ -80,7 +80,7 @@ export -f lsize
 > Modificar comandos del sistema en `/usr/bin/` requiere permisos root y puede romper el sistema. Puedes considerar usar un alias o función en su lugar.
 
 ```bash
-# Alternativa más segura (agregar al .bashrc en lugar de modificar /usr/bin/rm):
+# Alternativa más segura (agregar al ~/.bashrc en lugar de modificar /usr/bin/rm):
 alias rm='rm -i' # Pide confirmación antes de eliminar
 ```
 
@@ -124,7 +124,7 @@ echo "                                                                  "
 
 ## Recarga la Configuración
 
-Después de editar .bashrc, ejecuta:
+Después de editar `~/.bashrc`, ejecuta:
 
 ```bash
 source ~/.bashrc
