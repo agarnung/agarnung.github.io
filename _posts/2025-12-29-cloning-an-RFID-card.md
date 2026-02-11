@@ -68,7 +68,7 @@ RFID funciona usando **ondas de radio**, un tipo de radiación electromagnética
 
 ## Práctica
 
-> [!INFORMATION] 🔒 **Aspectos Legales:**
+> [!WARNING] 🔒 **Aspectos Legales:**
 >
 > Obviamente, este post es educativo y no se debe usar nada de esto para otros fines diferentes:
 > - Solo clona tarjetas que poseas o tengas permiso para probar
