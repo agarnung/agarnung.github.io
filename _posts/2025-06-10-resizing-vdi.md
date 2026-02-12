@@ -8,10 +8,9 @@ description: Trying to resize the (virtual) disk of my virtual machine
 
  <img src="../assets/blog_images/2025-06-10-resizing-vdi/C.png" alt="Girl in a jacket" width="500"> 
  
-# Introducción
+## Introducción
 
 Cada vez es menos frecuente quedarse sin espacio en el disco duro. Mi portátil del trabajo, un Dell de 1,86 GB de almacenamiento, cumple en un espacio muy reducido expectativas que hace no tanto tiempo parecían imposibles. 
-
 
 Los orígenes del almacenamiento electrónico se remontan a 1947 con el tubo Williams-Kilburn en la Universidad de Manchester, un sistema que utilizaba tubos de rayos catódicos para almacenar apenas un puñado de bits como puntos luminosos en la pantalla, en cuestión de milisegundos. Otros sistemas ROM almacenaban datos prácticamente en cuerdas de cobre que podrían tejerse manualmente; un proceso que podía durar meses (véase el Apollo Guidance Computer de 1960, con 72 KB de almacenamiento). En la década de 1950 se introdujeron otras ideas tecnológicas pioneras para este fin, como la memoria de línea de retardo de mercurio del EDSAC (1949), la memoria magnética de núcleo del MIT (1953) o el revolucionario RAMAC 305 de IBM (1956), que introdujo el concepto del disco duro con sus 50 platillos magnéticos capaces de almacenar 5 millones de caracteres.
 
@@ -51,7 +50,7 @@ Paralelamente, la evolución hacia el almacenamiento virtualizado y en la nube, 
 
 Actualmente, la capacidad de almacenamiento disponible para usuarios individuales se mide en terabytes y petabytes, mientras que las organizaciones gestionan exabytes de información, algo inimaginable hace tiempo. Además, este crecimiento exponencial continúa acelerándose con tecnologías emergentes como el almacenamiento cuántico y los sistemas de archivo distribuidos a escala planetaria. Esta progresión, desde los 3.75 MB del RAMAC hasta los sistemas actuales de múltiples exabytes, es definitivamente _algo_.
 
-# Virtualización
+## Virtualización
 
 Oracle VM VirtualBox es un potente software de virtualización de sistemas operativos que, como muchos otros, permite crear sistemas operativos dentro de otros, _ad infinitum_. Nos permite, por ejemplo, usar Linux dentro de Windows para utilizar su kernel, o incluso un Android, para usar aplicaciones móviles. 
 
@@ -61,7 +60,7 @@ El formato VDI (Virtual Desktop Infrastructure) es uno de los más recurridos y 
 
 ![popos](../assets/blog_images/2025-06-10-resizing-vdi/popos.png)
 
-# Caso de uso
+## Caso de uso
 
 Me he quedado sin espacio (a penas unos MB) en mi sitema host windows, y tengo una máquina virtual con un PopOs24 de 80 GB en total; así que le disminuiré un poco el tamaño, pues no basta con desintalar cosas de dentro de la distro. virtual, obvimente (pues no hay espacio en el anfitrión), ni basta solo con hacer un "resize" (e.g. coin GParted) como se podría hacer para ampliarlo, sino que es necesario liberar espacio dentro de la máquina virtual, rellenar el espacio libre con ceros y luego compactar el disco. O sea, mi objetivo primordial es conseguir liberar y/o ampliar intrínsecamente espacio sea como sea.
 
@@ -138,6 +137,6 @@ En efecto, tras la compresión, el .vdi pesa 12 GB menos, consiguiendo nuestro p
 
 O quizá la solución desde un principio era usar contenedores, no máquinas virtuales...
 
-# Referencias
+## Referencias
 
 - https://www.computerhistory.org/timeline/memory-storage/
