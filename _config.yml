@@ -115,6 +115,13 @@ buymeacoffee:
 
 
 
+### Contact Form ###
+contact:
+  enabled: true               # Set true to enable contact form
+  formspree_email: f/mojneday # Formspree's email endpoint
+
+
+
 ### Defaults for collections ###
 defaults:
   - scope:

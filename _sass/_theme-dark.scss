@@ -27,7 +27,7 @@ $dark-900: #17191a;
   input {
     background-color: $dark-300;
     border-color: $dark-100;
-    color: $dark-900;
+    color: $text-white;
 
     &::placeholder {
       color: rgba($text-white, 0.64);
@@ -36,6 +36,41 @@ $dark-900: #17191a;
     &:focus {
       background-color: $dark-600;
       color: $text-white;
+      border-color: $primary;
+    }
+  }
+  
+  // Textarea
+  textarea {
+    background-color: $dark-300;
+    border-color: $dark-100;
+    color: $text-white;
+
+    &::placeholder {
+      color: rgba($text-white, 0.64);
+    }
+
+    &:focus {
+      background-color: $dark-600;
+      color: $text-white;
+      border-color: $primary;
+    }
+  }
+  
+  // Contact section
+  .wg-contact {
+    .section-heading {
+      h1 {
+        color: $text-white;
+      }
+      
+      a {
+        color: $primary;
+        
+        &:hover {
+          color: lighten($primary, 10%);
+        }
+      }
     }
   }
 
