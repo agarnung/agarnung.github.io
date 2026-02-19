@@ -150,7 +150,7 @@ inproc && /^\|/ && $2 ~ /^[0-9]+$/ && $5 ~ /^[0-9]+$/ {
     gpu=$2
     pid=$5
     type=$6
-    mem=$(NF-1)           # <-- ahora tomamos el penúltimo campo
+    mem=$(NF-1)
     gsub("MiB","",mem)
     print gpu","pid","type","mem
 }
