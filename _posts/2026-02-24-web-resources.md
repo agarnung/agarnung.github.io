@@ -11,7 +11,7 @@ description: A curated list of interesting web resources. Constantly updated.
 En esta publicación mantenida de forma continua, simplemente iré listando y explicando brevemente una selección de recursos web interesantes que he encontrado y que disfruto en Internet.
 El objetivo no es más complejo que no perderlos de vista y poder revisitarlos cuando me apetezca, pues me resulta más fiable dejarlos registrados de forma estática que confiar en la caché o el historial de mi navegador (o en la barra de favoritos), lo cual ya me ha hecho perder el rastro más de una vez.
 
-# My list of interesting web resources
+## Mi lista de recursos web interesantes
 
 - [http://www.catb.org/~esr/](http://www.catb.org/~esr/)
 
