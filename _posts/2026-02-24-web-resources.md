@@ -21,6 +21,8 @@ El santuario del código abierto, donde Eric S. Raymond desmonta mitos hackers c
 
 </div>
 
+<br>
+
 - [https://www.tomdalling.com/toms-data-onion/](https://www.tomdalling.com/toms-data-onion/)
 
 <div align="center">
@@ -28,6 +30,8 @@ El santuario del código abierto, donde Eric S. Raymond desmonta mitos hackers c
 ¿Te gustan los acertijos? ¿Te gusta programar? ¿Te gustan los misterios y la autorreferencia? Si alguna es verdadera, te podrá interesar este subdominio de Tom Dalling (autor del <a href="https://www.programmingforbeginnersbook.com/">entretenido libro para principiantes en programación</a>), en el que esconde en un payload (un blob de datos que han sido ofuscados en cierta manera) una serie de acertijos empaquetados, uno dentro de otro, que se van resolviendo en cualquier lenguaje de programación. Una idea curiosa. Tom Dalling también tiene un blog en su web personal en el que habla sobre cosas tan interesantes como <a href="https://www.tomdalling.com/blog/2009/">buenas prácticas de programación en el diseño de clases</a>, <a href="https://www.tomdalling.com/blog/2012/">tutoriales de OpenGL</a> y muchas cosas más.
 
 </div>
+
+<br>
 
 - [https://learnopengl.com/](https://learnopengl.com/)
 
@@ -37,6 +41,8 @@ Si quieres aprender OpenGL, no hay recurso web mejor que este. Aprenderás en C+
 
 </div>
 
+<br>
+
 - [https://godbolt.org/](https://godbolt.org/)
 
 <div align="center">
@@ -44,6 +50,8 @@ Si quieres aprender OpenGL, no hay recurso web mejor que este. Aprenderás en C+
 El microscopio del código: escribe C++ y observa en tiempo real cómo se compila a ensamblador, línea a línea.
 
 </div>
+
+<br>
 
 - [https://clouard.users.greyc.fr/Pantheon/experiments/index-en.html](https://clouard.users.greyc.fr/Pantheon/experiments/index-en.html)
 
@@ -53,6 +61,8 @@ La web de ejemplos de una pequeña librería de procesamiento de imagen, Pandore
 
 </div>
 
+<br>
+
 - [https://digilogicelectronica.wordpress.com/](https://digilogicelectronica.wordpress.com/)
 
 <div align="center">
@@ -60,6 +70,8 @@ La web de ejemplos de una pequeña librería de procesamiento de imagen, Pandore
 Un blog muy sencillo y conciso como interesante (como lo describieron en alguno de sus comentarios) para proyectos de juguete con Arduino, IoT, sistemas embebidos, etc. Ameno de leer.
 
 </div>
+
+<br>
 
 - [https://shallowsky.com/blog/](https://shallowsky.com/blog/)
 
@@ -69,6 +81,8 @@ El blog de Akkana Peck, a software developer specializing in Linux and open sour
 
 </div>
 
+<br>
+
 - [https://newscrewdriver.com/](https://newscrewdriver.com/)
 
 <div align="center">
@@ -77,6 +91,8 @@ A Project Diary of Coding, Making, and Tinkering
 
 </div>
 
+<br>
+
 - [https://www.instructables.com/](https://www.instructables.com/)
 
 <div align="center">
@@ -84,6 +100,8 @@ A Project Diary of Coding, Making, and Tinkering
 Proyectos de electrónica DIY muy entretenidos, por ejemplo <a href="https://www.instructables.com/USE-a-PUSH-BUTTON-AS-a-SWITCH-/">este</a> para controlar un ventilador con un relé. Muy sencillos pero es una comunidad muy abierta en la que se publica cuándo uno recrea el diseño de otro. Uno de mis favoritos: <a href="https://www.instructables.com/LIDAR-With-Custom-ThreeJS-Graphics/">https://www.instructables.com/LIDAR-With-Custom-ThreeJS-Graphics/</a>.
 
 </div>
+
+<br>
 
 - [https://www.matematicasypoesia.com.es/index.htm](https://www.matematicasypoesia.com.es/index.htm)
 
@@ -118,6 +136,8 @@ Proyectos de electrónica DIY muy entretenidos, por ejemplo <a href="https://www
 Explicar cualquier comando de shell de Linux que pongas, taxonómica y visualmente.
 
 </div>
+
+<br>
 
 - [https://www.um.es/LEQ/laser/index.htm](https://www.um.es/LEQ/laser/index.htm)
 
@@ -155,6 +175,8 @@ Buen blog.
 
 </div>
 
+<br>
+
 - [https://www.hackster.io/](https://www.hackster.io/)
 
 - [https://www.kornia.org/tutorials/](https://www.kornia.org/tutorials/)
@@ -167,6 +189,8 @@ Memes y humor de programación.
 
 </div>
 
+<br>
+
 - [https://audionyq.com/](https://audionyq.com/)
 
 <div align="center">
@@ -174,6 +198,8 @@ Memes y humor de programación.
 Lenguaje funcional de creación musical de uno de los colaboradores de Audacity
 
 </div>
+
+<br>
 
 - [https://hjwwalters.com/real-time-edge-detection-using-esp32-cam/](https://hjwwalters.com/real-time-edge-detection-using-esp32-cam/)
 
@@ -183,6 +209,8 @@ Un blog de un fanático de la tecnología ("Jack of all trades; master of none")
 
 </div>
 
+<br>
+
 - [https://doc.lagout.org/](https://doc.lagout.org/)
 
 <div align="center">
@@ -190,6 +218,8 @@ Un blog de un fanático de la tecnología ("Jack of all trades; master of none")
 Las llamo las X-Files. Son un gigantesco repertorio de recursos científico-ingenieriles y, sobre todo, de ciencias de la computación, de algún gran contribuidor francés que siempre me resultó de gran valor. Sobre todo los libros escaneados y recursos de fabricantes. Los tenía descargados a <a href="https://www.httrack.com/">HTTrack Website Copier</a>.
 
 </div>
+
+<br>
 
 - [https://www.habrador.com/](https://www.habrador.com/)
 
