@@ -243,7 +243,7 @@ mkdir -p ~/bin
 Creamos y pegamos ahí el script, como antes, y le damos permisos de ejecución. Luego añadimos la ruta al archivo de configuración de nuestro shell:
 
 ```bash
-echo 'export PATH=$HOME/bin:$PATH"' >> ~./bashrc && source ~/.bashrc 
+echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc 
 ```
 
 Tras esto, cualquier script que pongamos en `~/bin` y marquemos como ejecutable (`chmod +x`) se podrá llamar desde cualquier lugar.
