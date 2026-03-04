@@ -250,6 +250,62 @@ Tras esto, cualquier script que pongamos en `~/bin` y marquemos como ejecutable 
 
 Aunque si no queremos tocar el `PATH`, también podríamos ejecutarlo con la ruta completa, e.g. `$ ~/bin/nvidia-smi-full`
 
+### Vaca dinámica con Quotes API ([API Ninjas](https://api-ninjas.com/profile))
+
+Sí, literalmente una vaca que aparece al inicio de cada terminal abierto y te lanza una frase famosa distinta cada vez...
+
+Dependencias:
+
+```bash
+
+```
+
+Y necesitas crear una cuenta en ([API Ninjas](https://api-ninjas.com/profile)) para obtener tu clave API, que has de poner en el _placeholder_ de debajo, dentro del `~/.bashrc`:
+
+```bash
+# La vaca que quota
+API_KEY="aquí-tu-key"
+
+if command -v cowsay >/dev/null 2>&1; then
+    respuesta=$(curl -s --fail \
+        "https://api.api-ninjas.com/v2/randomquotes?categories=wisdom,success" \
+        -H "X-Api-Key: $API_KEY")
+
+    if [ $? -eq 0 ]; then
+        frase=$(echo "$respuesta" | jq -r '.[0].quote')
+        autor=$(echo "$respuesta" | jq -r '.[0].author')
+
+        if [ -n "$frase" ] && [ "$frase" != "null" ]; then
+            cowsay "$frase — $autor"
+        else
+            cowsay "Bienvenido Alejandro"
+        fi
+    fi
+fi
+```
+
+Es cada apertura de terminal:
+
+- Se hace una llamada HTTP.
+- Se recibe el JSON con la frase.
+- Se extrae la cita.
+- La vaca la muge (habría estado bien escribir esto en [COW](https://esolangs.org/wiki/COW)...).
+
+Se verá algo así:
+
+```bash
+alejandro@DESKTOP-AIFFN1L:/mnt/c/Users/Alejandro$ source ~/.bashrc
+ ________________________________________
+/ Embrace every good opportunity you     \
+\ encounter — some will get you informed /
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
 ## Recarga la Configuración
 
 Después de editar `~/.bashrc`, ejecuta:
