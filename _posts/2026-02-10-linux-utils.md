@@ -257,7 +257,7 @@ Sí, literalmente una vaca que aparece al inicio de cada terminal abierto y te l
 Dependencias:
 
 ```bash
-
+sudo apt install curl jq cowsay
 ```
 
 Y necesitas crear una cuenta en ([API Ninjas](https://api-ninjas.com/profile)) para obtener tu clave API, que has de poner en el _placeholder_ de debajo, dentro del `~/.bashrc`:
