@@ -1,4 +1,12 @@
+- title: "Unraveling Noise in 3D Point Clouds: A Comprehensive Survey"
+  date: 06 mar. 2026
+  url: https://www.techrxiv.org/doi/full/10.36227/techrxiv.177281447.78646347/v1
+  publisher: TechRxiv (IEEE)
+  image: ''
+  description: |
+    Noise contamination in three-dimensional data remains a persistent challenge in reconstruction pipelines, with critical implications for emerging technologies such as autonomous navigation, cultural heritage preservation, and industrial inspection. This work presents an innovative three-axis taxonomy that unifies the classification and mitigation of noise in 3D point clouds. Our framework systematically categorizes noise sources into: (1) statistical models, (2) scene interferences, and (3) reconstruction imperfections. Through critical analysis, we reveal fundamental limitations, practical challenges, and adaptive strategies employed in specific scenarios. Among the unresolved challenges are real-time processing of dynamic scenes, separation of overlapping noise types, and biases in learning models toward specific sensor geometries. This research consolidates fragmented knowledge into actionable guidelines, equipping professionals to design robust 3D systems and guiding researchers toward impactful innovations in noise-adaptive sensing.
 - title: "Physics Meets Pixels: PDE Models in Image Processing"
+
   date: 11 dic. 2024
   url: https://arxiv.org/abs/2412.11946
   publisher: arxiv (Cornell Tech)
