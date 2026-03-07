@@ -3,32 +3,62 @@
     top: 20%;
     width: 220px; 
     max-height: 70vh;
-    overflow-y: auto;
+    overflow: visible; /* Permitir que la flecha se salga del contenedor */
     padding: 10px;
     font-size: 14px;
     z-index: 1000;
-    transition: transform 1.3s ease; 
+    transition: transform 1.3s ease;
 }
 
 #toc-container.hidden {
     transform: translateX(100%); /* Desplazar el índice fuera de la pantalla */
-    visibility: hidden;
-    opacity: 0;
-    transition: transform 1.3s ease, visibility 1.3s ease, opacity 1.3s ease;
+    transition: transform 1.3s ease;
 }
 
-/* Mantener el botón de mostrar visible aunque el índice esté oculto */
+/* Cuando el TOC está a la izquierda y oculto, deslizar hacia la izquierda */
+#toc-container.left.hidden {
+    transform: translateX(-100%);
+}
+
+/* Ocultar solo el contenido interno cuando el TOC está oculto, pero mantener el botón visible */
+#toc-container.hidden h3,
+#toc-container.hidden nav,
+#toc-container.hidden #toggle-toc {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1.3s ease, opacity 1.3s ease;
+}
+
+/* El botón de flecha siempre visible, incluso cuando el contenedor está oculto */
+#toc-container.hidden #toggle-toc-visibility {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+/* Botón de flecha - siempre visible, sin recuadro, solo símbolo */
 #toggle-toc-visibility {
-    position: fixed;
-    top: 20%;
-    right: 15px; 
-    background: none;
-    border: none;
-    font-size: 20px;
+    background: none !important;
+    border: none !important;
+    border-radius: 0;
+    font-size: 14px; /* Más pequeño */
+    font-weight: bold; /* Negrita */
     cursor: pointer;
-    z-index: 1001;
-    padding: 5px;
+    z-index: 1002; /* Mayor que el TOC para estar siempre visible */
+    padding: 0;
+    margin: 0;
+    transition: all 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+    display: block;
     @include themed(color, black, $text-white);
+    width: auto;
+    height: auto;
+    line-height: 1;
+    
+    &:hover {
+        opacity: 0.7;
+    }
 }
 
 /* Quitar estilos predeterminados de los botones */

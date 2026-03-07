@@ -134,6 +134,7 @@ Changes made to fulfil my needs:
 * Centered Markdown tables and fitted the content to the page
 * Created music page with dynamic cards for each theme
 * Added Formspree endpoint to contact card email service
+* Added hide/show symbol to TOC window
 
 <div align="center">
 <sub><sup>© 2025 Alejandro Garnung Menéndez, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>

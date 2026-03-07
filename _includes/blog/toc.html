@@ -1,6 +1,6 @@
 <aside id="toc-container" class="right">
     <button id="toggle-toc">⇄</button>
-    <!--<button id="toggle-toc-visibility">👁️</button>-->
+    <button id="toggle-toc-visibility" title="Mostrar/ocultar índice"><</button>
     <h3>Index</h3>
     <nav id="toc"></nav>
 </aside>
@@ -38,17 +38,132 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // Función para actualizar la flecha y posición según el estado
+    function updateArrow() {
+        let tocContainer = document.getElementById("toc-container");
+        let toggleVisibilityBtn = document.getElementById("toggle-toc-visibility");
+        let isHidden = tocContainer.classList.contains("hidden");
+        let isLeft = tocContainer.classList.contains("left");
+        
+        // Asegurar que la flecha siempre esté visible
+        toggleVisibilityBtn.style.display = "block";
+        toggleVisibilityBtn.style.visibility = "visible";
+        toggleVisibilityBtn.style.opacity = "1";
+        toggleVisibilityBtn.style.zIndex = "1002";
+        toggleVisibilityBtn.style.position = "fixed";
+        
+        // Posicionar la flecha a la misma altura que el botón ⇄ y el título "Index"
+        // Usar siempre la misma fórmula fija para evitar saltos
+        // El contenedor está en top: 20%, tiene padding: 10px, y el botón ⇄ está en top: 5px
+        // Usar calc para que sea consistente siempre
+        toggleVisibilityBtn.style.top = "calc(20vh + 10px + 5px)"; // 20vh (top del contenedor) + 10px (padding) + 5px (top del botón)
+        toggleVisibilityBtn.style.transform = "none";
+        
+        // 4 combinaciones:
+        // Cuando está OCULTO (dirección correcta, no cambiar):
+        // 1. TOC oculto a la derecha: flecha < (apunta derecha para mostrar)
+        // 2. TOC oculto a la izquierda: flecha > (apunta izquierda para mostrar)
+        // Cuando está VISIBLE (invertir dirección):
+        // 3. TOC visible a la derecha: flecha > (apunta derecha, hacia el TOC, para ocultar)
+        // 4. TOC visible a la izquierda: flecha < (apunta izquierda, hacia el TOC, para ocultar)
+        
+        if (isHidden) {
+            // TOC oculto: flecha en el borde de la pantalla apuntando hacia donde está el TOC
+            if (isLeft) {
+                // TOC oculto a la izquierda: flecha > apunta hacia la izquierda (donde está el TOC)
+                toggleVisibilityBtn.textContent = ">";
+                toggleVisibilityBtn.title = "Mostrar índice";
+                toggleVisibilityBtn.style.left = "15px";
+                toggleVisibilityBtn.style.right = "auto";
+            } else {
+                // TOC oculto a la derecha: flecha < apunta hacia la derecha (donde está el TOC)
+                toggleVisibilityBtn.textContent = "<";
+                toggleVisibilityBtn.title = "Mostrar índice";
+                toggleVisibilityBtn.style.right = "15px";
+                toggleVisibilityBtn.style.left = "auto";
+            }
+        } else {
+            // TOC visible: flecha pegada al contenedor, dirección invertida
+            if (isLeft) {
+                // TOC visible a la izquierda: flecha < apunta hacia la izquierda (hacia el TOC, para ocultar)
+                toggleVisibilityBtn.textContent = "<";
+                toggleVisibilityBtn.title = "Ocultar índice";
+                // A la derecha del TOC cuando está a la izquierda (20px del contenedor + 220px ancho + 5px margen)
+                toggleVisibilityBtn.style.left = (20 + 220 + 5) + "px";
+                toggleVisibilityBtn.style.right = "auto";
+            } else {
+                // TOC visible a la derecha: flecha > apunta hacia la derecha (hacia el TOC, para ocultar)
+                toggleVisibilityBtn.textContent = ">";
+                toggleVisibilityBtn.title = "Ocultar índice";
+                // A la izquierda del TOC cuando está a la derecha (20px del contenedor + 220px ancho + 5px margen desde la derecha)
+                toggleVisibilityBtn.style.right = (20 + 220 + 5) + "px";
+                toggleVisibilityBtn.style.left = "auto";
+            }
+        }
+    }
+    
+    // No necesitamos actualizar la posición en scroll/resize porque usamos una posición fija
+    // Solo actualizamos cuando cambia el estado del TOC
+
     // Alternar posición (izquierda/derecha)
     document.getElementById("toggle-toc").addEventListener("click", function () {
         let tocContainer = document.getElementById("toc-container");
         tocContainer.classList.toggle("left");
         tocContainer.classList.toggle("right");
+        
+        // Actualizar dirección de la flecha y posición
+        updateArrow();
     });
 
     // Alternar visibilidad del índice
-    document.getElementById("toggle-toc-visibility").addEventListener("click", function () {
-        let tocContainer = document.getElementById("toc-container");
-        tocContainer.classList.toggle("hidden"); // Alterna la visibilidad
+    let toggleVisibilityBtn = document.getElementById("toggle-toc-visibility");
+    let tocContainer = document.getElementById("toc-container");
+    
+    // Asegurar que la flecha esté siempre visible inicialmente
+    toggleVisibilityBtn.style.display = "block";
+    toggleVisibilityBtn.style.visibility = "visible";
+    toggleVisibilityBtn.style.opacity = "1";
+    toggleVisibilityBtn.style.zIndex = "1002";
+    
+    // Mover el botón al body inmediatamente para que siempre tenga position: fixed
+    // Esto evita saltos cuando el TOC se muestra/oculta
+    if (toggleVisibilityBtn.parentElement !== document.body) {
+        document.body.appendChild(toggleVisibilityBtn);
+    }
+    
+    // Restaurar estado guardado en localStorage (solo si existe y es explícitamente "true")
+    let savedState = localStorage.getItem("toc-hidden");
+    // Por defecto, el TOC está visible (no agregar "hidden" si no hay estado guardado o es null)
+    if (savedState === "true") {
+        tocContainer.classList.add("hidden");
+    } else {
+        // Asegurar que esté visible si no hay estado guardado
+        tocContainer.classList.remove("hidden");
+        localStorage.setItem("toc-hidden", "false");
+    }
+    
+    // Actualizar flecha inicial
+    updateArrow();
+    
+    toggleVisibilityBtn.addEventListener("click", function () {
+        let isHidden = tocContainer.classList.contains("hidden");
+        
+        if (isHidden) {
+            // Mostrar TOC
+            tocContainer.classList.remove("hidden");
+            localStorage.setItem("toc-hidden", "false");
+        } else {
+            // Ocultar TOC
+            tocContainer.classList.add("hidden");
+            localStorage.setItem("toc-hidden", "true");
+        }
+        
+        // Actualizar dirección de la flecha inmediatamente
+        // El botón siempre está en el body con position: fixed, así que no hay saltos
+        updateArrow();
+        
+        // También actualizar después de un pequeño delay para asegurar que la transición CSS no afecte
+        setTimeout(updateArrow, 100);
     });
 });
 </script>
