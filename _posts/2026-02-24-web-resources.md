@@ -113,6 +113,17 @@ Proyectos de electrónica DIY muy entretenidos, por ejemplo <a href="https://www
 
 <br>
 
+
+- [https://matematicas.uam.es/~fernando.chamizo/](https://matematicas.uam.es/~fernando.chamizo/)
+
+<div align="center">
+
+Interesante web personal con todo tipo de notas, artículos, ideas, apuntes... de matematicas, física y computación... del profesor Fernando Chamizo; además ese estilo de HTML/CSS puro tiene su encanto... o su desencanto.
+
+</div>
+
+<br>
+
 - [https://zzz.dog/](https://zzz.dog/)
 
 <div align="center">
