@@ -251,6 +251,16 @@ Un blog de un fanático de la tecnología ("Jack of all trades; master of none")
 
 <br>
 
+- [https://www.daviddomminney.com/videos/pixel-noise-music-from-images](https://www.daviddomminney.com/videos/pixel-noise-music-from-images)
+
+<div align="center">
+
+Web del músico y geek David Domminney Fowler, colaborador de Computerphile con interesantísimos vídeos de la ciencia de la música (i.e. Fourier) como [Pixel Noise (Music from Images)](https://www.youtube.com/watch?v=c4cKlez0OCM), [Cómo funciona Shazam (¡probablemente!)](https://www.youtube.com/watch?v=RRsq9apr5QY) y [Coding a Guitar Sound in C](https://www.youtube.com/watch?v=Ly1v1BRVpz4).
+
+</div>
+
+<br>
+
 - [https://doc.lagout.org/](https://doc.lagout.org/)
 
 <div align="center">
