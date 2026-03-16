@@ -211,6 +211,16 @@ Memes y humor de programación.
 
 <br>
 
+- [https://www.michaelmauboussin.com/writing](https://www.michaelmauboussin.com/writing)
+
+<div align="center">
+
+La página personal de Michael Mauboussin, famoso inversor director de un fondo mutuo de Morgan Stanley; especialmente interesantes sus artículos sobre finanzas y comprensión del mercado.
+
+</div>
+
+<br>
+
 - [https://audionyq.com/](https://audionyq.com/)
 
 <div align="center">
