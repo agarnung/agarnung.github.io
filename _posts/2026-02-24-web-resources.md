@@ -242,6 +242,26 @@ La página personal de Michael Mauboussin, famoso inversor director de un fondo 
 
 <br>
 
+- [https://mathshistory.st-andrews.ac.uk/OfTheDay/today/](https://mathshistory.st-andrews.ac.uk/OfTheDay/today/)
+
+<div align="center">
+
+Matemáticos del día (de hoy).
+
+</div>
+
+<br>
+
+- [https://apod.nasa.gov/apod/](https://apod.nasa.gov/apod/)/[https://apod.nasa.gov/apod/archivepix.html](https://apod.nasa.gov/apod/archivepix.html)
+
+<div align="center">
+
+Cada día un imagen del cosmos distinta + una descripción _desta_ por parte de un astrónomo.
+
+</div>
+
+<br>
+
 - [https://audionyq.com/](https://audionyq.com/)
 
 <div align="center">
