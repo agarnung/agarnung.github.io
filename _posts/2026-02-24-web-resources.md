@@ -197,6 +197,16 @@ Buen blog.
 
 <br>
 
+- [https://aras-p.info/blog/2020/07/26/Black-Hole-Demo/](https://aras-p.info/blog/2020/07/26/Black-Hole-Demo/)
+
+<div align="center">
+
+Web personal de Aras, un desarrollador de Blender y Unity, muy dedicada la computación y arte gráfico.
+
+</div>
+
+<br>
+
 - [https://www.hackster.io/](https://www.hackster.io/)
 
 - [https://www.kornia.org/tutorials/](https://www.kornia.org/tutorials/)
