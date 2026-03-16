@@ -53,6 +53,16 @@ El microscopio del código: escribe C++ y observa en tiempo real cómo se compil
 
 <br>
 
+- [https://johnwlambert.github.io/subgradient-methods/](https://johnwlambert.github.io/subgradient-methods/)
+
+<div align="center">
+
+Buen blog personal de investigador de Google DeepMind.
+
+</div>
+
+<br>
+
 - [https://clouard.users.greyc.fr/Pantheon/experiments/index-en.html](https://clouard.users.greyc.fr/Pantheon/experiments/index-en.html)
 
 <div align="center">
