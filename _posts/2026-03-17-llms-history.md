@@ -18,14 +18,14 @@ Antes de 2018 (aproximadamente), **no existía un "estándar LLM"** porque no ex
 * **Librerías específicas por framework**: cada framework tenía su propia interfaz.
 * **APIs directas**: llamadas a funciones en Python (NLTK, Gensim, Scikit-learn, spaCy...) o C++ (MITIE, Dlib, OpenNLP...), sin HTTP ni JSON.
 
-O sea, se trabajaba alrededor de librerías que se centraban más en el ** _feature engineering_** manual y modelos estadísticos o predictivos de **n-gramas**, o **redes neuronales** relativamente poco pesadas computacionalmente, a diferencia de los modelos basados en **Transformers** actuales.
+O sea, se trabajaba alrededor de librerías que se centraban más en el _**feature engineering**_ manual y modelos estadísticos o predictivos de **n-gramas**, o **redes neuronales** relativamente poco pesadas computacionalmente, a diferencia de los modelos basados en **Transformers** actuales.
 
 Por ejemplo, en la época, entre otras técnicas muy utilizadas destacan:
 
 * [**word2vec**](https://lamyiowce.github.io/word2viz/): para manejo de embeddings de palabras, sin arquitectura de lenguaje. U otros modelos como **seq2seq** usando LSTM.
 * [**GloVe**](https://www-nlp.stanford.edu/projects/glove/): aprendizaje no supervisado para obtener embeddings globales de palabras, modelos estáticos.
 * [**fastText**](https://github.com/facebookresearch/fastText?tab=readme-ov-file): "library for efficient learning of word representations and sentence classification".
-* **RNNs/[LSTMs](https://direct.mit.edu/neco/article-abstract/9/8/1735/6109/Long-Short-Term-Memory?redirectedFrom=fulltext)/[Bidirectional-LSTMs](https://www.researchgate.net/publication/349277064_Bidirectional_LSTM_Networks_for_Improved_Phoneme_Classification_and_Recognition)/[GRU](https://arxiv.org/abs/1406.1078)** como predecesores de los Transformers/LLMs: modelos recurrentes con arquitecturas diseñadas manualmente o, en algunos casos, combinadas con modelos probabilísticos como [CRF](https://dl.acm.org/doi/10.5555/645530.655813) o [grafos de factores](http://yann.lecun.com/exdb/publis/pdf/lecun-06.pdf) o [GTNs](http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf), que podía resultar en sistemas bastante complejos.
+* **[RNNs](https://arxiv.org/abs/1412.3555)/[LSTMs](https://direct.mit.edu/neco/article-abstract/9/8/1735/6109/Long-Short-Term-Memory?redirectedFrom=fulltext)/[Bidirectional-LSTMs](https://www.researchgate.net/publication/349277064_Bidirectional_LSTM_Networks_for_Improved_Phoneme_Classification_and_Recognition)/[GRU](https://arxiv.org/abs/1406.1078)** como predecesores de los Transformers/LLMs: modelos recurrentes con arquitecturas diseñadas manualmente o, en algunos casos, combinadas con modelos probabilísticos como [CRF](https://dl.acm.org/doi/10.5555/645530.655813) o [grafos de factores](http://yann.lecun.com/exdb/publis/pdf/lecun-06.pdf) o [GTNs](http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf), que podía resultar en sistemas bastante complejos.
 
 > [!IMPORTANT] Lejos de estar obsoletas, muchas de estas herramientas son idóneas hoy día, incluso con todos los avances "académicos" y en _benchmarks_, para ejecutar modelos de lenguaje y aplicaciones de PLN en dispositivos de muy bajas prestaciones, o en tiempo real, o cuando no se dispone de grandes conjuntos de datos.
 
