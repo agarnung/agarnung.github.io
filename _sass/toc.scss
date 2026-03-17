@@ -8,6 +8,15 @@
     font-size: 14px;
     z-index: 1000;
     transition: transform 1.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+#toc {
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    min-height: 0; /* Permite que el flex item se encoja */
 }
 
 #toc-container.hidden {
