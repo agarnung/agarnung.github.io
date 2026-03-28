@@ -310,6 +310,16 @@ Ligado a su perfil de Github, fantástico contenido sobre física, Unity y cienc
 
 </div>
 
+<br>
+
+- [https://www.norwegiancreations.com/](https://www.norwegiancreations.com/)
+
+<div align="center">
+
+Esta gente de la empresa Norwegian Creations, que hacen proyectos de electrónica y microcontroladores y tienen un blog muy interesante contando sus proyectos; los encontré buscando sobre cómo escribir en EEPROM (memoria no volátil) desde micrcontroladores (cuidado, que tienen un ciclo de vida máximo y si te pasas escribiendo datos cada segundo en ellos puedes acabar su vida en menos de una semana, así que lee antes de escribir [que leer no desgasta] y solo escribe si hace falta).
+
+</div>
+
 ## Webs para consultar libros
 
 - [https://oceanofpdf.com/](https://oceanofpdf.com/)
