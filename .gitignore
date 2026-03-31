@@ -6,6 +6,7 @@ _site/
 
 # Ruby Gems
 .bundle
+vendor/
 Gemfile.lock
 *.gem
 
