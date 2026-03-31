@@ -1,5 +1,3 @@
-# Workflow oficial: Jekyll + GitHub Pages (dependencias alineadas con Pages)
-# Tras el push, en Settings → Pages elige Source: GitHub Actions (no "Deploy from branch").
 name: Deploy Jekyll with GitHub Pages dependencies preinstalled
 
 on:
