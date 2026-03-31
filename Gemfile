@@ -1,4 +1,9 @@
 source "https://rubygems.org"
 
+# No uses 'gem jekyll' directamente, usa la versión oficial de GitHub
 gem "github-pages", group: :jekyll_plugins
-gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+
+# Plugins necesarios para tu portafolio
+gem "jekyll-gist"
+gem "jekyll-feed"
+gem "jekyll-include-cache"
