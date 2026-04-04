@@ -31,11 +31,11 @@ No solo esto, sino que aún más dimensiones pueden ayudar. Esto es porque en re
 
 > [!TIP] Más dimensiones == más capacidad para representar combinaciones complejas, no "más etiquetas individuales".
 
-Además, el entrenamiento regulariza el espacio. Esto significa que los embeddings se aprenden con **millones o miles de millones de ejemplos** y durante ese proceso se evita que los vectores se vuelvan arbitrarios, pues aparecen **estructuras geométricas útiles** de manera natural; algo observado en trabajos con modelos como [Word2Vec](https://arxiv.org/abs/1301.3781), [GloVe](https://nlp.stanford.edu/pubs/glove.pdf) y otros modelos modernos de embeddings.
+Además, el entrenamiento regulariza el espacio. Esto significa que los embeddings se aprenden con **millones o miles de millones de ejemplos** y durante ese proceso se evita que los vectores se vuelvan arbitrarios, pues aparecen **estructuras geométricas útiles** de manera natural; algo observado en trabajos con modelos de aprendizaje de representaciones en espacios vectoriales como [Word2Vec](https://arxiv.org/abs/1301.3781), [GloVe](https://nlp.stanford.edu/pubs/glove.pdf) y otros modelos modernos de embeddings.
 
 _El espacio aprendido tiene estructura que mitiga los problemas típicos de alta dimensión._
 
-## Un [ejemplo famoso](https://p.migdal.pl/blog/2017/01/king-man-woman-queen-why/):
+## Un [ejemplo famoso](https://p.migdal.pl/blog/2017/01/king-man-woman-queen-why/)
 
 $$\text{vector("rey")} - \text{vector("hombre")} + \text{vector("mujer")} \approx \text{vector("reina")}$$
 
