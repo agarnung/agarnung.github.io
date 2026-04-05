@@ -286,7 +286,7 @@ En el modelo acoplado, el **aire interno** pierde temperatura rápido al inicio,
 
 El sistema tarda en acercarse al **equilibrio** con el ambiente; damos por bueno un estado **cercano al régimen permanente** cuando se alcanza el **95 %** del camino hacia **temperatura ambiente**, con **convección** moderada (aire quieto en el script).
 
-Estos resultados muestran que **medir la presión en caliente** tras un viaje da una **lectura alta** respecto al valor **en frío**. Si se **purga aire** para bajar a **2,2 bar** caliente, al enfriarse la **presión** puede quedar por debajo de lo seguro (p. ej. **~1,9 bar**), empeorando **consumo** (**resistencia a la rodadura**, mayor **área de contacto**) y **riesgo de hidroplaneo**.
+Estos resultados muestran que **medir la presión en caliente** tras un viaje da una **lectura alta** respecto al valor **en frío**. Si se **purga aire** para bajar a **2,2 bar** caliente, al enfriarse la **presión** puede quedar por debajo de lo seguro (e.g. **~1,9 bar**), empeorando **consumo** (**resistencia a la rodadura**, mayor **área de contacto**) y **riesgo de hidroplaneo**.
 
 La **baja conductividad térmica del caucho** explica en buena parte que el enfriamiento no sea instantáneo: es un **aislante** que retiene calor.
 
