@@ -160,7 +160,7 @@ $$
 \gamma = \frac{h A}{m_\mathrm{neum}\, c_\mathrm{neum}}.
 $$
 
-Una forma linealizada del acoplamiento puede escribirse como:
+Y una forma linealizada del acoplamiento puede escribirse como:
 
 $$
 \frac{\mathrm{d}}{\mathrm{d}t}
@@ -172,13 +172,11 @@ $$
 \begin{pmatrix} 0 \\ \gamma\, T_\mathrm{ambiente} \end{pmatrix}.
 $$
 
-(la matriz exacta depende de cómo se linealicen los acoplamientos; lo anterior es un esquema típico de dos nodos térmicos.)
-
 ## Simulación
 
-Podemos simular este modelo térmico para ver qué pasaría si dejáramos una rueda a **60 °C** enfriarse al **ambiente** (supuesto **20 °C** en el script), **quieta**, durante **2 horas** de ventana de cálculo (el código recorre más tiempo en la malla temporal).
+Podemos simular este modelo térmico para ver qué pasaría si dejáramos una rueda a **60 °C** enfriarse al **ambiente** (supuesto **20 °C** en el script), **quieta**, durante **2 horas** de ventana de cálculo (o el recorrido que sea en la malla temporal).
 
-El código usa **SciPy** (`odeint`) y **NumPy**; compara un **modelo acoplado de dos nodos** (aire + neumático) con un **modelo simple de Newton** (una sola exponencial). La **presión** se obtiene de la **ley de Gay-Lussac** a volumen casi constante:
+Se usa el solver `odeint` de **SciPy** para ODEs de primer orden; se compara un **modelo acoplado de dos nodos** (aire + neumático) con un **modelo simple de Newton** (una sola exponencial). La **presión** se obtiene de la **ley de Gay-Lussac** a volumen casi constante:
 
 ```py
 import numpy as np
