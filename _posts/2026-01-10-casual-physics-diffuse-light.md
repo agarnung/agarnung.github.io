@@ -1,6 +1,6 @@
 ---
 title: Casual Physics - Diffuse light
-tags: [physics]
+tags: [physics, optics, divulgation]
 style: fill
 color: light
 description: Un fenómeno óptico del día a día
