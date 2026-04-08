@@ -2,7 +2,7 @@
 title: Computación Neuromórfica
 tags: [computer science, divulgation]
 style: fill
-color: light
+color: danger
 description: Un primer acercamiento a este paradigma de computación.
 ---
 
@@ -12,6 +12,8 @@ Ya comentamos en un post alguna cosa sencilla sobre la computación cuántica (s
 
 > [!TIP]
 > La arquitectura de Von Neumann, en la que se basan los computadores clásicos y la gran mayoría de del hardware moderno, consta principalmente de una unidad central de procesamiento (CPU), memoria principal (RAM) y unidades de entradasalida (E/S), donde tanto datos como programas se almacenan en la misma memoria. 
+
+![vonneumann-vs-neuromorphic](https://www.researchgate.net/profile/Prasanna-Date/publication/358255092/figure/fig1/AS:1118564325031937@1643697925232/Comparison-of-the-von-Neumann-architecture-with-the-neuromorphic-architecture-These_W640.jpg)
 
 Es un concepto en el que ya se pensaba desde hace tiempo, pero requería algo de investigación teórica y evolución de nuevo hardware para llevar al mundo real. Si pensamos en el cerebro humano, sabemos que las neuronas no son rígidas, ni en el sentido individual (nacen y mueren neuronas constantemente a lo largo de nuestra vida [aunque esta tasa varíe con la edad]) ni colectivo (los enlaces y sinapsis entre neuronas y grupos de neuronas se degradan, reorganizan y refuerzan de maneras impredecibles). Por lo tanto, las redes neuronales clásicas (conn peso y _bias_) son, en este sentido, una limitación arquitectónica muy simplificada de la realidad. Un modelo más fidedigno necesitaría dar flexibilidad a las conexiones, por lo menos, i.e. la red debiera aprender como auto-organizarse dinámicamente.
 
