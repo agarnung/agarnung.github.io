@@ -8,7 +8,7 @@ description: Un primer acercamiento a este paradigma de computación.
 
 ## Introducción
 
-Ya comentamos en un post alguna cosa sencilla sobre la computación cuántica (superposición, entrelazamiento de bits cuánticos o qubits...) y, por supuesto, principalmente todo el blog se fundamenta en el framework de la computación clásica (algoritmos secuenciales y deterministas, puertas lógicas y álgebra de Bool, bits como unidad básica, arquitectura de Von Neumann...), pero existe (al menos) un tercer tipo de computación que está poniéndose de moda desde hace un tiempo, y es la computación neuromórfica.
+Ya comentamos en [un post](./quantum-post) alguna cosa sencilla sobre la computación cuántica (superposición, entrelazamiento de bits cuánticos o qubits...) y, por supuesto, principalmente todo el blog se fundamenta en el framework de la computación clásica (algoritmos secuenciales y deterministas, puertas lógicas y álgebra de Bool, bits como unidad básica, arquitectura de Von Neumann...), pero existe (al menos) un tercer tipo de computación que está poniéndose de moda desde hace un tiempo, y es la computación neuromórfica.
 
 > [!TIP]
 > La arquitectura de Von Neumann, en la que se basan los computadores clásicos y la gran mayoría de del hardware moderno, consta principalmente de una unidad central de procesamiento (CPU), memoria principal (RAM) y unidades de entradasalida (E/S), donde tanto datos como programas se almacenan en la misma memoria. 
