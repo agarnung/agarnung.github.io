@@ -1,51 +1,12 @@
 {%- comment -%}
-  Avisos por correo sin servidor: configura newsletter.subscribe_url o newsletter.embed_html
-  (p. ej. follow.it leyendo /feed.xml). El feed lo genera jekyll-feed.
+  Solo el formulario follow.it. Edita el HTML en newsletter_embed.html.
 {%- endcomment -%}
-{%- assign sub_url = site.newsletter.subscribe_url | default: "" | strip -%}
-{%- assign emb = site.newsletter.embed_html | default: "" | strip -%}
-{%- assign has_auto = false -%}
-{%- if emb != "" -%}{%- assign has_auto = true -%}{%- elsif sub_url != "" -%}{%- assign has_auto = true -%}{%- endif -%}
-<div class="card border-primary {% if include.variant == 'compact' %}mt-4{% else %}mt-3 mb-2{% endif %}">
-  <div class="card-body py-3 px-3">
-    <h2 class="h5 card-title mb-2">
-      <i class="fas fa-bell text-primary" aria-hidden="true"></i> Seguir este blog
-    </h2>
-    {% if has_auto %}
-    <p class="card-text small mb-3 mb-md-2">
-      Suscríbete para recibir avisos cuando publique algo nuevo..
-    </p>
-    {% if emb != "" %}
-    <div class="newsletter-embed mb-3">
-      {{ emb }}
-    </div>
-    {% endif %}
-    <div class="d-flex flex-wrap align-items-stretch">
-      {% if sub_url != "" %}
-      <a class="btn btn-primary btn-sm mr-2 mb-2"
-         href="{{ sub_url }}"
-         target="_blank" rel="noopener noreferrer">
-        <i class="fas fa-envelope" aria-hidden="true"></i> Suscribirse a la newsletter
-      </a>
-      {% endif %}
-      <a class="btn btn-outline-primary btn-sm mb-2"
-         href="{{ '/feed.xml' | absolute_url }}"
-         {%- if site.open_new_tab %} target="_blank" rel="noopener noreferrer"{% endif %}>
-        <i class="fas fa-rss" aria-hidden="true"></i> Feed RSS
-      </a>
-    </div>
-    {% else %}
-    <!-- Newsletter: añade newsletter.subscribe_url o newsletter.embed_html en _config tras registrar https://agarnung.github.io/feed.xml en follow.it (u otro RSS→email). -->
-    <p class="card-text small mb-3 mb-md-2">
-      Usa el feed RSS en Feedly, Inoreader u otra app: las entradas nuevas aparecen al publicarse.
-    </p>
-    <div class="d-flex flex-wrap align-items-stretch">
-      <a class="btn btn-outline-primary btn-sm mb-2"
-         href="{{ '/feed.xml' | absolute_url }}"
-         {%- if site.open_new_tab %} target="_blank" rel="noopener noreferrer"{% endif %}>
-        <i class="fas fa-rss" aria-hidden="true"></i> Suscribirse al RSS
-      </a>
-    </div>
-    {% endif %}
-  </div>
+{%- capture emb -%}
+{%- include blog/newsletter_embed.html -%}
+{%- endcapture -%}
+{%- assign emb = emb | strip -%}
+{%- if emb != "" -%}
+<div class="followit-embed-only mt-5 pt-3">
+  {{ emb }}
 </div>
+{%- endif -%}

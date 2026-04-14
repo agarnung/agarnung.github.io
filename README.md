@@ -135,7 +135,7 @@ Changes made to fulfil my needs:
 * Created music page with dynamic cards for each theme
 * Added Formspree endpoint to contact card email service
 * Added hide/show symbol to TOC window
-* Added newsletter-type email when there is a new post with jekyll-feed plugin
+* Added newsletter-type email when there is a new post with jekyll-feed plugin and follow.it service
 
 <div align="center">
 <sub><sup>© 2025 Alejandro Garnung Menéndez, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>

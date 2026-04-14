@@ -116,14 +116,6 @@ buymeacoffee:
 
 
 
-### Newsletter (correo automático; GitHub Pages no puede enviar mails por sí solo) ###
-# Opción recomendada (gratis para el lector): https://follow.it — registra el feed Atom
-# (https://agarnung.github.io/feed.xml). 
-# follow.it envía el correo cuando el RSS tenga entradas nuevas.
-newsletter:
-  subscribe_url: "" # p. ej. URL de la "lean follow page" que da follow.it
-  embed_html: "" # opcional: el iframe/script del formulario (YAML multilínea con | )
-
 ### Contact Form ###
 contact:
   enabled: true               # Set true to enable contact form
