@@ -11,23 +11,24 @@
 
     <div class="text-muted wow animated slideInUp" data-wow-delay=".2s">
       <div class="container mt-4">
-        <h3 class="font-weight-bold" style="margin-top: 0px">Hi! Welcome to my website</h3>
+        <h3 class="font-weight-bold" style="margin-top: 0px" data-i18n="landing.welcome">Hi! Welcome to my website</h3>
       </div>
     </div>
-    
+
   </div>
 
 <section class="p-4 align-items-start" class="text-muted wow animated slideInUp" data-wow-delay=".1s">
   <div class="col-lg-8 mx-auto markdown-body" style="text-align: justify; margin-top: 0px">
-    <p>
+    <p data-i18n-html="landing.intro_html">
       I am Alejandro, <span id="age"></span> years old. Here, you can take a look at my (personal) <a href="/projects">projects</a> (I have selected several that are available on my GitHub profile), <a href="/blog">blog</a> (where I document and share insights about computer vision, image processing, math, geometry and engineering, among other topics), <a href="/publications">publications</a> (a mix of informal, formal, and quasi-formal documents I find valuable for anyone interested in my fields), and, if you'd like to know more about me, <a href="/about">additional information</a>.
     </p>
 
 	<div class="d-flex justify-content-center align-items-center">
-		<span class="mr-2" style="margin-top: 1.1rem;">Free time?, </span>
+		<span class="mr-2" style="margin-top: 1.1rem;" data-i18n="landing.freetime">Free time?,</span>
 		{% include elements/dropdown.html
 			 id="playGameDropdown"
 			 label="play a game!"
+			 label_i18n_key="landing.play_game"
 			 menu_class="dropdown dropup"
 			 source=site.data.games-dropdown-items
 		%}

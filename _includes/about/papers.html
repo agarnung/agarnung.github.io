@@ -6,10 +6,10 @@
           <h2>{{ item.title }}</h2>
           <h6 class="date">{{ item.date }}</h6>
           <div style="display: flex; align-items: center; gap: 10px;">
-          	<h6 class="url"><a target="_blank" href="{{ item.url }}">Link to paper</a></h6>
+          	<h6 class="url"><a target="_blank" href="{{ item.url }}" data-i18n="pub.link_paper">Link to paper</a></h6>
           	<h6 class="publisher">- {{ item.publisher }}</h6>
           </div>
-          <strong>Abstract:</strong>
+          <strong data-i18n="pub.abstract">Abstract:</strong>
           <p style="text-align:justify; font-size:13px"><i>{{ item.description }}</i></p>
           <img src="{{ item.image }}" alt="" class="center">
         </div>

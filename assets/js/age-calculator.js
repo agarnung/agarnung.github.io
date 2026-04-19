@@ -7,7 +7,9 @@ function ageCalculator() {
         age--;
     }
 
-    document.querySelector("#age").innerHTML = age;
+    var el = document.querySelector("#age");
+    if (el) el.innerHTML = age;
 }
 
+window.calculateAge = ageCalculator;
 ageCalculator();

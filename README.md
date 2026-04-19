@@ -136,6 +136,7 @@ Changes made to fulfil my needs:
 * Added Formspree endpoint to contact card email service
 * Added hide/show symbol to TOC window
 * Added newsletter-type email when there is a new post with jekyll-feed plugin and follow.it service
+* Added ES/EN slider to choose default language of website (i18n feature)
 
 <div align="center">
 <sub><sup>© 2025 Alejandro Garnung Menéndez, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>
