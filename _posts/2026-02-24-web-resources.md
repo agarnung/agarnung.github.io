@@ -272,6 +272,16 @@ Lenguaje funcional de creación musical de uno de los colaboradores de Audacity
 
 <br>
 
+- [https://www.domenecmirallestagliabue.com/](https://www.domenecmirallestagliabue.com/)
+
+<div align="center">
+
+Blog personal de un artista que mezcla surrealismo y tecnología.
+
+</div>
+
+<br>
+
 - [https://hjwwalters.com/real-time-edge-detection-using-esp32-cam/](https://hjwwalters.com/real-time-edge-detection-using-esp32-cam/)
 
 <div align="center">
