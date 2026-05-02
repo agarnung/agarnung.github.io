@@ -3,7 +3,7 @@ title: Servidor de Minecraft
 tags: [misc]
 style: fill
 color: warning
-description: Levantando un servidor de Minecraft propio; ventajas e inconvenientes de múltiples alternaticas.
+description: Levantando un servidor de Minecraft propio y ventajas e inconvenientes de múltiples alternativas.
 ---
 
 ![draksouls](https://static0.thegamerimages.com/wordpress/wp-content/uploads/2022/05/Firelink-Shrine-Minecraft.jpg)
