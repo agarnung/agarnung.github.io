@@ -2,7 +2,7 @@
 title: Shape Normalization 
 tags: [image processing]
 style: fill
-color: 
+color: light
 description: A technique to normalize shapes for robustness against varying geometry in identification tasks
 ---
 
