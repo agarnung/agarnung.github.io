@@ -306,6 +306,30 @@ alejandro@DESKTOP-AIFFN1L:/mnt/c/Users/Alejandro$ source ~/.bashrc
                 ||     ||
 ```
 
+### Pantallas
+
+Mostrar las dimensiones (longitud diagonal) en pulgadas de las pantallas conectadas, identificadas.
+
+```bash
+xrandr | grep " connected" | awk '{ 
+  match($0, /[0-9]+mm x [0-9]+mm/); 
+  if (RSTART > 0) { 
+    split(substr($0, RSTART, RLENGTH), dims, /[ m]+/); 
+    w=dims[1]/25.4; 
+    h=dims[3]/25.4; 
+    diag=sqrt(w*w + h*h); 
+    printf "%-10s -> %.1f pulgadas (diagonal)\n", $1, diag 
+  } 
+}'
+```
+
+Ejemplo de salida:
+
+```
+eDP-1     -> 15.6 pulgadas (diagonal)
+HDMI-1    -> 27.0 pulgadas (diagonal)
+```
+
 ## Recarga la Configuración
 
 Después de editar `~/.bashrc`, ejecuta:
