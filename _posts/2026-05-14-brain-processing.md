@@ -10,7 +10,7 @@ _Estás dormido, suena un timbre y, en milisegundos, tu cuerpo se queda completa
 
 ![cerebro_da_vinci](https://arthive.com/res/media/img/oy1200/work/07c/331862@2x.jpg)
 
-Hay ciera **grieta** dentro de nuestro cerebro que separa lo que nos pasa por dentro y lo que nos contamos a nosotros mismos sobre lo que nos está pasando. Esto es así porque estamos levantados sobre una **máquina que piensa antes que nosotros**. Es decir:
+Hay cierta **grieta** dentro de nuestro cerebro que separa lo que nos pasa por dentro y lo que nos contamos a nosotros mismos sobre lo que nos está pasando. Esto es así porque estamos levantados sobre una **máquina que piensa antes que nosotros**. Es decir:
 
 La pregunta que sostiene esta idea es si el **cerebro es secuencial o "multiprocesador"**; algo que revela algo que parece paradójico: el cerebro es un **multiprocesador masivo** que se ve obligado a simular que es secuencial para que, prácticamente, no nos volvamos locos (o por lo menos podamos saber qué acciones tomar en cada instante de tiempo).
 
