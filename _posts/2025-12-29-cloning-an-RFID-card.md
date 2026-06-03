@@ -114,7 +114,41 @@ La manera más sencilla de manejar el dispositivo es descargando su [firmware y 
 
 Una vez [instalada](https://github.com/Proxmark/proxmark3/wiki/Windows#development-environment-installation), para abrir la herramienta, ejecútese `proxmark3` (C:\Program Files (x86)\proxmark3\client\proxmark3.exe) desde la consola.
 
+Si te da error de falta de librerías .dll, arrastra setup.bat al terminal para ejecutarlo y luego vuelve a ejecutar la aplicación; te abrirá un terminal en su cliente de comandos:
+
+```bash
+C:\Users\Alejandro>"C:\Program Files (x86)\proxmark3\client\proxmark3.exe"
+[=] Session log C:\Program Files (x86)\proxmark3\client\/.proxmark3/logs/log_20260603182141.txt
+[+] loaded `C:\Program Files (x86)\proxmark3\client\/.proxmark3/preferences.json`
+[=] OFFLINE mode. Check "proxmark3.exe -h" if it's not what you want.
+
+
+
+  8888888b.  888b     d888  .d8888b.
+  888   Y88b 8888b   d8888 d88P  Y88b
+  888    888 88888b.d88888      .d88P
+  888   d88P 888Y88888P888     8888"
+  8888888P"  888 Y888P 888      "Y8b.
+  888        888  Y8P  888 888    888
+  888        888   "   888 Y88b  d88P
+  888        888       888  "Y8888P"    [  ]
+
+
+
+  [ Consider supporting: fund innovation! ]
+     Patreon - https://www.patreon.com/iceman1001/
+
+
+  [ Proxmark3 RFID instrument ]
+
+
+[offline] pm3 -->
+```
+
 También se puede seguir el [tutorial de ICEMAN](https://lab401.com/es-es/blogs/academy/proxmark-3-windows-installation) y soltar en terminal los .bat que nos da, especificando el COMX en el que estemos. Es mucho más fácil.
+
+> [!TIP]
+> Si no enciende, tiene en el lateral un pequeño pulador; púlsado y reinténtalo. Si tampoco, acuérdate de ejecutar el comando junto con el puerto en el que está conectado, e.g. `$ proxmark3 COM13`.
 
 #### Guía de Comandos Proxmark3 para Tarjetas 125 kHz
 
@@ -123,8 +157,17 @@ También se puede seguir el [tutorial de ICEMAN](https://lab401.com/es-es/blogs/
 ###### **Detección y lectura básica:**
 
 ```bash
+# Ver la ayuda de los comandos
+proxmark3.exe -h
+
+# Comprobar versión y si está activo el dispositivo
+hw version
+
 # Buscar cualquier tarjeta de baja frecuencia
 lf search
+
+# Buscar cualquier tarjeta de alta frecuencia
+hf search
 
 # Leer tarjeta EM4100 específica
 lf em 410x read
@@ -172,10 +215,7 @@ lf em 410x clone
 
 ```bash
 # Configurar T5577 como EM4100
-lf t55xx write --em 0417E614D8
-
-# O usar el método específico
-lf em 410x write 0417E614D8
+lf t55xx write --help
 ```
 
 ###### **Comandos avanzados de escritura:**
@@ -227,11 +267,8 @@ lf t55xx wipe
 ##### **4. Clonar:**
 
 ```bash
-# Método automático (recomendado)
-lf em 410x clone
-
-# O método manual:
-lf em 410x write 0417E614D8
+# Especificando el ID concreto a copiar; el de la anterior
+lf em 410x clone --id 0237G60353
 ```
 
 ##### **5. Verificar:**
@@ -243,19 +280,6 @@ lf em 410x read
 ```
 
 #### ⚠️ **Solución de Problemas Comunes**
-
-##### **Si `lf em 410x clone` no funciona:**
-
-```bash
-# 1. Verificar que hay lectura previa
-lf em 410x list
-
-# 2. Si no hay datos, leer de nuevo
-lf em 410x read
-
-# 3. Usar método alternativo
-lf t55xx write --em [UID]
-```
 
 ##### **Si la tarjeta no se detecta:**
 
