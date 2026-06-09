@@ -219,12 +219,12 @@ void maxwellHeavisidePDE(cv::Mat& u, int nIters = 1000, double c_wave = 3.0e8, d
     };
 
     auto computeMagneticField = [kernel_x, kernel_y](const cv::Mat& u, cv::Mat& H) {
-        cv::Mat ux, uy, uxy, uyx;
+        cv::Mat ux, uy, uxx, uyy;
         cv::filter2D(u, ux, -1, kernel_x, cv::Point(-1, -1), 0, cv::BORDER_REPLICATE);
         cv::filter2D(u, uy, -1, kernel_y, cv::Point(-1, -1), 0, cv::BORDER_REPLICATE);
-        cv::filter2D(ux, uxy, -1, kernel_x, cv::Point(-1, -1), 0, cv::BORDER_REPLICATE);
-        cv::filter2D(uy, uyx, -1, kernel_y, cv::Point(-1, -1), 0, cv::BORDER_REPLICATE);
-        H = uyx - uxy;
+        cv::filter2D(ux, uxx, -1, kernel_x, cv::Point(-1, -1), 0, cv::BORDER_REPLICATE);
+        cv::filter2D(uy, uyy, -1, kernel_y, cv::Point(-1, -1), 0, cv::BORDER_REPLICATE);
+        H = uyy - uxx; // Heuristic change w.r.t original paper equation to better guide the inpainting process
     };
 
     auto computeMaxwellHeavisideEMField = [useEquationOne, epsilon_0, mu_0](const cv::Mat& Ex, const cv::Mat& Ey, const cv::Mat& H, cv::Mat& EM) {
