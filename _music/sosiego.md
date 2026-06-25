@@ -1,6 +1,6 @@
 ---
 title: Sosiego
-date: 2026-02-21
+date: 2026-02-20
 description: Sosiego (2026)
 image: https://img.youtube.com/vi/LwdEHEPYqjg/maxresdefault.jpg
 video_url: https://youtu.be/LwdEHEPYqjg
