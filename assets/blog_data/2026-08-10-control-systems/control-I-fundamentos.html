@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sistemas de control I — Fundamentos</title>
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="scRenderMath()"></script>
+
+<style>
+  .sc-root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --surface-2:      #f9f9f7;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --grid:           #e1e0d9;
+    --axis:           #c3c2b7;
+    --border:         rgba(11,11,11,0.10);
+    --series-1:       #2a78d6; /* azul: salida / polo principal */
+    --series-2:       #eb6834; /* naranja: consigna / entrada */
+    --series-3:       #1baf7a; /* aqua: referencia / ceros */
+    --series-4:       #eda100; /* amarillo: polo secundario */
+    --series-8:       #e34948; /* rojo: inestable */
+    --rhp-wash:       rgba(227,73,72,0.055);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .sc-root {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --surface-2:      #0d0d0d;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #898781;
+      --grid:           #2c2c2a;
+      --axis:           #383835;
+      --border:         rgba(255,255,255,0.10);
+      --series-1:       #3987e5;
+      --series-2:       #d95926;
+      --series-3:       #199e70;
+      --series-4:       #c98500;
+      --series-8:       #e66767;
+      --rhp-wash:       rgba(230,103,103,0.09);
+    }
+  }
+  :root[data-theme="dark"] .sc-root {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --surface-2:      #0d0d0d;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #898781;
+    --grid:           #2c2c2a;
+    --axis:           #383835;
+    --border:         rgba(255,255,255,0.10);
+    --series-1:       #3987e5;
+    --series-2:       #d95926;
+    --series-3:       #199e70;
+    --series-4:       #c98500;
+    --series-8:       #e66767;
+    --rhp-wash:       rgba(230,103,103,0.09);
+  }
+
+  .sc-root {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--surface-2);
+    color: var(--text-primary);
+    padding: 1.25rem;
+    max-width: 1040px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+  .sc-root * { box-sizing: border-box; }
+  .sc-root h1 { font-size: 1.4rem; margin: 0 0 .25rem; }
+  .sc-root h2 { font-size: 1.1rem; margin: 0 0 .5rem; }
+  .sc-root h3 { font-size: .92rem; margin: 1rem 0 .35rem; color: var(--text-secondary); }
+  .sc-root p, .sc-root li { color: var(--text-secondary); font-size: .92rem; }
+  .sc-root .sub { color: var(--text-muted); font-size: .85rem; margin: 0 0 1rem; }
+  .sc-root code { background: var(--surface-1); border: 1px solid var(--border); border-radius: 4px; padding: .05rem .3rem; font-size: .88em; }
+  .sc-root .eq {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 8px;
+    padding: .35rem .9rem; margin: .6rem 0; color: var(--text-primary);
+    overflow-x: auto; overflow-y: hidden;
+  }
+  .sc-root .katex-display { margin: .5em 0; }
+  .sc-root .katex { font-size: 1.02em; }
+
+  .sc-tabs { display: flex; gap: .35rem; flex-wrap: wrap; border-bottom: 1px solid var(--border); margin-bottom: 1rem; }
+  .sc-tab {
+    background: none; border: none; cursor: pointer;
+    padding: .55rem .8rem; font-size: .88rem; color: var(--text-secondary);
+    border-bottom: 2px solid transparent; font-family: inherit;
+  }
+  .sc-tab.active { color: var(--series-1); border-bottom-color: var(--series-1); font-weight: 600; }
+  .sc-tab:hover { color: var(--text-primary); }
+
+  .sc-panel { display: block; }
+
+  .sc-card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 1rem; }
+
+  .sc-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(205px, 1fr)); gap: .8rem 1.2rem; margin-bottom: .75rem; }
+  .sc-ctrl label { display: flex; justify-content: space-between; gap: .5rem; font-size: .82rem; color: var(--text-secondary); margin-bottom: .2rem; }
+  .sc-ctrl label span.val { color: var(--text-primary); font-variant-numeric: tabular-nums; font-weight: 600; }
+  .sc-ctrl input[type=range] { width: 100%; accent-color: var(--series-1); }
+  .sc-root select {
+    background: var(--surface-2); color: var(--text-primary); border: 1px solid var(--border);
+    border-radius: 6px; padding: .32rem .4rem; font-family: inherit; font-size: .85rem;
+  }
+
+  .sc-row { display: flex; gap: .6rem 1rem; flex-wrap: wrap; align-items: center; margin-bottom: .6rem; }
+  .sc-check { font-size: .82rem; color: var(--text-secondary); display: flex; align-items: center; gap: .35rem; cursor: pointer; }
+  .sc-btn {
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text-primary);
+    padding: .4rem .8rem; border-radius: 6px; cursor: pointer; font-size: .82rem; font-family: inherit;
+  }
+  .sc-btn.primary { background: var(--series-1); color: #fff; border-color: transparent; }
+  .sc-btn:hover { filter: brightness(1.08); }
+
+  /* respuesta temporal + plano complejo lado a lado; apilados y centrados en pantalla estrecha */
+  .sc-simgrid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
+  @media (max-width: 860px) { .sc-simgrid { grid-template-columns: 1fr; } }
+
+  canvas.sc-canvas { width: 100%; height: 250px; display: block; border-radius: 8px; background: var(--surface-1); }
+  canvas.sc-canvas.small { height: 205px; }
+
+  /* el plano se mantiene casi cuadrado: la escala es isótropa (el ángulo ES zeta),
+     así que un lienzo muy ancho solo desperdicia eje real */
+  .sc-planebox { max-width: 330px; margin: 0 auto; width: 100%; }
+  canvas.sc-plane { width: 100%; height: 290px; display: block; border-radius: 8px; background: var(--surface-1); touch-action: none; }
+  canvas.sc-plane.small { height: 250px; }
+  .sc-planehint { font-size: .74rem; color: var(--text-muted); margin-top: .35rem; text-align: center; }
+
+  .sc-note { border-left: 3px solid var(--series-4); padding-left: .7rem; color: var(--text-secondary); }
+
+  .sc-root a { color: var(--series-1); text-decoration: underline; text-underline-offset: 2px; }
+  .sc-root a:hover { text-decoration-thickness: 2px; }
+  .sc-refs { list-style: none; padding-left: 0; margin: .4rem 0 0; }
+  .sc-refs li { font-size: .84rem; margin-bottom: .35rem; }
+
+  .sc-legend { display: flex; gap: .5rem 1rem; font-size: .78rem; color: var(--text-secondary); margin-top: .4rem; flex-wrap: wrap; }
+  .sc-legend span { display: inline-flex; align-items: center; gap: .3rem; }
+  .sc-legend i { width: 12px; height: 2px; display: inline-block; border-radius: 2px; }
+
+  .sc-metrics { display: flex; gap: .4rem 1.2rem; flex-wrap: wrap; font-size: .82rem; margin-top: .6rem; }
+  .sc-metrics b { color: var(--text-primary); font-variant-numeric: tabular-nums; }
+  .sc-metrics .m-label { color: var(--text-muted); }
+  .sc-metrics b.bad { color: var(--series-8); }
+
+  .sc-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 700px) { .sc-grid2 { grid-template-columns: 1fr; } }
+
+  .sc-fig { margin: 1rem 0; text-align: center; }
+  .sc-fig svg { max-width: 100%; height: auto; color: var(--text-primary); }
+  .sc-fig figcaption { font-size: .78rem; color: var(--text-muted); margin-top: .4rem; text-align: center; }
+  .sc-fig .blk { fill: none; stroke: currentColor; stroke-width: 1.6; }
+  .sc-fig .lbl { fill: currentColor; font: 500 12px system-ui, sans-serif; }
+  .sc-fig .sig { fill: currentColor; font: 400 11px system-ui, sans-serif; opacity: .72; }
+  .sc-fig .wire { stroke: currentColor; stroke-width: 1.4; fill: none; }
+  .sc-fig .hot { stroke: var(--series-1); }
+  .sc-fig .hotlbl { fill: var(--series-1); font: 600 11px system-ui, sans-serif; }
+
+  .sc-steps { counter-reset: scstep; list-style: none; padding-left: 0; }
+  .sc-steps > li { counter-increment: scstep; position: relative; padding-left: 2rem; margin-bottom: .7rem; }
+  .sc-steps > li::before {
+    content: counter(scstep); position: absolute; left: 0; top: .05rem;
+    width: 1.4rem; height: 1.4rem; border-radius: 50%;
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text-primary);
+    font-size: .74rem; font-weight: 600; display: flex; align-items: center; justify-content: center;
+  }
+</style>
+</head>
+<body>
+<div class="sc-root" id="sc-root">
+<h1>Fundamentos básicos</h1>
+<p class="sub">Fundamentos de control — planta, lazo abierto y cerrado, error, regulador proporcional y libros clásicos</p>
+
+<section class="sc-panel active" id="t0">
+  <div class="sc-card">
+    <h2>Qué es esto (sin fórmulas todavía)</h2>
+    <p>La teoría de control estudia cómo hacer que una cosa física haga lo que quieres: que un motor gire a cierta velocidad, que un horno se quede a 180 °C, que un dron no se caiga... Casi nunca puedes fijar la <b>salida</b> a mano; solo puedes tocar una <b>entrada</b> (gas, corriente, voltaje...) y esperar a ver "qué pasa" (i.e. cómo reacciona y evoluciona el sistema de acuerdo con esa consigna de entrada que le damos).</p>
+    <p>Vocabulario mínimo:</p>
+    <ul>
+      <li><b>Planta</b>: el trozo del mundo que quieres gobernar (motor, tanque, horno...).</li>
+      <li><b>Actuador</b>: lo que convierte tu orden en acción física (PWM, válvula, calentador).</li>
+      <li><b>Sensor</b>: lo que mide la salida (encoder, termopar, IMU).</li>
+      <li><b>Consigna</b> $r$: lo que quieres que pase.</li>
+      <li><b>Salida</b> $y$: lo que de verdad pasa.</li>
+      <li><b>Error</b> $e = r - y$: la diferencia que te importa.</li>
+      <li><b>Acción de control</b> $u$: lo que le mandas al actuador.</li>
+      <li><b>Perturbación</b> $d$: empujones del mundo que no pediste (carga, viento, pérdida de calor...).</li>
+    </ul>
+
+    <h3>Función de transferencia (el truco del lenguaje $s$)</h3>
+    <p>Las plantas reales se describen con <b>ecuaciones diferenciales</b> en el tiempo: la salida $y(t)$ depende de la entrada $u(t)$ y de derivadas ($\dot y$, $\ddot y$...). Resolver eso a mano para cada consigna es tedioso. La <b>transformada de Laplace</b> convierte derivadas en multiplicar por una variable compleja $s$, y la ec. diferencial se vuelve una ecuación algebraica.</p>
+    <p>La <b>función de transferencia</b> $G(s)$ es, para un sistema lineal e invariante en el tiempo (en reposo al empezar), el cociente entre la transformada de la salida y la de la entrada:</p>
+    <div class="eq">$$G(s) = \frac{Y(s)}{U(s)}$$</div>
+    <p>Es el «amplificador con memoria» del bloque: le das una entrada en el dominio $s$ y te dice cómo sale. En el diagrama de cajas, cada rectángulo lleva su $G(s)$ (o $H(s)$ si es el sensor). Encadenar bloques en serie es <b>multiplicar</b> transferencias; un lazo cerrado se escribe con la fórmula clásica $G/(1+GH)$ cuando la realimentación es $H$.</p>
+    <p>Un modelo muy usado de planta «con inercia» (motor, tanque, calentador...) es el de <b>primer orden</b>:</p>
+    <div class="eq">$$G(s) = \frac{K}{\tau s + 1}$$</div>
+    <p>$K$ es cuánto amplifica en régimen permanente (estado estacionario); $\tau$ es lo lento que es (constante de tiempo). En palabras: «responde, pero no al instante». El denominador $\tau s+1=0$ fija el <b>polo</b> en $s=-1/\tau$: eso es lo que verás en el plano de la derecha del simulador.</p>
+    <p class="sc-note">No hace falta dominar Laplace para seguir. Quédate con: <b>función de transferencia = mapa entrada→salida en $s$</b>; polos = raíces del denominador = modos naturales; ceros = raíces del numerador (los veremos más adelante en la serie).</p>
+
+    <h3>Lazo abierto: "confiar en la calibración"</h3>
+    <p>Mides, calculas o estimas una vez cuánto gas hace falta para 50 km/h y aplicas siempre ese gas. Funciona mientras el mundo no cambie. Si la ganancia real de la planta no es la que creías, o entra una perturbación, el error <b>se queda</b>.</p>
+    <div class="eq">$$y_{ss} = K\,u$$</div>
+    <p class="sc-note">En el simulador de abajo, el slider $K$ no es un mando tuyo: es «cómo es la planta hoy». Moverlo simula que el mundo cambió y tú no te enteraste.</p>
+
+    <h3>Lazo cerrado: medir y corregir</h3>
+    <p>La idea fundacional de la disciplina: <b>mirar la salida</b>, comparar con la consigna y actuar sobre el error. El controlador más simple es el <b>proporcional</b>: $u = K_p\,e$, «cuanto más lejos, más fuerte empujo».</p>
+
+    <figure class="sc-fig">
+      <svg viewBox="0 0 700 214" role="img" aria-label="Lazo cerrado básico con realimentación.">
+        <defs>
+          <marker id="t0arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <text class="lbl" x="8" y="74">r</text>
+        <text class="sig" x="4" y="90">consigna</text>
+        <line class="wire" x1="26" y1="70" x2="42" y2="70" marker-end="url(#t0arw)"/>
+        <circle class="blk" cx="60" cy="70" r="17"/>
+        <text class="lbl" x="60" y="75" text-anchor="middle">Σ</text>
+        <text class="sig" x="34" y="63">+</text>
+        <text class="sig" x="68" y="101">−</text>
+        <line class="wire" x1="77" y1="70" x2="128" y2="70" marker-end="url(#t0arw)"/>
+        <text class="sig" x="102" y="62" text-anchor="middle">e = r − y_m</text>
+        <rect class="blk" x="130" y="47" width="118" height="46" rx="5"/>
+        <text class="lbl" x="189" y="68" text-anchor="middle">Controlador</text>
+        <text class="sig" x="189" y="83" text-anchor="middle">u = Kp·e</text>
+        <line class="wire" x1="248" y1="70" x2="311" y2="70" marker-end="url(#t0arw)"/>
+        <text class="sig" x="279" y="62" text-anchor="middle">u</text>
+        <circle class="blk" cx="330" cy="70" r="17"/>
+        <text class="lbl" x="330" y="75" text-anchor="middle">Σ</text>
+        <line class="wire" x1="330" y1="18" x2="330" y2="51" marker-end="url(#t0arw)"/>
+        <text class="sig" x="338" y="24">d — perturbación</text>
+        <line class="wire" x1="347" y1="70" x2="398" y2="70" marker-end="url(#t0arw)"/>
+        <rect class="blk" x="400" y="47" width="118" height="46" rx="5"/>
+        <text class="lbl" x="459" y="68" text-anchor="middle">Actuador + Planta</text>
+        <text class="sig" x="459" y="83" text-anchor="middle">K / (τs + 1)</text>
+        <line class="wire" x1="518" y1="70" x2="646" y2="70" marker-end="url(#t0arw)"/>
+        <text class="lbl" x="656" y="74">y</text>
+        <text class="sig" x="652" y="90">salida</text>
+        <circle cx="590" cy="70" r="3.5" fill="currentColor"/>
+        <polyline class="wire hot" points="590,70 590,168 452,168" marker-end="url(#t0arw)"/>
+        <rect class="blk hot" x="336" y="146" width="114" height="44" rx="5"/>
+        <text class="hotlbl" x="393" y="165" text-anchor="middle">Sensor</text>
+        <text class="sig" x="393" y="180" text-anchor="middle">H(s) = 1</text>
+        <polyline class="wire hot" points="336,168 60,168 60,88" marker-end="url(#t0arw)"/>
+        <text class="hotlbl" x="196" y="160" text-anchor="middle">y_m — salida medida</text>
+      </svg>
+      <figcaption>Lazo cerrado con realimentación unitaria ($H=1$). Sin la rama azul se tiene lazo abierto.</figcaption>
+    </figure>
+
+    <p>Con realimentación unitaria y un controlador o regulador proporcional, el error en régimen y la velocidad del lazo cambian en tiempo real. La idea clave: el controlador no «adivina» la planta; <b>corrige midiendo</b>.</p>
+    <p class="sc-note">Si el sensor miente ($H\neq 1$), el lazo regula la <b>medida</b>, no la realidad. Un sensor lento o ruidoso también entra en el lazo y puede destrozar la estabilidad.</p>
+
+    <h3>Polos</h3>
+    <p>Los <b>polos</b> son las raíces del denominador de la función de transferencia del sistema: los «modos naturales» del sistema. Más a la izquierda en el plano complejo → más rápido se muere el transitorio. El controlador, en el fondo, <b>mueve polos</b>. El resto de la serie (órdenes, ceros, filtros, PID) será variaciones sobre esto.</p>
+
+    <h3>Libros clásicos</h3>
+    <ul class="sc-refs">
+      <li><b>Katsuhiko Ogata</b> — <i>Modern Control Engineering</i>. El clásico de muchos planes de estudio; desarrollo gradual, muchos ejemplos.</li>
+      <li><b>Norman S. Nise</b> — <i>Control Systems Engineering</i>. Muy didáctico, casos de ingeniería reales, accesible.</li>
+      <li><b>Gene F. Franklin, J. David Powell, Abbas Emami-Naeini</b> — <i>Feedback Control of Dynamic Systems</i>. Enfoque fuerte en realimentación y diseño práctico.</li>
+      <li><b>Richard C. Dorf, Robert H. Bishop</b> — <i>Modern Control Systems</i>. Modelado físico y metodología de ingeniería.</li>
+      <li><b>Karl J. Åström, Richard M. Murray</b> — <i>Feedback Systems</i> (hay edición libre online). Moderno, limpio, muy bueno para pillar el mapa mental.</li>
+      <li><b>Benjamin C. Kuo / Farid Golnaraghi</b> — <i>Automatic Control Systems</i>. Otro estándar de asignatura.</li>
+    </ul>
+  </div>
+
+  <div class="sc-card">
+    <h2>Simulador: abierto vs cerrado (solo P)</h2>
+    <p class="sub" style="margin-top:0">La consigna es $r=1$. Aquí $K_i=K_d=0$: solo comparamos «confiar en una calibración previa» (rojo) frente a corregir con $u=K_p e$ (azul). Abajo, $1/(1+K K_p)$ es el error relativo en régimen que predice la teoría para el lazo cerrado, y $\tau'=\tau/(1+K K_p)$ es la constante de tiempo efectiva del lazo (más $K_p$, más rápido).</p>
+    <div class="sc-controls">
+      <div class="sc-ctrl">
+        <label>$K$ — ganancia real de la planta <span class="val" id="t0-KV">0.65</span></label>
+        <input type="range" id="t0-K" min="0.3" max="2" step="0.01" value="0.65">
+      </div>
+      <div class="sc-ctrl">
+        <label>$\tau$ — constante de tiempo (s) <span class="val" id="t0-tauV">3.00</span></label>
+        <input type="range" id="t0-tau" min="0.5" max="10" step="0.05" value="3">
+      </div>
+      <div class="sc-ctrl">
+        <label>$K_p$ — ganancia proporcional <span class="val" id="t0-kpV">12.00</span></label>
+        <input type="range" id="t0-kp" min="0" max="20" step="0.05" value="12">
+      </div>
+    </div>
+    <div class="sc-row">
+      <label class="sc-check"><input type="checkbox" id="t0-open" checked> mostrar el lazo abierto para comparar</label>
+      <label class="sc-check"><input type="checkbox" id="t0-dist" checked> perturbación a mitad del ensayo</label>
+      <label class="sc-check"><input type="checkbox" id="t0-showu"> mostrar la acción de control $u$</label>
+    </div>
+    <div class="sc-simgrid">
+      <div>
+        <h3>Respuesta al escalón</h3>
+        <canvas class="sc-canvas" id="t0-canvas"></canvas>
+        <div class="sc-legend">
+          <span><i style="background:var(--series-3)"></i> consigna $r$</span>
+          <span><i style="background:var(--series-1)"></i> lazo cerrado (P)</span>
+          <span><i style="background:var(--series-8)"></i> lazo abierto</span>
+          <span><i style="background:var(--series-4)"></i> acción $u$</span>
+        </div>
+      </div>
+      <div>
+        <h3>Polo del lazo</h3>
+        <div class="sc-planebox"><canvas class="sc-plane" id="t0-plane"></canvas></div>
+        <div class="sc-planehint">× amarillo: planta sola · × azul: lazo cerrado con P</div>
+      </div>
+    </div>
+    <div class="sc-metrics">
+      <span class="m-label">error — abierto:</span> <b id="t0-messo">–</b>
+      <span class="m-label">cerrado:</span> <b id="t0-mess">–</b>
+      <span class="m-label">$1/(1+KK_p)$:</span> <b id="t0-mpred">–</b>
+      <span class="m-label">$\tau'$:</span> <b id="t0-mtau">–</b>
+    </div>
+    <div class="sc-metrics">
+      <span class="m-label">caída por perturbación — abierto:</span> <b id="t0-mdisto">–</b>
+      <span class="m-label">cerrado:</span> <b id="t0-mdist">–</b>
+    </div>
+  </div>
+</section>
+
+</div>
+<script>
+function scRenderMath(){
+  if (!window.renderMathInElement) return;
+  window.renderMathInElement(document.getElementById('sc-root'), {
+    delimiters: [
+      {left:'$$',  right:'$$',  display:true},
+      {left:'\\[', right:'\\]', display:true},
+      {left:'$',   right:'$',   display:false},
+      {left:'\\(', right:'\\)', display:false}
+    ],
+    ignoredTags: ['script','noscript','style','textarea','pre','code','option'],
+    throwOnError: false
+  });
+}
+</script>
+<script>
+(function(){
+  "use strict";
+
+
+  var root = document.getElementById('sc-root');
+  function col(name){ return getComputedStyle(root).getPropertyValue(name).trim(); }
+
+    var redrawHooks = {};
+  // ---------- utilidades ----------
+  function fitCanvas(cv){
+    var rect = cv.getBoundingClientRect();
+    if (rect.width < 2 || rect.height < 2) return null;  // oculto: no dibujar
+    var dpr = window.devicePixelRatio || 1;
+    var w = Math.max(1, Math.round(rect.width * dpr));
+    var h = Math.max(1, Math.round(rect.height * dpr));
+    if (cv.width !== w || cv.height !== h){ cv.width = w; cv.height = h; }
+    return {w: cv.width, h: cv.height, dpr: dpr};
+  }
+  function setSlider(el, v){
+    var min = parseFloat(el.min), max = parseFloat(el.max), step = parseFloat(el.step);
+    if (!isFinite(v)) return parseFloat(el.value);
+    v = Math.max(min, Math.min(max, v));
+    if (step > 0) v = Math.round((v - min)/step)*step + min;
+    el.value = v;
+    return parseFloat(el.value);
+  }
+  function clamp(v, lo, hi){ return Math.max(lo, Math.min(hi, v)); }
+  function hyp(a, b){ return Math.sqrt(a*a + b*b); }
+
+  // ---------- gráfica temporal ----------
+  function drawChart(cv, series, opts){
+    opts = opts || {};
+    var dim = fitCanvas(cv);
+    if (!dim) return;
+    var ctx = cv.getContext('2d');
+    var w = dim.w, h = dim.h, dpr = dim.dpr;
+    ctx.clearRect(0, 0, w, h);
+
+    var pad = 6*dpr;
+    var plotW = w - 2*pad, plotH = h - 2*pad;
+
+    var xMin = opts.xMin, xMax = opts.xMax, yMin = opts.yMin, yMax = opts.yMax;
+    if (xMin === undefined || xMax === undefined){
+      xMin = Infinity; xMax = -Infinity;
+      series.forEach(function(s){ s.data.forEach(function(p){ if(p.x<xMin)xMin=p.x; if(p.x>xMax)xMax=p.x; }); });
+      if (!isFinite(xMin)){ xMin = 0; xMax = 1; }
+    }
+    if (yMin === undefined || yMax === undefined){
+      yMin = Infinity; yMax = -Infinity;
+      series.forEach(function(s){ s.data.forEach(function(p){
+        if (!isFinite(p.y)) return;
+        if (p.y < yMin) yMin = p.y;
+        if (p.y > yMax) yMax = p.y;
+      }); });
+      if (!isFinite(yMin) || !isFinite(yMax)){ yMin = -1; yMax = 1; }
+      if (yMax - yMin < 1e-6){ yMax += 1; yMin -= 1; }
+      var m = (yMax - yMin)*0.15;
+      yMin -= m; yMax += m;
+      if (opts.yLimit){          // una divergencia no debe aplastar el resto de la gráfica
+        yMin = Math.max(yMin, -opts.yLimit);
+        yMax = Math.min(yMax,  opts.yLimit);
+      }
+    }
+
+    function px(x){ return pad + (x - xMin)/(xMax - xMin || 1)*plotW; }
+    function py(y){ return pad + plotH - (y - yMin)/(yMax - yMin || 1)*plotH; }
+
+    ctx.strokeStyle = col('--grid');
+    ctx.lineWidth = 1*dpr;
+    for (var i=0;i<=4;i++){
+      var gy = pad + plotH*i/4;
+      ctx.beginPath(); ctx.moveTo(pad, gy); ctx.lineTo(pad+plotW, gy); ctx.stroke();
+    }
+    if (yMin < 0 && yMax > 0){
+      ctx.strokeStyle = col('--axis');
+      ctx.beginPath(); ctx.moveTo(pad, py(0)); ctx.lineTo(pad+plotW, py(0)); ctx.stroke();
+    }
+
+    ctx.save();
+    ctx.beginPath(); ctx.rect(pad, pad, plotW, plotH); ctx.clip();
+
+    // marcas verticales (p.ej. el instante en que entra la perturbación)
+    (opts.vlines || []).forEach(function(v){
+      ctx.save();
+      ctx.strokeStyle = col('--axis');
+      ctx.lineWidth = 1.2*dpr;
+      ctx.setLineDash([3*dpr, 3*dpr]);
+      ctx.beginPath(); ctx.moveTo(px(v.x), pad); ctx.lineTo(px(v.x), pad+plotH); ctx.stroke();
+      ctx.restore();
+      if (v.label){
+        ctx.fillStyle = col('--text-muted');
+        ctx.font = (11*dpr)+'px system-ui, sans-serif';
+        ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+        ctx.fillText(v.label, px(v.x) + 4*dpr, pad + 3*dpr);
+      }
+    });
+
+    series.forEach(function(s){
+      if (!s.data.length) return;
+
+      // relleno entre la curva y una altura fija: hace visible el error acumulado
+      if (s.fillToY !== undefined){
+        ctx.save();
+        ctx.globalAlpha = s.fillAlpha || 0.13;
+        ctx.fillStyle = s.color;
+        ctx.beginPath();
+        ctx.moveTo(px(s.data[0].x), py(s.fillToY));
+        s.data.forEach(function(p){ if (isFinite(p.y)) ctx.lineTo(px(p.x), py(p.y)); });
+        ctx.lineTo(px(s.data[s.data.length-1].x), py(s.fillToY));
+        ctx.closePath(); ctx.fill();
+        ctx.restore();
+      }
+
+      ctx.strokeStyle = s.color;
+      ctx.lineWidth = (s.width || 2)*dpr;
+      ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+      ctx.setLineDash(s.dash ? s.dash.map(function(d){ return d*dpr; }) : []);
+
+      if (s.stems){   // secuencia discreta: tallo vertical + punto en cada muestra
+        var y0 = py(0);
+        s.data.forEach(function(p){
+          if (!isFinite(p.y)) return;
+          var X = px(p.x);
+          ctx.beginPath(); ctx.moveTo(X, y0); ctx.lineTo(X, py(p.y)); ctx.stroke();
+        });
+        ctx.fillStyle = s.color;
+        s.data.forEach(function(p){
+          if (!isFinite(p.y)) return;
+          ctx.beginPath(); ctx.arc(px(p.x), py(p.y), (s.dotR || 2.8)*dpr, 0, 2*Math.PI); ctx.fill();
+        });
+        return;
+      }
+
+      ctx.beginPath();
+      var started = false;
+      s.data.forEach(function(p){
+        if (!isFinite(p.y)){ started = false; return; }
+        var X = px(p.x), Y = py(p.y);
+        if (!started){ ctx.moveTo(X, Y); started = true; } else ctx.lineTo(X, Y);
+      });
+      ctx.stroke();
+    });
+    ctx.restore();
+  }
+
+  // =========================================================================
+  // PLANO COMPLEJO INTERACTIVO — sirve para el plano s y para el plano z
+  //   spec.getMarks() -> [{id, kind:'pole'|'zero', re, im, drag, color, guide}]
+  //   spec.onDrag(id, re, im)  debe escribir en los sliders (camino inverso)
+  // =========================================================================
+  function makeComplexPlane(cv, spec){
+    var dragId = null, hoverId = null, frozenE = null;
+
+    function niceCeil(v){
+      var steps = [0.5,0.75,1,1.5,2,3,4,5,6,8,10,12,15,20,25,30,40,50,75,100];
+      for (var i=0;i<steps.length;i++) if (steps[i] >= v) return steps[i];
+      return Math.ceil(v/50)*50;
+    }
+    function niceStep(E){
+      var raw = E/2.2;
+      var pw = Math.pow(10, Math.floor(Math.log10(raw)));
+      var n = raw/pw;
+      return (n < 1.5 ? 1 : (n < 3.5 ? 2 : (n < 7.5 ? 5 : 10)))*pw;
+    }
+
+    function geom(){
+      var dim = fitCanvas(cv);
+      if (!dim) return null;
+      var w = dim.w, h = dim.h, dpr = dim.dpr;
+      var halfW = Math.max(10, w/2 - 10*dpr);
+      var halfH = Math.max(10, h/2 - 14*dpr);
+      var marks = spec.getMarks() || [];
+      var E;
+      if (frozenE !== null) E = frozenE;                 // escala congelada al arrastrar
+      else if (spec.fixedExtent) E = spec.fixedExtent;
+      else {
+        var needIm = 0.5, needRe = 0.5;
+        marks.forEach(function(mk){
+          needIm = Math.max(needIm, Math.abs(mk.im));
+          needRe = Math.max(needRe, Math.abs(mk.re));
+        });
+        // E = semirrango vertical en unidades de datos; la escala es isótropa
+        E = niceCeil(Math.max(needIm/0.80, needRe/0.80*(halfH/halfW)));
+      }
+      return {w:w, h:h, dpr:dpr, cx:w/2, cy:h/2, k:halfH/E, E:E, halfW:halfW, halfH:halfH, marks:marks};
+    }
+
+    function draw(){
+      var g = geom();
+      if (!g) return;
+      var ctx = cv.getContext('2d');
+      var dpr = g.dpr;
+      ctx.clearRect(0, 0, g.w, g.h);
+
+      function X(re){ return g.cx + re*g.k; }
+      function Y(im){ return g.cy - im*g.k; }
+
+      // semiplano derecho = zona inestable (solo plano s)
+      if (spec.showRHP){
+        ctx.fillStyle = col('--rhp-wash');
+        ctx.fillRect(g.cx, 0, g.w - g.cx, g.h);
+      }
+
+      // rejilla
+      var st = niceStep(g.E);
+      var reMax = g.halfW/g.k, imMax = g.halfH/g.k;
+      ctx.strokeStyle = col('--grid');
+      ctx.lineWidth = 1*dpr;
+      for (var a = st; a <= reMax; a += st){
+        ctx.beginPath(); ctx.moveTo(X(a), 0);  ctx.lineTo(X(a), g.h);  ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(X(-a), 0); ctx.lineTo(X(-a), g.h); ctx.stroke();
+      }
+      for (var b = st; b <= imMax; b += st){
+        ctx.beginPath(); ctx.moveTo(0, Y(b));  ctx.lineTo(g.w, Y(b));  ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, Y(-b)); ctx.lineTo(g.w, Y(-b)); ctx.stroke();
+      }
+
+      // circunferencia unidad (plano z): frontera de estabilidad
+      if (spec.unitCircle){
+        ctx.strokeStyle = col('--series-8');
+        ctx.lineWidth = 1.8*dpr;
+        ctx.beginPath(); ctx.arc(g.cx, g.cy, g.k, 0, 2*Math.PI); ctx.stroke();
+      }
+
+      // guías: circunferencia de radio |s| y radio hasta el polo → lectura de wn y zeta
+      g.marks.forEach(function(mk){
+        if (!mk.guide) return;
+        var mag = hyp(mk.re, mk.im);
+        if (mag < 1e-9) return;
+        ctx.strokeStyle = col('--axis');
+        ctx.lineWidth = 1.3*dpr;
+        ctx.setLineDash([4*dpr, 3*dpr]);
+        ctx.beginPath(); ctx.arc(g.cx, g.cy, mag*g.k, 0, 2*Math.PI); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(g.cx, g.cy); ctx.lineTo(X(mk.re), Y(mk.im)); ctx.stroke();
+        ctx.setLineDash([]);
+      });
+
+      // ejes
+      ctx.strokeStyle = col('--axis');
+      ctx.lineWidth = 1.4*dpr;
+      ctx.beginPath(); ctx.moveTo(0, g.cy); ctx.lineTo(g.w, g.cy); ctx.stroke();
+      ctx.strokeStyle = spec.showRHP ? col('--series-8') : col('--axis');
+      ctx.lineWidth = (spec.showRHP ? 2.2 : 1.4)*dpr;
+      ctx.beginPath(); ctx.moveTo(g.cx, 0); ctx.lineTo(g.cx, g.h); ctx.stroke();
+
+      // etiquetas
+      ctx.fillStyle = col('--text-muted');
+      ctx.font = (9.5*dpr)+'px system-ui, sans-serif';
+      ctx.textBaseline = 'top';
+      ctx.textAlign = 'center';
+      if (st <= reMax) ctx.fillText('-'+(Math.round(st*100)/100), X(-st), g.cy + 3*dpr);
+      ctx.textAlign = 'left';
+      ctx.fillText(spec.axisLabel || 'Re', 3*dpr, g.cy + 3*dpr);
+      ctx.textAlign = 'right';
+      ctx.fillText(spec.imLabel || 'Im', g.cx - 4*dpr, 2*dpr);
+
+      // polos y ceros
+      g.marks.forEach(function(mk){
+        var x = X(mk.re), y = Y(mk.im);
+        var unstable = spec.unitCircle ? (hyp(mk.re, mk.im) > 1.0) : (mk.re > 1e-9);
+        var c = (unstable && mk.kind === 'pole') ? col('--series-8') : col(mk.color || '--series-1');
+        var s = 6.5*dpr;
+
+        if (hoverId === mk.id || dragId === mk.id){
+          ctx.fillStyle = c; ctx.globalAlpha = 0.18;
+          ctx.beginPath(); ctx.arc(x, y, s*2, 0, 2*Math.PI); ctx.fill();
+          ctx.globalAlpha = 1;
+        }
+        ctx.strokeStyle = c;
+        ctx.lineWidth = 2.4*dpr;
+        if (mk.kind === 'zero'){
+          ctx.beginPath(); ctx.arc(x, y, s*0.85, 0, 2*Math.PI); ctx.stroke();
+        } else {
+          ctx.beginPath();
+          ctx.moveTo(x-s, y-s); ctx.lineTo(x+s, y+s);
+          ctx.moveTo(x-s, y+s); ctx.lineTo(x+s, y-s);
+          ctx.stroke();
+        }
+      });
+    }
+
+    function toData(ev){
+      var g = geom();
+      if (!g) return null;
+      var rect = cv.getBoundingClientRect();
+      var px = (ev.clientX - rect.left)*g.dpr;
+      var py = (ev.clientY - rect.top)*g.dpr;
+      return {re: (px - g.cx)/g.k, im: -(py - g.cy)/g.k, g: g};
+    }
+    function pick(ev){
+      var d = toData(ev);
+      if (!d) return null;
+      var best = null, bestDist = 16*d.g.dpr;
+      d.g.marks.forEach(function(mk){
+        if (!mk.drag) return;
+        var dist = hyp((mk.re - d.re)*d.g.k, (mk.im - d.im)*d.g.k);
+        if (dist < bestDist){ bestDist = dist; best = mk; }
+      });
+      return best;
+    }
+
+    cv.addEventListener('pointerdown', function(ev){
+      var mk = pick(ev);
+      if (!mk) return;
+      ev.preventDefault();
+      dragId = mk.id;
+      var g = geom();
+      frozenE = g ? g.E : null;
+      try { cv.setPointerCapture(ev.pointerId); } catch(e){}
+      cv.style.cursor = 'grabbing';
+      draw();
+    });
+    cv.addEventListener('pointermove', function(ev){
+      if (dragId){
+        var d = toData(ev);
+        if (!d) return;
+        // Si la representación cambió a mitad de arrastre (par conjugado <-> polos
+        // reales), el id capturado en el pointerdown ya no existe: se readopta la
+        // marca arrastrable más cercana al cursor para no perder el agarre.
+        var alive = false;
+        d.g.marks.forEach(function(mk){ if (mk.id === dragId) alive = true; });
+        if (!alive){
+          var best = null, bd = Infinity;
+          d.g.marks.forEach(function(mk){
+            if (!mk.drag) return;
+            var dist = hyp((mk.re - d.re)*d.g.k, (mk.im - d.im)*d.g.k);
+            if (dist < bd){ bd = dist; best = mk; }
+          });
+          if (best) dragId = best.id;
+        }
+        spec.onDrag(dragId, d.re, d.im);
+        return;
+      }
+      var mk = pick(ev);
+      var h = mk ? mk.id : null;
+      if (h !== hoverId){
+        hoverId = h;
+        cv.style.cursor = hoverId ? 'grab' : 'default';
+        draw();
+      }
+    });
+    function endDrag(ev){
+      if (!dragId) return;
+      dragId = null; frozenE = null;
+      cv.style.cursor = hoverId ? 'grab' : 'default';
+      if (spec.onDragEnd) spec.onDragEnd();
+      draw();
+      try {
+        if (ev && ev.pointerId !== undefined && cv.hasPointerCapture(ev.pointerId)) cv.releasePointerCapture(ev.pointerId);
+      } catch(e){}
+    }
+    cv.addEventListener('pointerup', endDrag);
+    cv.addEventListener('pointercancel', endDrag);
+    cv.addEventListener('pointerleave', function(){
+      if (!dragId && hoverId !== null){ hoverId = null; cv.style.cursor = 'default'; draw(); }
+    });
+
+    return {draw: draw};
+  }
+
+  // ---------- par de polos de 2º orden: marcas + camino inverso (3 pestañas lo usan) ----------
+  function marks2nd(wn, zeta, prefix, color){
+    if (zeta < 1 - 1e-6){
+      var sig = -zeta*wn, wd = wn*Math.sqrt(1 - zeta*zeta);
+      return [
+        {id: prefix+'c1', kind:'pole', re:sig, im: wd, drag:true, guide:true,  color:color},
+        {id: prefix+'c2', kind:'pole', re:sig, im:-wd, drag:true, guide:false, color:color}
+      ];
+    }
+    var d = wn*Math.sqrt(Math.max(0, zeta*zeta - 1));
+    return [
+      {id: prefix+'r1', kind:'pole', re:-zeta*wn + d, im:0, drag:true, color:color},
+      {id: prefix+'r2', kind:'pole', re:-zeta*wn - d, im:0, drag:true, color:color}
+    ];
+  }
+  function drag2nd(id, re, im, elWn, elZeta, wnCur, zetaCur){
+    // Interpretación polar: el radio da wn y el ángulo da zeta. Cubre todo
+    // zeta en [-1, 1], y el conjugado sigue al polo arrastrado solo.
+    function polar(){
+      var mag = hyp(re, im);
+      if (mag < 1e-6) return;
+      setSlider(elWn, mag);
+      setSlider(elZeta, -re/mag);
+    }
+
+    // La rama se elige por el zeta ACTUAL, nunca por el sufijo del id: al pasar de
+    // par conjugado (c1/c2) a polos reales (r1/r2) el id que capturó el pointerdown
+    // caduca, y decidir por él hacía que la rama oscilara o se quedara clavada.
+    if (zetaCur < 1 - 1e-6){ polar(); return; }
+
+    // Sobreamortiguado: dos polos reales. Se mueve uno manteniendo el otro fijo,
+    // con p1·p2 = wn² y p1+p2 = -2·zeta·wn.
+    var d = wnCur*Math.sqrt(Math.max(0, zetaCur*zetaCur - 1));
+    var pa = -zetaCur*wnCur + d, pb = -zetaCur*wnCur - d;
+    var tail = id.slice(-2);
+    var other;
+    if (tail === 'r1') other = pb;
+    else if (tail === 'r2') other = pa;
+    else other = (Math.abs(re - pa) <= Math.abs(re - pb)) ? pb : pa;  // id caducado
+
+    // Vía de escape del eje real. Con dos polos reales se cumple siempre
+    // |p1+p2|/2 >= sqrt(p1·p2) (AM-GM), o sea zeta >= 1: por esta rama es
+    // imposible volver a un par complejo. Así que un tirón vertical mayor que
+    // media separación despega el par del eje y pasa a la rama polar. El umbral
+    // se escala solo: con los polos juntos (zeta ~ 1) basta un gesto mínimo,
+    // y con los polos muy separados hace falta un gesto deliberado.
+    if (Math.abs(im) > Math.abs(re - other)/2){ polar(); return; }
+
+    var p = Math.min(-1e-3, re), o = Math.min(-1e-3, other);
+    var wn = Math.sqrt(p*o);
+    if (!isFinite(wn) || wn < 1e-6) return;
+    setSlider(elWn, wn);
+    setSlider(elZeta, -(p + o)/(2*wn));
+  }
+
+  // ---------- entradas ----------
+  function makeInput(kind, sp){
+    sp = (sp === undefined) ? 1 : sp;
+    switch(kind){
+      case 'step':    return function(t){ return t < 0 ? 0 : sp; };
+      case 'square':  return function(t){ return (Math.floor(t/3) % 2 === 0) ? sp : 0; };
+      case 'sine':    return function(t){ return sp*Math.sin(t*1.2); };
+      case 'impulse': return function(t, isFirst){ return isFirst ? sp : 0; };
+      default:        return function(){ return 0; };
+    }
+  }
+  function pnoise(n){ var x = Math.sin(n*12.9898)*43758.5453; return 2*(x - Math.floor(x)) - 1; }
+
+// =========================================================================
+  // Fundamentos — abierto vs cerrado, solo P
+  // =========================================================================
+  (function(){
+    var el = {
+      K: document.getElementById('t0-K'), KV: document.getElementById('t0-KV'),
+      tau: document.getElementById('t0-tau'), tauV: document.getElementById('t0-tauV'),
+      kp: document.getElementById('t0-kp'), kpV: document.getElementById('t0-kpV'),
+      open: document.getElementById('t0-open'), dist: document.getElementById('t0-dist'),
+      showu: document.getElementById('t0-showu'),
+      canvas: document.getElementById('t0-canvas'), plane: document.getElementById('t0-plane'),
+      mess: document.getElementById('t0-mess'), messo: document.getElementById('t0-messo'),
+      mpred: document.getElementById('t0-mpred'),
+      mtau: document.getElementById('t0-mtau'),
+      mdist: document.getElementById('t0-mdist'), mdisto: document.getElementById('t0-mdisto')
+    };
+    var TSPAN = 30, DT = 0.005, R = 1, DMAG = 0.35;
+
+    function params(){
+      return {K: parseFloat(el.K.value), tau: parseFloat(el.tau.value),
+              kp: parseFloat(el.kp.value),
+              showOpen: el.open.checked, dist: el.dist.checked,
+              showu: el.showu.checked};
+    }
+
+    function loopPoles(p){
+      return [{re: -(1 + p.K*p.kp)/p.tau, im: 0}];
+    }
+
+    var plane = makeComplexPlane(el.plane, {
+      showRHP: true, axisLabel: 'Re(s)', imLabel: 'Im(s)',
+      getMarks: function(){
+        var p = params();
+        var m = [{id:'plant', kind:'pole', re:-1/p.tau, im:0, drag:false, color:'--series-4'}];
+        loopPoles(p).forEach(function(q, i){
+          m.push({id:'cl'+i, kind:'pole', re:q.re, im:q.im, drag:false, color:'--series-1'});
+        });
+        return m;
+      },
+      onDrag: function(){}
+    });
+
+    var TDIST = TSPAN/2;
+
+    function simulate(p, closed){
+      var n = Math.floor(TSPAN/DT);
+      var y = 0;
+      var dr=[], dy=[], du=[];
+      var yPre = 0, yPost = 0;
+      for (var i=0;i<n;i++){
+        var t = i*DT;
+        var d = (p.dist && t >= TDIST) ? -DMAG : 0;
+        var u = closed ? p.kp*(R - y) : R;
+        y += DT*(-y + p.K*(u + d))/p.tau;
+        dr.push({x:t, y:R}); dy.push({x:t, y:y}); du.push({x:t, y:u});
+        if (t < TDIST - DT) yPre = y;
+        yPost = y;
+      }
+      return {dr:dr, dy:dy, du:du, yPre:yPre, yPost:yPost};
+    }
+
+    function refresh(){
+      var p = params();
+      el.KV.textContent = p.K.toFixed(2);
+      el.tauV.textContent = p.tau.toFixed(2);
+      el.kpV.textContent = p.kp.toFixed(2);
+
+      var sc = simulate(p, true), so = simulate(p, false);
+      var series = [{data:sc.dr, color: col('--series-3'), width:2.4, dash:[6,4]}];
+      if (p.showOpen){
+        series.push({data:so.dy, color: col('--series-8'), width:2,
+                     fillToY:R, fillAlpha:0.12});
+      }
+      if (p.showu) series.push({data:sc.du, color: col('--series-4'), width:1.4});
+      series.push({data:sc.dy, color: col('--series-1'), width:2.8});
+
+      drawChart(el.canvas, series, {
+        xMin:0, xMax:TSPAN, yLimit:4,
+        vlines: p.dist ? [{x:TDIST, label:'entra la perturbación'}] : []
+      });
+
+      var errC = (R - sc.yPre)/R, errO = (R - so.yPre)/R;
+      el.mess.textContent  = (errC*100).toFixed(1)+' %';
+      el.messo.textContent = (errO*100).toFixed(1)+' %';
+      el.mess.classList.toggle('bad', Math.abs(errC) > 0.05);
+      el.messo.classList.toggle('bad', Math.abs(errO) > 0.05);
+      el.mpred.textContent = (100/(1 + p.K*p.kp)).toFixed(1)+' %';
+      el.mtau.textContent = (p.tau/(1 + p.K*p.kp)).toFixed(2)+' s';
+
+      var dropC = (sc.yPre - sc.yPost)/R, dropO = (so.yPre - so.yPost)/R;
+      el.mdist.textContent  = p.dist ? (dropC*100).toFixed(1)+' %' : 'sin perturbación';
+      el.mdisto.textContent = p.dist ? (dropO*100).toFixed(1)+' %' : 'sin perturbación';
+      el.mdist.classList.toggle('bad',  p.dist && Math.abs(dropC) > 0.05);
+      el.mdisto.classList.toggle('bad', p.dist && Math.abs(dropO) > 0.05);
+      plane.draw();
+    }
+    redrawHooks['t0'] = refresh;
+    [el.K, el.tau, el.kp, el.open, el.dist, el.showu].forEach(function(inp){
+      inp.addEventListener('input', refresh);
+      inp.addEventListener('change', refresh);
+    });
+    refresh();
+    window.addEventListener('resize', refresh);
+  })();
+
+})();
+</script>
+</body>
+</html>
