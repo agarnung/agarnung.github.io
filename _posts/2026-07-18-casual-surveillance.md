@@ -711,6 +711,7 @@ Notas condensadas de exploraciones paralelas y posibles evoluciones del sistema.
 ### v2 — Software y conectividad
 
 - **Multicliente:** restream en la Orange Pi (una sola lectura del ESP32 → HLS/RTMP/WebRTC a varios navegadores); ver [varios clientes viendo el stream a la vez](#varios-clientes-stream).
+- **Sniffing WiFi en aire:** el MJPEG del ESP32 es HTTP directo; aunque con WPA2/3 alguien cerca puede capturar tramas, sin la clave WiFi no ve el vídeo. Si conoce/rompe el WiFi, sí. Mitigar: WPA3 (o PSK fuerte), IoT en VLAN/SSID aparte, acceso remoto solo Tailscale (sin abrir puertos); el salto ESP32→Pi en LAN sigue haciendo falta, pero los clientes solo hablan con Nginx en la Pi (no con el `:81` del ESP32). Una cámara cableada (Ethernet/PoE) al router o a la Pi evitaría del todo este posible de captura en aire, pero no es el enfoque que se busca con esta versión.
 - **Modo híbrido:** streaming cuando hay red y usuario conectado; si no, grabación local por detección de movimiento.
 - **MQTT + broker en la nube** (flespi.io, EMQX) como alternativa más robusta que HTTP directo ante cortes de WiFi; visualización vía Telegram Bot o Node-RED en la Orange Pi.
 - **Framework Blynk** para app móvil propia sin desarrollar frontend: [tutorial](https://www.youtube.com/watch?v=34qj3b6AK4w), [servidor self-hosted](https://github.com/mariorht/blynk-server).
