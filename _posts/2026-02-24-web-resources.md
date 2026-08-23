@@ -330,6 +330,22 @@ Esta gente de la empresa Norwegian Creations, que hacen proyectos de electrónic
 
 </div>
 
+- [https://humbertomondejargonzalez.blogspot.com/](https://humbertomondejargonzalez.blogspot.com/)
+
+<div align="center">
+
+Blogs de personas recatadamente anonimizadas mas interesantísimas.
+
+</div>
+
+- [https://tardigrados.wordpress.com/](https://tardigrados.wordpress.com/)
+
+<div align="center">
+
+Blogs de personas recatadamente anonimizadas mas interesantísimas. A Albert Zotkin le comencé a leer con 13 años o así; aún tengo pendiente hacer algún caso de uso práctico y programático de sus super-derivadas.
+
+</div>
+
 ## Webs para consultar libros
 
 - [https://oceanofpdf.com/](https://oceanofpdf.com/)
@@ -370,6 +386,8 @@ Esta gente de la empresa Norwegian Creations, que hacen proyectos de electrónic
 
 - [https://www.youtube.com/@firstprinciplesofcomputerv3258/videos](https://www.youtube.com/@firstprinciplesofcomputerv3258/videos)
 
+- [https://www.youtube.com/@cosmosidewalk/videos](https://www.youtube.com/@cosmosidewalk/videos)
+  
 - [https://www.youtube.com/@CloserToTruthTV/videos](https://www.youtube.com/@CloserToTruthTV/videos)
 
 - [https://www.youtube.com/@SteveMould/videos](https://www.youtube.com/@SteveMould/videos)
