@@ -330,6 +330,8 @@ Esta gente de la empresa Norwegian Creations, que hacen proyectos de electrónic
 
 </div>
 
+<br>
+
 - [https://humbertomondejargonzalez.blogspot.com/](https://humbertomondejargonzalez.blogspot.com/)
 
 <div align="center">
@@ -338,6 +340,8 @@ Blogs de personas recatadamente anonimizadas mas interesantísimas.
 
 </div>
 
+<br>
+
 - [https://tardigrados.wordpress.com/](https://tardigrados.wordpress.com/)
 
 <div align="center">
@@ -345,6 +349,18 @@ Blogs de personas recatadamente anonimizadas mas interesantísimas.
 Blogs de personas recatadamente anonimizadas mas interesantísimas. A Albert Zotkin le comencé a leer con 13 años o así; aún tengo pendiente hacer algún caso de uso práctico y programático de sus super-derivadas.
 
 </div>
+
+<br>
+
+- [https://sio2sio2.github.io/doc-linux/index.html](https://sio2sio2.github.io/doc-linux/index.html)
+
+<div align="center">
+
+El Linuxnomicón; ya tiene coña el nombre, pero el contenido es todo un manual de referencia.
+
+</div>
+
+<br>
 
 ## Webs para consultar libros
 
