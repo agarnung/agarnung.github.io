@@ -330,6 +330,23 @@ eDP-1     -> 15.6 pulgadas (diagonal)
 HDMI-1    -> 27.0 pulgadas (diagonal)
 ```
 
+### Información del sistema
+
+Ver versión de SO, modelo del procesador (CPU), memoria total disponible (RAM) y modelo y cantidad de VRAM de GPU:
+
+```bash
+alias sysinfo='echo "OS: $(. /etc/os-release; echo "$PRETTY_NAME")"; echo "CPU: $(grep -m1 "model name" /proc/cpuinfo | cut -d: -f2- | sed "s/(R)//g; s/(TM)//g" | xargs)"; echo "RAM: $(free -h | awk "/^Mem:/ {print \$2}")"; echo "GPU: $(nvidia-smi --query-gpu=name,memory.total --format=csv,noheader | sed "s/, / — /")"'
+```
+
+E.g.:
+
+```bash
+OS: Ubuntu 26.04 LTS
+CPU: Intel Core Ultra 9 285HX
+RAM: 91Gi
+GPU: NVIDIA RTX PRO 2000 Blackwell Generation Laptop GPU — 8 GiB
+```
+
 ## Recarga la Configuración
 
 Después de editar `~/.bashrc`, ejecuta:
