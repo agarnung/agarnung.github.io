@@ -134,6 +134,18 @@
   .sc-planehint { font-size: .74rem; color: var(--text-muted); margin-top: .35rem; text-align: center; }
 
   .sc-note { border-left: 3px solid var(--series-4); padding-left: .7rem; color: var(--text-secondary); }
+  .sc-note p { margin: 0 0 .55rem; }
+  .sc-note p:last-child { margin-bottom: 0; }
+  .sc-table-wrap { overflow-x: auto; margin: .55rem 0 .35rem; }
+  .sc-table {
+    width: 100%; max-width: 520px; border-collapse: collapse;
+    font-size: .84rem; color: var(--text-secondary);
+  }
+  .sc-table th, .sc-table td {
+    border: 1px solid var(--border); padding: .35rem .55rem; text-align: center;
+  }
+  .sc-table th { background: var(--surface-2); color: var(--text-primary); font-weight: 600; }
+  .sc-table td:first-child { text-align: left; font-weight: 600; color: var(--text-primary); }
 
   .sc-root a { color: var(--series-1); text-decoration: underline; text-underline-offset: 2px; }
   .sc-root a:hover { text-decoration-thickness: 2px; }
@@ -199,7 +211,7 @@
 
     <h3>Anticipar: la acción derivativa</h3>
     <div class="eq">$$u(t) = K_p\,e(t) + K_i\int_0^t e(\sigma)\,d\sigma + K_d\,\dot e(t)$$</div>
-    <p>En un escalón, $\dot e$ lleva un impulso (patada derivativa). Aquí tomamos la derivada sobre la <b>medida</b>, $-K_d\,\dot y$. El denominador del lazo pasa a ser $(\tau + K K_d)\,s^2 + (1+K K_p)\,s + K K_i$. El D brilla sobre todo cuando la planta ya oscila: actúa como amortiguador.</p>
+    <p>En un escalón, $\dot e$ lleva un impulso (patada derivativa). Aquí tomamos la derivada sobre la <b>medida</b>, $-K_d\,\dot y$. El denominador del lazo pasa a ser $(\tau + K K_d)\,s^2 + (1+K K_p)\,s + K K_i$. El D es útil sobre todo cuando la planta ya oscila: actúa como amortiguador.</p>
 
     <h3>La receta práctica: fijar unas y mover la otra</h3>
     <p>En planta casi nadie sintoniza las tres a la vez. La receta clásica va <b>en cascada</b>:</p>
@@ -211,7 +223,22 @@
       <li>Añade $K_d$ para amortiguar. Si mete ruido, bájalo o filtra la derivada.</li>
     </ol>
     <p>Regla mental: <b>P = ahora</b>, <b>I = pasado</b>, <b>D = tendencia</b>.</p>
-    <p class="sc-note"><b>Ziegler–Nichols</b>: subes $K_p$ hasta oscilación sostenida, anotas $K_u$ y $P_u$, y sacas las ganancias de una tablita. Misma idea, con números. En muchos lazos reales basta un <b>PI</b>.</p>
+    <div class="sc-note">
+      <p><b>Ziegler–Nichols</b> (lazo cerrado): subes $K_p$ hasta oscilación sostenida, anotas la ganancia crítica $K_u$ y el periodo $P_u$, y sacas las ganancias de una tablita. Misma idea que la receta de arriba, pero con números. En muchos lazos reales basta un <b>PI</b>.</p>
+      <div class="sc-table-wrap">
+        <table class="sc-table">
+          <thead>
+            <tr><th>Regulador</th><th>$K_p$</th><th>$T_i$</th><th>$T_d$</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>P</td><td>$0{,}5\,K_u$</td><td>—</td><td>—</td></tr>
+            <tr><td>PI</td><td>$0{,}45\,K_u$</td><td>$P_u/1{,}2$</td><td>—</td></tr>
+            <tr><td>PID</td><td>$0{,}6\,K_u$</td><td>$P_u/2$</td><td>$P_u/8$</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Con la forma paralela del simulador: $K_i = K_p/T_i$ y $K_d = K_p T_d$. Referencia histórica del método cuantitativo: <a href="https://instrumentacionycontrol.net/empezando-sintonizacion-pid-cuantitativa-ziegler-y-nichols/" target="_blank" rel="noopener">Ziegler y Nichols (1942)</a>.</p>
+    </div>
   </div>
 
 <div class="sc-card">
