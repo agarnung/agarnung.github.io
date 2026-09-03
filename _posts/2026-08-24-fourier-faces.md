@@ -78,7 +78,7 @@ Nótese que los índices $$m > n/2$$ de la DFT corresponden, por la periodicidad
    - Se recalcula la DFT inversa usando solo esos coeficientes, obteniendo puntos $$(\mathrm{Re}/n,\, \mathrm{Im}/n)$$ reconstruidos.
    - Se traza el contorno reconstruido como polilínea cerrada sobre el canvas de resultado, opcionalmente con el mapa de Canny semitransparente de fondo para comparar visualmente con el borde original.
 
-Como el truncado y la reconstrucción (paso 5) son mucho más baratos que Canny + DFT completa (pasos 2–4), el slider puede recalcular la silueta en cada movimiento sin volver a ejecutar todo el pipeline pesado.
+Como el truncado y la reconstrucción (paso 5) son mucho más baratos que Canny + DFT completa (pasos 2–4), el slider puede recalcular la silueta en cada movimiento sin volver a ejecutar todo el pipeline pesado (código [aquí](https://github.com/agarnung/computerVisionMiscellaneous/blob/main/2026-08-24-fourier-faces/index.html)).
 
 ## Demo
 
