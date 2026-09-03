@@ -46,12 +46,12 @@ $$
 z_k = \frac{1}{n} \sum_{m=0}^{n-1} Z_m \, e^{i 2\pi m k / n}
 $$
 
-La idea clave de este proyecto es que **no hace falta usar todos los coeficientes**. Si en la reconstrucción solo se suman los términos cuya frecuencia $$abs(f)$$ es menor o igual que un umbral $$K$$ (descartando el resto), se obtiene una versión *paso-bajo* del contorno:
+La idea principal de este experimento es que **no hace falta usar todos los coeficientes**. Si en la reconstrucción solo se suman los términos cuya frecuencia $$abs(f)$$ es menor o igual que un umbral $$K$$ (descartando el resto), se obtiene una versión *paso-bajo* del contorno:
 
 - $$K$$ pequeño → solo sobreviven las frecuencias bajas → la forma reconstruida tiende a una elipse simplificada.
 - $$K$$ grande (cercano a $$n/2$$) → se conservan casi todos los armónicos → la reconstrucción se aproxima al contorno original detectado por Canny.
 
-Este truncado de armónicos es análogo a un filtro paso-bajo aplicado en el "dominio de la forma" en vez del dominio temporal/espacial habitual, y es la base clásica de los *descriptores de Fourier de contorno* usados en reconocimiento de formas, firmas, geometría, etc. (véase [mi TFM](https://digibuo.uniovi.es/dspace/bitstream/handle/10651/76231/A2%20Poster%20TFM%20AGM.pdf?sequence=2&isAllowed=y) en el que los usé para reconocer piezas de geometría completa).
+Este truncado de armónicos es análogo a un filtro paso-bajo aplicado en el "dominio de la forma" en vez del dominio temporal/espacial habitual y es la base clásica de los *descriptores de Fourier de contorno* usados en reconocimiento de formas, firmas, geometría, etc. (véase [mi TFM](https://digibuo.uniovi.es/dspace/bitstream/handle/10651/76231/A2%20Poster%20TFM%20AGM.pdf?sequence=2&isAllowed=y) en el que los usé para reconocer piezas de geometría compleja).
 
 Nótese que los índices $$m > n/2$$ de la DFT corresponden, por la periodicidad de la transformada, a frecuencias negativas equivalentes $$f = m - n$$; el código las tiene en cuenta al decidir qué coeficientes caen dentro de $$abs(f) \leq K$$.
 
