@@ -6,6 +6,16 @@ color: dark
 description: A tiny ESP32-S3 voice endpoint for an AI assistant.
 ---
 
+<div align="center" style="margin: 1.5em 0;">
+
+<a href="https://github.com/agarnung/miniVirgil/tree/main">
+<img src="https://raw.githubusercontent.com/agarnung/miniVirgil/main/assets/minivirgilgif.gif"
+     alt="miniVirgil demo"
+     style="max-width: min(100%, 420px); height: auto; border-radius: 8px;">
+</a>
+
+</div>
+
 **[miniVirgil](https://github.com/agarnung/miniVirgil)** is a palm-sized voice endpoint for an AI assistant. Hold a button, speak, release — the ESP32-S3 records raw PCM and ships it over WebSocket to the IA backend, which may run STT → LLM → TTS. The microcontroller does **no** on-device AI: it is a thin, reliable physical front-end (mic + button + screen + WiFi).
 
 The idea is simple: put an assistant on a desk without a keyboard or a phone. Press, talk, watch the TFT flip through the cycle states while the heavy lifting happens on the server.
