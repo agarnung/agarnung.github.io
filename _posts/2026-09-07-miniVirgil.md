@@ -110,7 +110,7 @@ Boards from [PCBWay](https://www.pcbway.com/):
 
 ### Into the shell
 
-Fitting the `miniVirgil_A` PCB and display into the printed body:
+Fitting the PCB and display into the printed body:
 
 <img src="../assets/blog_images/2026-09-07-miniVirgil/modelo_montaje_1.jpeg" width="520" />
 
