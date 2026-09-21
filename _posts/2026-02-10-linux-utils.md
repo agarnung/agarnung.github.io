@@ -347,7 +347,87 @@ RAM: 91Gi
 GPU: NVIDIA RTX PRO 2000 Blackwell Generation Laptop GPU — 8 GiB
 ```
 
-## Recarga la Configuración
+### Compilar LaTeX: `latexpdf`
+
+Función que compila un `.tex` a PDF. Detecta automáticamente si hay bibliografía (y si usa `bibtex` o `biber`) y, si no se pasa argumento, usa el único `.tex` del directorio actual.
+
+> [!NOTE]
+> Preferible tener `latexmk` instalado (`sudo apt install latexmk`): gestiona solo las pasadas necesarias. El fallback manual usa `pdflatex` + `bibtex`/`biber`.
+
+Agrega al archivo `~/.bashrc`:
+
+```bash
+latexpdf() {
+    # Si no se pasa archivo, buscar un único .tex en el directorio actual
+    local texfile
+    if [ $# -eq 0 ]; then
+        local texfiles=( *.tex )
+        if [ ${#texfiles[@]} -eq 0 ]; then
+            echo "latexpdf: no .tex file found in $(pwd)" >&2
+            return 1
+        elif [ ${#texfiles[@]} -gt 1 ]; then
+            echo "latexpdf: multiple .tex files: ${texfiles[*]}" >&2
+            echo "usage: latexpdf [file.tex]" >&2
+            return 1
+        fi
+        texfile=${texfiles[0]}
+    else
+        texfile=$1
+    fi
+
+    # Si existe latexmk, usarlo (maneja bibtex/biber automáticamente)
+    if command -v latexmk >/dev/null 2>&1; then
+        latexmk -pdf -interaction=nonstopmode -halt-on-error -synctex=1 "$texfile"
+        return $?
+    fi
+
+    # Fallback manual si no hay latexmk
+    local base=${texfile%.tex}
+    local bibcmd=""
+
+    # Detectar backend bibliográfico
+    if grep -q '\\addbibresource' "$texfile"; then
+        bibcmd="biber"
+    elif grep -q '\\bibliography' "$texfile"; then
+        bibcmd="bibtex"
+    fi
+
+    pdflatex -interaction=nonstopmode "$texfile" || return 1
+    [ -n "$bibcmd" ] && $bibcmd "$base"
+    pdflatex -interaction=nonstopmode "$texfile" || return 1
+    pdflatex -interaction=nonstopmode "$texfile"
+}
+```
+
+O, si se prefiere añadir de golpe:
+
+```bash
+cat >> ~/.bashrc <<'EOF'
+
+latexpdf() {
+    # ... pegar el bloque completo de arriba ...
+}
+EOF
+```
+
+Qué hace:
+
+- Si hay un único `.tex` en la carpeta, lo compila.
+- Si detecta `\bibliography{...}` corre `bibtex`; si detecta `\addbibresource{...}` corre `biber`.
+- Si se tiene `latexmk` instalado, lo usa en lugar del fallback manual (más robusto: decide solo cuántas pasadas hacen falta).
+- Si no hay `.bib` o usas `thebibliography`, simplemente hace `pdflatex` varias veces.
+
+Uso:
+
+```bash
+# En un directorio con un solo .tex
+latexpdf
+
+# O indicando archivo explícito
+latexpdf main.tex
+```
+
+## Recargar la configuración
 
 Después de editar `~/.bashrc`, ejecuta:
 
