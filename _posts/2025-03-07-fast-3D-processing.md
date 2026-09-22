@@ -4,6 +4,7 @@ tags: [programming, C++]
 style: fill
 color: danger
 description: Pushing the limits of fast 3D applications
+image: assets/blog_images/2025-03-07-fast-3D-processing/points.png
 ---
 
 # Introduction

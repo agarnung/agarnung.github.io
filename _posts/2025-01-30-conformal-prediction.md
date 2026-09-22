@@ -4,6 +4,7 @@ tags: [math, machine learning, divulgation]
 style: fill
 color: success
 description: Quantifying uncertainity in Machine Learning
+image: assets/blog_images/2025-01-30-conformal-prediction/CP.png
 ---
 
 <img src="../assets/blog_images/2025-01-30-conformal-prediction/CP.png" alt="CP" width=500>

@@ -4,6 +4,7 @@ tags: [IoT]
 style: fill
 color: info
 description: ESP32-CAM, Orange Pi y Tailscale para vigilancia casera por web
+image: https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Surveillance_camera_at_Tiananmen_Square%2C_2009.jpg/330px-Surveillance_camera_at_Tiananmen_Square%2C_2009.jpg
 ---
 
 ## Introducción

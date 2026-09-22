@@ -4,6 +4,7 @@ tags: [computer science, divulgation]
 style: fill
 color: danger
 description: Un primer acercamiento a este paradigma de computación.
+image: https://www.researchgate.net/profile/Prasanna-Date/publication/358255092/figure/fig1/AS:1118564325031937@1643697925232/Comparison-of-the-von-Neumann-architecture-with-the-neuromorphic-architecture-These_W640.jpg
 ---
 
 ## Introducción

@@ -41,8 +41,11 @@
 
 <div id="scroll-container">
   <div id="scroll-text">
-    &lt;div&gt; 🚀 {{ site.description }} 🚀 &lt;/div&gt;
+    <span id="scroll-message">&lt;div&gt; 🚀 {{ site.description }} 🚀 &lt;/div&gt;</span>
   </div>
 </div>
+
+<script type="application/json" id="scroll-messages">{{ site.data.landing-messages | jsonify }}</script>
+<script src="{{ '/assets/js/random-message.js' | relative_url }}"></script>
 
 <script src="{{ '/assets/js/age-calculator.js' | relative_url }}"></script>

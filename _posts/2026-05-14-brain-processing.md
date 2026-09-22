@@ -4,6 +4,7 @@ tags: [divulgation]
 style: fill
 color: light
 description: Reflexión anecdótica sobre el funcionamiento del cerebro
+image: https://arthive.com/res/media/img/oy1200/work/07c/331862@2x.jpg
 ---
 
 _Estás dormido, suena un timbre y, en milisegundos, tu cuerpo se queda completamente tranquilo porque tu cerebro profundo ya procesó en paralelo que el ruido se dirigía al vecino; por eso no te sobresaltas. Segundos después, tu hilo consciente se pone al día y formula la frase lenta: "Ah, vale, que no es mi timbre". El subconsciente ya había resuelto el misterio; la consciencia solo llegó tarde a redactar y digerir la conclusión._

@@ -4,6 +4,7 @@ tags: [Linux]
 style: fill
 color: success
 description: Unas utilidades de terminal que siempre uso en Linux.
+image: assets/blog_images/2026-02-10-linux-utils/alejandro.png
 ---
 
 Cada vez que instalo una distribución de Linux para uso frecuente, suelo crear varios aliases, atajos y utilidades que me han servido a lo largo de los años. Vamos a comentar algunos y registrarlos para "copiar y pegarlos" la próxima vez:

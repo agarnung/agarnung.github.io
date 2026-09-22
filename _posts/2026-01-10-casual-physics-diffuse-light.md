@@ -4,6 +4,7 @@ tags: [physics, optics, divulgation]
 style: fill
 color: light
 description: Un fenómeno óptico del día a día
+image: https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Lambert2.svg/330px-Lambert2.svg.png
 ---
 
 ## Introducción

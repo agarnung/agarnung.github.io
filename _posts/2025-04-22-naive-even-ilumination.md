@@ -4,6 +4,7 @@ tags: [image processing]
 style: fill
 color: success
 description: A simple and efficient method to correct uneven ilumination in images
+image: assets/blog_images/2025-04-22-naive-even-ilumination/naive.jpg
 ---
 
 <img src="../assets/blog_images/2025-04-22-naive-even-ilumination/naive.jpg" width="400" height="400" />

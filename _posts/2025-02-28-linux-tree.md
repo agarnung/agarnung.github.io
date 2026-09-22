@@ -4,6 +4,7 @@ tags: [Linux, programming, divulgation]
 style: fill
 color: info
 description: Briefly analyzing Linux tree structure
+image: assets/blog_images/2025-02-28-linux-tree/linux.png
 ---
 
 ![linux](../assets/blog_images/2025-02-28-linux-tree/linux.png)

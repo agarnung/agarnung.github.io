@@ -4,6 +4,7 @@ tags: [machine learning, divulgation]
 style: fill
 color: info
 description: Metaphorically explaining Neural Networks
+image: assets/blog_images/2025-02-08-methaphorizing-neural-networks/nn.png
 ---
 
 ![nn](../assets/blog_images/2025-02-08-methaphorizing-neural-networks/nn.png)

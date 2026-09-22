@@ -4,6 +4,7 @@ tags: [computer vision]
 style: fill
 color: warning
 description: Playing with Radiance Fields, NeRF and other techniques
+image: assets/blog_images/2025-09-15-nerfstudio/room.gif
 ---
 
 Lets talk about NeRF. 

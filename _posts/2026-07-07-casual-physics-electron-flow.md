@@ -4,6 +4,7 @@ tags: [physics]
 style: fill
 color: danger
 description: Un comentario sobre la electricidad y el electromagnetismo 
+image: https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/London_MMB_%C2%BB1E6_Lightning.jpg/330px-London_MMB_%C2%BB1E6_Lightning.jpg
 ---
 
 ![image](https://tallerelectronica.com/wp-content/uploads/2015/03/personajesvri.png)

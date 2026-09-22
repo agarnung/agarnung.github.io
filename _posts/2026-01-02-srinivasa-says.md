@@ -4,6 +4,7 @@ tags: [electronics]
 style: fill
 color: warning
 description:  Un juego al estilo Simon Says basado en ATmega328P que reproduce dígitos de π en notas musicales. 
+image: assets/blog_images/2026-01-02-srinivasa-says/full1.png
 ---
 
 Enlace al proyecto: **[https://github.com/agarnung/srinivasa-says](https://github.com/agarnung/srinivasa-says)**.

@@ -362,6 +362,16 @@ El Linuxnomicón; ya tiene coña el nombre, pero el contenido es todo un manual 
 
 <br>
 
+- [https://geniero.es/](https://geniero.es/)
+
+<div align="center">
+
+Un manitas con el modelado 3D y con proyectos IoT muy entretenidos, e.g. su <a href="https://geniero.es/r2d2-/">R2D2</a>. Tiene cosas muy elegantes.
+
+</div>
+
+<br>
+
 ## Webs para consultar libros
 
 - [https://oceanofpdf.com/](https://oceanofpdf.com/)

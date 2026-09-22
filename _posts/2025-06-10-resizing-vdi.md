@@ -4,6 +4,7 @@ tags: [informatics]
 style: fill
 color: info
 description: Trying to resize the (virtual) disk of my virtual machine
+image: assets/blog_images/2025-06-10-resizing-vdi/C.png
 ---
 
  <img src="../assets/blog_images/2025-06-10-resizing-vdi/C.png" alt="Girl in a jacket" width="500"> 

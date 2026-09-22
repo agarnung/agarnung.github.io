@@ -141,7 +141,9 @@ Changes made to fulfil my needs:
 * Added Formspree endpoint to contact card email service
 * Added hide/show symbol to TOC window
 * Added newsletter-type email when there is a new post with jekyll-feed plugin and follow.it service
-* Added ES/EN slider to choose default language of website (i18n feature)
+* Added i18n (ES/EN) for the whole website UI (navbar, landing, about, contact, publications, music, blog, footer) with a slider to choose the default language
+* Landing marquee shows a random, i18n-aware message (ES/EN) on each pass (list editable in `_data/landing-messages.yml`)
+* Blog cards: added thumbnails to a selection of posts (one per theme), reusing local `assets/blog_images` or representative online image URLs
 
 <div align="center">
 <sub><sup>© 2025 Alejandro Garnung Menéndez, licensed under the <a href="./LICENSE">MIT License</a>.</sup></sub>

@@ -4,6 +4,7 @@ tags: [Linux, IoT, informatics]
 style: fill
 color: success
 description: Gestor de archivos por web.
+image: assets/blog_images/2026-08-10-filebrowser-raspberry-pi/filebrowser-ui.png
 ---
 
 ## Introducción

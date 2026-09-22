@@ -4,6 +4,7 @@ tags: [IoT]
 style: fill
 color: info
 description: Installing and configuring a simple home surveillance camera
+image: assets/blog_images/2025-10-17-casual-commercial-surveillance/camera1.png
 ---
 
 Let's explore practical and secure low-cost home surveillance options.

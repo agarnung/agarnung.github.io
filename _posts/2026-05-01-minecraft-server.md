@@ -4,6 +4,7 @@ tags: [misc]
 style: fill
 color: warning
 description: Levantando un servidor de Minecraft propio y ventajas e inconvenientes de múltiples alternativas.
+image: https://static0.thegamerimages.com/wordpress/wp-content/uploads/2022/05/Firelink-Shrine-Minecraft.jpg
 ---
 
 ![draksouls](https://static0.thegamerimages.com/wordpress/wp-content/uploads/2022/05/Firelink-Shrine-Minecraft.jpg)

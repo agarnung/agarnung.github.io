@@ -151,6 +151,7 @@
     document.documentElement.setAttribute("lang", lang);
     applyTranslations();
     updateToggleUI();
+    document.dispatchEvent(new CustomEvent("i18n:changed", { detail: { lang: lang } }));
   }
 
   function interpolate(str, vars) {

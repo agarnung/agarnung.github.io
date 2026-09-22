@@ -4,6 +4,7 @@ tags: [physics, thermodynamics, divulgation]
 style: fill
 color: light
 description: Gas ideal, Gay-Lussac, enfriamiento de Newton y modelo térmico del neumático.
+image: assets/blog_images/2026-04-05-casual-physics-wheels/simulation_wheel_all.png
 ---
 
 ## ¿Por qué hay más presión cuando se calientan las ruedas?

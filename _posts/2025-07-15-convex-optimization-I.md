@@ -4,6 +4,7 @@ tags: [math, programming]
 style: fill
 color: success
 description: Convex optimization in action - boosting energy efficiency 
+image: assets/blog_images/2025-07-15-convex-optimization-I/error_total_generacion.png
 ---
 
 # Introducción

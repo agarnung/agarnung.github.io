@@ -4,6 +4,7 @@ tags: [electronics, IoT]
 style: none
 color: dark
 description: Developing a basic ATMega328P application
+image: assets/blog_images/2025-04-23-ATMega328PU_two_leds/real.gif
 ---
 
 <img src="../assets/blog_images/2025-04-23-ATMega328PU_two_leds/leds.jpg" width="400" height="400" />

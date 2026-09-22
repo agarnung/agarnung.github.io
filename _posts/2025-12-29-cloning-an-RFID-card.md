@@ -4,6 +4,7 @@ tags: [IoT]
 style: fill
 color: info
 description: That's it, how to clone a simple RFID card.
+image: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/RFID_-_Tag_laverie_avec_EPC_imprim%C3%A9.png/330px-RFID_-_Tag_laverie_avec_EPC_imprim%C3%A9.png
 ---
 
 Eso es, en este post simplemente clonaremos una tarjeta RFID.
