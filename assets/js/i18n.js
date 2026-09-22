@@ -65,6 +65,7 @@
       "blog.calendar_title": "See blog calendar",
       "blog.tags_title": "See blog tags",
       "blog.no_results": "No results found",
+      "blog.cols_label": "Columns",
 
       // Footer
       "footer.license_html":
@@ -130,6 +131,7 @@
       "blog.calendar_title": "Ver calendario del blog",
       "blog.tags_title": "Ver etiquetas del blog",
       "blog.no_results": "No se encontraron resultados",
+      "blog.cols_label": "Columnas",
 
       // Footer
       "footer.license_html":

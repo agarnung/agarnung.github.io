@@ -68,6 +68,8 @@ Follow the official instructions to test GitHub Pages sites with [Jekyll](https:
 > You can start from step 6 to run my website loclly on your machine, from the cloned repo.
 6. Install the dependencies (Ruby gems) with the following command:
 	```bash
+	bundle config set --local path vendor/bundle # Optionaly let the Bundler install gems inside the project
+	sudo apt install ruby3.3-dev build-essential # Optional dependencies
 	bundle install
 	```
 (or run it with sudo if necessary)
@@ -131,6 +133,9 @@ Changes made to fulfil my needs:
 * Added a Table of Contents for the HTML in the blog posts (.html and .scss)
 * Added Mermaid support for Markdown posts
 * Added NOTE, IMPORTANT, TIP and WARNING Github-like alerts processor
+* Added optional margin sidenotes via Markdown (`[!ASIDE]` / `[!SIDE]` / `[!MARGIN]`), gingerBill-style
+* Blog post cards: optional square cover image from frontmatter (`image` or `thumbnail`, local path or URL)
+* Blog grid: user-selectable columns (1–4) with localStorage persistence
 * Centered Markdown tables and fitted the content to the page
 * Created music page with dynamic cards for each theme
 * Added Formspree endpoint to contact card email service

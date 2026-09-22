@@ -166,6 +166,23 @@ $dark-900: #17191a;
     text-decoration: none;
   }
 
+  // Sidenotes
+  .markdown-body aside.markdown-sidenote {
+    color: rgba($text-white, 0.72);
+    border-left-color: $primary;
+    background-color: rgba($primary, 0.12);
+
+    &::before {
+      color: lighten($primary, 8%);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .markdown-body:has(aside.markdown-sidenote) aside.markdown-sidenote {
+      background-color: transparent;
+    }
+  }
+
   // Timeline 
   .timeline-body .timeline-item:after{
     background-color: $dark-900;

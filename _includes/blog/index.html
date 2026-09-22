@@ -1,7 +1,5 @@
-<div class="card-group mt-2">
-
+<div id="blog-posts-grid" class="blog-posts-grid mt-2" data-cols="2" style="--blog-cols: 2">
   {% for post in site.posts %}
     {% include blog/post-card.html %}
   {% endfor %}
-  
 </div>

@@ -18,6 +18,17 @@
     <i class="fas fa-tags"></i>
   </button>
 </div>
+
+<div class="blog-grid-controls px-3 mt-3 d-flex align-items-center flex-wrap">
+  <span class="text-muted mr-2 mb-1" data-i18n="blog.cols_label">Columns</span>
+  <div class="btn-group mb-1" role="group" aria-label="Blog grid columns">
+    <button type="button" class="btn btn-sm btn-outline-primary" data-blog-cols="1" aria-pressed="false">1</button>
+    <button type="button" class="btn btn-sm btn-outline-primary active" data-blog-cols="2" aria-pressed="true">2</button>
+    <button type="button" class="btn btn-sm btn-outline-primary" data-blog-cols="3" aria-pressed="false">3</button>
+    <button type="button" class="btn btn-sm btn-outline-primary" data-blog-cols="4" aria-pressed="false">4</button>
+  </div>
+</div>
+
 <ul class="px-3" id="results-container"></ul>
 
 <script src="https://cdn.rawgit.com/christian-fei/Simple-Jekyll-Search/master/dest/simple-jekyll-search.min.js"></script>

@@ -4,6 +4,7 @@ tags: [electronics, IoT, AI]
 style: none
 color: dark
 description: A tiny ESP32-S3 voice endpoint for an AI assistant.
+image: https://raw.githubusercontent.com/agarnung/miniVirgil/main/assets/minivirgilgif.gif
 ---
 
 <div align="center" style="margin: 1.5em 0;">
