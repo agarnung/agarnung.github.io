@@ -9,6 +9,8 @@ image: https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Surveillance_ca
 
 ## Introducción
 
+![final1](../assets/blog_images/2026-07-18-casual-surveillance/final1.jpg)
+
 ![yo](../assets/blog_images/2026-07-18-casual-surveillance/yo.png)
 
 En la línea de [nuestro otro post](./casual-commercial-surveillance) en el que instalábamos una cámara comercial barata para vigilar nuestro jardín, aquí lo abordamos desde otra perspectiva: un **ESP32-CAM** ([Ai-Thinker](https://es.aliexpress.com/item/1005006299363624.html?gatewayAdapt=glo2esp), OV2640, antena 2,4 GHz externa, programador [ESP32-CAM-MB](https://electronicaelfaro.com/modulo-esp32-cam-mb)) como nodo de cámara, y una **Orange Pi One** en casa como **servidor** — no hay app móvil propia; el acceso remoto es por **navegador web** a través de **VPN** ([Tailscale](https://tailscale.com/)), con un portal (`quintanacam`) que sirve el stream y, aparte, los controles del firmware. En el nodo exterior probamos alimentación con **panel solar** (y, en una iteración futura, **batería** para cubrir la noche); de momento el prototipo va cableado/regulado de forma sencilla, como veremos más adelante.
@@ -149,6 +151,10 @@ El ejemplo es bastante robusto y da una interfaz muy personalizable (resolución
 > 4. Dejar **AWB** (_Auto White Balance_), **AEC** (_Auto Exposure Control_) y **AGC** (_Auto Gain Control_); apagar lo superfluo: **Raw GMA** (gamma en crudo, aunque habilitarlo mejora sustancialmente la calidad visual), **Lens Correction**, **WPC** (_White Pixel Correction_), **BPC** (_Black Pixel Correction_). En escena brillante, subir **AE Level** (_Auto Exposure Level_, compensación de exposición) (y activar la regulación de exposisión con AE DSP, aunque baja los FPS) a **+2** mejoró bastante la imagen ya que era una escena brillante y con alto rango dinámico.
 > 5. WiFi **2,4 GHz** con buena señal (o antena externa); lejos del AP el MJPEG se ahoga.
 > 6. En código, **PSRAM** (_Pseudo-Static RAM_) + doble buffer: `config.fb_count = 2;` y `config.grab_mode = CAMERA_GRAB_LATEST;`.
+
+Configuración recomendada:
+
+![config_recomendada](../assets/blog_images/2026-07-18-casual-surveillance/config_recomendada.png)
 
 Lo que pasa es que si se corta la alimentación, o si hay un pico de corriente y la placa se apaga momentáneamente, el ESP32 puede que se reinicie con una nueva IP (aunque el servidor se vuelva a lanzar, pues el código está en memoria flash) y tendremos que averiguarla para conectarnos a ella. La solución es fijar una **IP estática en el propio firmware** (no hace falta reservarla por DHCP en el router: el ESP32 la anuncia al asociarse por WiFi y deja de pedir IP al DHCP).
 
@@ -651,6 +657,10 @@ Recorre en orden la siguiente lista y tendrás el sistema montado al completo:
 Esta manera de configurar el acceso al streaming la considero buena porque nos da seguridad (no abrimos puertos de ningún router directamente, por tanto prevenimos ataques por fuerza bruta), simplicidad (no necesitamos configurar DDNS ni certificados SSL complejos, pues Tailscale ya cifra la conexión punto a punto) y robustez (la Orange Pi consume muy poco [menos de 1 A] y puede estar encendida 24/7 sin degradarse, a diferencia de un PC).
 
 Bien es cierto que la cámara no funcionará de noche ni a horas vespertinas sin un módulo de batería (si es que está en el exterior); pero esto podríamos dejarlo como mejora para una futura actualización de nuestro próximo sistema de vigilancia casual.
+
+Cómo quedó instalada, finalmente:
+
+![final2](../assets/blog_images/2026-07-18-casual-surveillance/final2.jpg)
 
 ## Referencias
 
