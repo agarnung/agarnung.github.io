@@ -372,6 +372,16 @@ Un manitas con el modelado 3D y con proyectos IoT muy entretenidos, e.g. su <a h
 
 <br>
 
+- [https://www.statisticshowto.com/non-newtonian-calculus/#geo](https://www.statisticshowto.com/non-newtonian-calculus/#geo)
+
+<div align="center">
+
+_Statistics How To has more than 1,000 articles and hundreds of videos for elementary statistics, probability and mathematics in general._
+
+</div>
+
+<br>
+
 ## Webs para consultar libros
 
 - [https://oceanofpdf.com/](https://oceanofpdf.com/)
@@ -397,6 +407,8 @@ Un manitas con el modelado 3D y con proyectos IoT muy entretenidos, e.g. su <a h
 - [https://dokumen.pub/](https://dokumen.pub/)
 
 - [http://178.140.10.58:8083/](http://178.140.10.58:8083/)
+
+- [https://scispace.com/papers/finite-volume-methods-for-hyperbolic-problems-31nt3bcer1](https://scispace.com/papers/finite-volume-methods-for-hyperbolic-problems-31nt3bcer1)
 
 ## Canales de Youtube
 
