@@ -72,12 +72,16 @@
         <div class="embed-responsive embed-responsive-16by9">
           {%- if music.video_url contains 'youtube.com' or music.video_url contains 'youtu.be' -%}
             {%- assign video_id = '' -%}
+            {%- assign video_start = music.start | default: '' -%}
             {%- if music.video_url contains 'youtube.com/watch?v=' -%}
               {%- assign video_id = music.video_url | split: 'v=' | last | split: '&' | first -%}
             {%- elsif music.video_url contains 'youtu.be/' -%}
               {%- assign video_id = music.video_url | split: 'youtu.be/' | last | split: '?' | first -%}
             {%- endif -%}
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video_id }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            {%- if video_start == '' and music.video_url contains 't=' -%}
+              {%- assign video_start = music.video_url | split: 't=' | last | split: '&' | first | remove: 's' -%}
+            {%- endif -%}
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video_id }}{% if video_start != '' %}?start={{ video_start }}{% endif %}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           {%- elsif music.video_url contains 'vimeo.com' -%}
             {%- assign video_id = music.video_url | split: '/' | last | split: '?' | first -%}
             <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/{{ video_id }}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
